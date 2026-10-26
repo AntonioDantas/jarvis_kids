@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>J.A.R.V.I.S. Kids</title>
+  <link rel="icon" href="static/icone.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="static/estilo.css">
+</head>
+<body data-estado="ocioso" data-pedido="">
+  <canvas id="fundo" aria-hidden="true"></canvas>
+  <div class="grade" aria-hidden="true"></div>
+
+  <!-- ============================== TOPO ============================== -->
+  <header class="topo">
+    <div class="logo" aria-label="J.A.R.V.I.S. Kids">
+      <span class="logo-marca">J.A.R.V.I.S.</span><span class="logo-kids">KIDS</span>
+    </div>
+    <div class="status" role="status">
+      <span class="status-ponto"></span><span id="status-texto">ONLINE</span>
+    </div>
+    <div class="topo-direita">
+      <span class="selo-privado" title="Tudo roda neste computador. Nada vai para a internet.">🔒 100% LOCAL</span>
+      <div class="relogio"><span id="hora">--:--</span><span id="data-curta"></span></div>
+      <button type="button" class="botao botao-desligar" id="btn-sair" title="Desligar o Jarvis (dizer tchau)" disabled>⏻</button>
+    </div>
+  </header>
+
+  <!-- ============================== PALCO ============================= -->
+  <main class="palco">
+    <aside class="coluna coluna-esquerda">
+      <section class="painel" id="painel-agente">
+        <h2>◢ Painel do agente</h2>
+        <div class="agente">
+          <div class="avatar">
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+              <circle class="avatar-trilho" cx="50" cy="50" r="44"></circle>
+              <circle class="avatar-xp" id="avatar-xp" cx="50" cy="50" r="44"></circle>
+            </svg>
+            <span id="hud-emoji">🚀</span>
+          </div>
+          <div class="agente-texto">
+            <div class="agente-nome" id="hud-nome">Agente</div>
+            <div class="agente-nivel" id="hud-nivel">Aguardando identificação</div>
+            <div class="agente-xp" id="hud-xp-texto"></div>
+          </div>
+        </div>
+        <div class="numeros">
+          <div class="numero"><span class="numero-icone">🔥</span><b id="hud-dias">0</b><small>dias seguidos</small></div>
+          <div class="numero"><span class="numero-icone">💰</span><b id="hud-saldo">R$ 0,00</b><small>nos cofrinhos</small></div>
+        </div>
+        <div class="persona" id="hud-persona" hidden></div>
+      </section>
+
+      <section class="painel">
+        <h2>🎯 Missões de hoje</h2>
+        <ul class="missoes" id="lista-missoes"><li class="vazio">As missões aparecem depois da identificação.</li></ul>
+      </section>
+
+      <section class="painel painel-sistemas">
+        <h2>◢ Sistemas</h2>
+        <ul class="sistemas" id="lista-sistemas"></ul>
+      </section>
+    </aside>
+
+    <section class="centro">
+      <div class="nucleo" id="nucleo" aria-hidden="true">
+        <canvas id="onda" width="560" height="560"></canvas>
+        <svg class="aneis" viewBox="0 0 400 400">
+          <defs>
+            <radialGradient id="brilho" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#e8fdff" stop-opacity="1"/>
+              <stop class="cor-nucleo" offset="35%" stop-opacity=".95"/>
+              <stop class="cor-nucleo" offset="70%" stop-opacity=".25"/>
+              <stop class="cor-nucleo" offset="100%" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <g class="anel anel-externo"><circle cx="200" cy="200" r="190"/></g>
+          <g class="anel anel-marcas"><circle cx="200" cy="200" r="174"/></g>
+          <g class="anel anel-arcos"><circle cx="200" cy="200" r="156"/></g>
+          <g class="anel anel-segmentos"><circle cx="200" cy="200" r="136"/></g>
+          <g class="anel anel-fino"><circle cx="200" cy="200" r="118"/></g>
+          <g class="anel anel-reator">
+            <circle cx="200" cy="200" r="98"/>
+            <path d="M200 120 L269 240 L131 240 Z"/>
+          </g>
+          <circle class="nucleo-luz" cx="200" cy="200" r="86" fill="url(#brilho)"/>
+        </svg>
+        <div class="nucleo-texto"><span id="nucleo-legenda">ONLINE</span></div>
+      </div>
+      <div class="carregando" id="carregando" hidden>
+        <span class="giro"></span><span id="carregando-texto"></span>
+      </div>
+      <div class="progresso" id="progresso" hidden>
+        <span id="progresso-texto"></span><div class="progresso-barra"><i id="progresso-barra"></i></div>
+      </div>
+      <div class="feed" id="feed" aria-live="polite"></div>
+    </section>
+
+    <aside class="coluna coluna-direita">
+      <section class="painel painel-igreja" id="painel-igreja">
+        <h2>⛪ Hoje na Igreja</h2>
+        <div class="igreja-data" id="lit-data">—</div>
+        <div class="igreja-tempo"><i class="cor-liturgica" id="lit-bolinha"></i><span id="lit-tempo">—</span></div>
+        <div class="igreja-celebracao" id="lit-celebracao"></div>
+        <div class="igreja-ano" id="lit-ano"></div>
+      </section>
+
+      <section class="painel painel-agenda">
+        <h2>📅 Agenda de hoje</h2>
+        <ul class="agenda-lista" id="agenda-hoje"><li class="vazio">Nada marcado.</li></ul>
+        <h3>Próximos dias</h3>
+        <ul class="agenda-lista agenda-proximos" id="agenda-proximos"><li class="vazio">Nada marcado.</li></ul>
+        <button class="botao botao-planner" id="btn-planner" type="button">📅 Abrir o planner</button>
+      </section>
+
+      <section class="painel">
+        <h2>⏳ Contagem regressiva</h2>
+        <ul class="contagem" id="contagem"></ul>
+      </section>
+    </aside>
+  </main>
+
+  <!-- ============================== BASE ============================== -->
+  <footer class="base">
+    <div class="respostas" id="respostas" aria-live="polite"></div>
+    <nav class="doca" id="doca" aria-label="Comandos rápidos">
+      <button type="button" data-comando="1"><span>🧠</span>Quiz</button>
+      <button type="button" data-comando="2"><span>🙏</span>Oração</button>
+      <button type="button" data-comando="8"><span>📿</span>Terço</button>
+      <button type="button" data-comando="3"><span>🔍</span>Exame</button>
+      <button type="button" data-comando="4"><span>📖</span>Histórias</button>
+      <button type="button" data-comando="5"><span>💰</span>Mesada</button>
+      <button type="button" data-comando="agenda"><span>📅</span>Agenda</button>
+      <button type="button" data-comando="9"><span>✝️</span>Calendário</button>
+      <button type="button" data-comando="6"><span>🏆</span>Conquistas</button>
+      <button type="button" data-comando="7"><span>👪</span>Pais</button>
+      <button type="button" data-comando="ajuda"><span>❔</span>Ajuda</button>
+    </nav>
+    <form class="barra" id="form-texto" autocomplete="off">
+      <button type="button" class="microfone" id="btn-mic" title="Falar com o Jarvis (Enter com o campo vazio)">
+        <span class="microfone-icone">🎙️</span><span class="microfone-texto">FALAR</span>
+      </button>
+      <input id="campo" maxlength="400" placeholder="Aguarde, o Jarvis está iniciando…" aria-label="Mensagem para o Jarvis" disabled>
+      <button type="submit" class="botao botao-enviar" id="btn-enviar" disabled>ENVIAR ➤</button>
+      <button type="button" class="botao botao-silenciar" id="btn-silenciar" title="Parar a fala do Jarvis">🔇</button>
+    </form>
+  </footer>
+
+  <!-- ============================ JANELAS ============================= -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+      <h2 id="modal-titulo"></h2>
+      <p class="modal-pergunta" id="modal-pergunta"></p>
+      <div class="modal-corpo" id="modal-corpo"></div>
+    </div>
+  </div>
+
+  <div class="celebracao" id="celebracao" hidden>
+    <div class="celebracao-raios"></div>
+    <div class="celebracao-caixa">
+      <div class="celebracao-emoji" id="celebracao-emoji">🏆</div>
+      <div class="celebracao-titulo" id="celebracao-titulo"></div>
+      <div class="celebracao-texto" id="celebracao-texto"></div>
+    </div>
+    <div class="confetes" id="confetes"></div>
+  </div>
+
+  <div class="planner" id="planner" hidden>
+    <div class="planner-caixa" role="dialog" aria-modal="true" aria-labelledby="planner-titulo">
+      <header class="planner-topo">
+        <h2 id="planner-titulo">📅 Planner do agente</h2>
+        <div class="legenda" id="legenda"></div>
+        <button type="button" class="botao botao-fechar" id="planner-fechar" aria-label="Fechar o planner">✕</button>
+      </header>
+      <div class="planner-corpo">
+        <div class="calendario" id="calendario"></div>
+        <aside class="planner-lado">
+          <form class="novo" id="form-novo" autocomplete="off">
+            <h3 id="novo-titulo">✨ Novo compromisso</h3>
+            <label>O que vai acontecer?
+              <input id="novo-nome" maxlength="60" required placeholder="Ex.: Prova de matemática">
+            </label>
+            <div class="novo-linha">
+              <label>Dia <input id="novo-data" type="date" required></label>
+              <label>Hora <input id="novo-hora" type="time"></label>
+            </div>
+            <label>Tipo</label>
+            <div class="categorias" id="novo-categorias"></div>
+            <label>Repetir
+              <select id="novo-repetir"></select>
+            </label>
+            <button type="submit" class="botao botao-salvar">Salvar na agenda ✓</button>
+            <p class="novo-msg" id="novo-msg" role="status"></p>
+          </form>
+          <div class="detalhe" id="detalhe" hidden></div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <div class="boot" id="boot">
+    <div class="boot-caixa">
+      <div class="boot-logo">J.A.R.V.I.S.<small>KIDS</small></div>
+      <div class="boot-sub">Jovem Assistente de Raciocínio, Virtudes, Inteligência e Sabedoria</div>
+      <div class="boot-barra"><i></i></div>
+      <ul class="boot-etapas" id="boot-etapas"><li>Inicializando sistemas…</li></ul>
+      <div class="boot-versao" id="boot-versao"></div>
+    </div>
+  </div>
+
+  <div class="conexao" id="conexao" hidden>
+    <div><b>Reconectando ao Jarvis…</b><br><small>Se você fechou o Jarvis, pode fechar esta janela.</small></div>
+  </div>
+
+  <script src="static/app.js"></script>
+</body>
+</html>

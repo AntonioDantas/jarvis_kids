@@ -4,9 +4,6 @@ from __future__ import annotations
 
 import random
 
-from rich.panel import Panel
-from rich.text import Text
-
 from jarvis import ui
 from jarvis.contexto import Contexto, carregar_dados
 from jarvis.gamificacao import PONTOS
@@ -46,19 +43,14 @@ def executar(ctx: Contexto) -> None:
 
     acertos, combo, pontos = 0, 0, 0
     for numero, p in enumerate(rodada, 1):
-        texto = Text(p["pergunta"] + "\n\n", style="bold")
-        for letra, opcao in zip(LETRAS, p["opcoes"], strict=False):
-            texto.append(f"  {letra}) ", style="bold #00d7ff")
-            texto.append(opcao + "\n")
-        ui.console.print(Panel(texto, title=f"[bold #00d7ff]Pergunta {numero}/{len(rodada)}[/]",
-                               subtitle=f"[grey50]{dados['categorias'][p['categoria']]} · {'★' * p['dificuldade']}[/]",
-                               border_style="#00d7ff"))
+        ui.pergunta_quiz(numero, len(rodada), p["pergunta"], p["opcoes"],
+                         f"{dados['categorias'][p['categoria']]} · {'★' * p['dificuldade']}")
         falado = " ".join(f"{letra}: {opcao}." for letra, opcao in zip(LETRAS, p["opcoes"], strict=False))
         ctx.io.dizer(f"{p['pergunta']} {falado}", mostrar=False)
 
         escolha = None
         for _ in range(3):
-            resposta = ctx.io.ouvir("Sua resposta (A, B, C, D) — 0 para sair")
+            resposta = ctx.io.ouvir("Sua resposta (A, B, C, D) — 0 para sair", tipo="quiz", opcoes=p["opcoes"])
             escolha = interpretar_escolha(resposta, p["opcoes"]) if resposta else None
             if escolha is not None:
                 break
@@ -75,13 +67,13 @@ def executar(ctx: Contexto) -> None:
             pontos += ganho
             ctx.io.efeitos.tocar("moeda")
             extra = f"  🔥 COMBO x{combo}!" if combo >= 3 else ""
-            ui.console.print(f"  [bold green]✔ CORRETO! +{ganho} pts{extra}[/]  [grey62]{p['fonte']}[/]")
+            ui.resultado(True, f"CORRETO! +{ganho} pts{extra}", p["fonte"])
             ctx.io.dizer(f"Correto! {p['explicacao']}", mostrar=False)
         else:
             combo = 0
             ctx.io.efeitos.tocar("erro")
             certa = f"{LETRAS[p['correta']]}) {p['opcoes'][p['correta']]}"
-            ui.console.print(f"  [bold red]✘ Quase![/] A resposta certa é [bold]{certa}[/]  [grey62]{p['fonte']}[/]")
+            ui.resultado(False, f"Quase! A resposta certa é {certa}", p["fonte"])
             ctx.io.dizer(f"Quase! A resposta certa é {p['opcoes'][p['correta']]}. {p['explicacao']}", mostrar=False)
         ui.info(p["explicacao"])
     del recentes[:-30]

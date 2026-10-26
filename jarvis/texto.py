@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import re
 import unicodedata
+from datetime import date, timedelta
 
 STOPWORDS = {
     "a", "o", "as", "os", "um", "uma", "uns", "umas", "de", "do", "da", "dos", "das", "e", "em",
@@ -252,6 +253,9 @@ def preparar_para_fala(texto: str) -> str:
     )
     t = _REF_BIBLICA.sub(_ler_referencia, t)
     t = _REF_CAPITULO.sub(lambda m: f"{_LIVROS_BIBLIA[m.group(1)]}, capítulo {m.group(2)}", t)
+    t = re.sub(r"\b([01]?\d|2[0-3])h([0-5]\d)\b", r"\1 e \2", t)  # 17h30 -> "17 e 30"
+    t = re.sub(r"\b1h\b", "1 hora", t)
+    t = re.sub(r"\b([01]?\d|2[0-3])h\b", r"\1 horas", t)
     t = re.sub(r"\bCIC\s?(\d)", r"Catecismo, número \1", t)
     t = re.sub(r"\bCIC\b", "Catecismo", t)
     t = re.sub(r"\b[nN][º°]\s?", "número ", t)
@@ -260,3 +264,96 @@ def preparar_para_fala(texto: str) -> str:
     t = re.sub(r"(\d)\s?[x×]\s?(\d)", r"\1 vezes \2", t)
     t = re.sub(r"\bJ\.A\.R\.V\.I\.S\.", "Jarvis", t)
     return re.sub(r"\s+", " ", t).strip()
+
+
+# -----------------------------------------------------------------------------
+#  Datas e horas faladas ("sexta às 8h", "amanhã", "dia 15", "25/12", "3 da tarde")
+# -----------------------------------------------------------------------------
+_DIAS_SEMANA = {"segunda": 0, "terca": 1, "quarta": 2, "quinta": 3, "sexta": 4, "sabado": 5, "domingo": 6}
+_MESES = {"janeiro": 1, "fevereiro": 2, "marco": 3, "abril": 4, "maio": 5, "junho": 6, "julho": 7, "agosto": 8,
+          "setembro": 9, "outubro": 10, "novembro": 11, "dezembro": 12, "jan": 1, "fev": 2, "mar": 3, "abr": 4,
+          "mai": 5, "jun": 6, "jul": 7, "ago": 8, "set": 9, "out": 10, "nov": 11, "dez": 12}
+_RE_DATA_NUM = re.compile(r"\b(\d{1,2})[/-](\d{1,2})(?:[/-](\d{2,4}))?\b")
+_RE_DIA_MES = re.compile(r"\b(\d{1,2})\s+de\s+(" + "|".join(sorted(_MESES, key=len, reverse=True)) + r")\b")
+_RE_DIA = re.compile(r"\bdia\s+(\d{1,2})\b")
+_RE_HORA = re.compile(r"\b(\d{1,2})(?:\s*(?:h|:|horas?)\s*(\d{2})?|\s*h\b)(?:\s*min(?:utos)?)?")
+_RE_PERIODO = re.compile(r"\b(\d{1,2})\s+(?:hora[s]?\s+)?da\s+(manha|tarde|noite|madrugada)\b")
+
+
+def ler_data(texto: str, hoje: date | None = None) -> date | None:
+    """Entende datas do jeito que a criança fala. Retorna None se não houver data."""
+    hoje = hoje or date.today()
+    t = normalizar(texto)
+    if contem_frase(t, "depois de amanha"):
+        return hoje + timedelta(days=2)
+    if contem_frase(t, "amanha"):
+        return hoje + timedelta(days=1)
+    if contem_frase(t, "hoje"):
+        return hoje
+    if m := _RE_DATA_NUM.search(t):
+        dia, mes = int(m.group(1)), int(m.group(2))
+        ano = int(m.group(3)) if m.group(3) else hoje.year
+        ano = ano + 2000 if ano < 100 else ano
+        try:
+            data = date(ano, mes, dia)
+        except ValueError:
+            return None
+        return data.replace(year=data.year + 1) if not m.group(3) and data < hoje else data
+    if m := _RE_DIA_MES.search(t):
+        try:
+            data = date(hoje.year, _MESES[m.group(2)], int(m.group(1)))
+        except ValueError:
+            return None
+        return data.replace(year=data.year + 1) if data < hoje else data
+    for nome, numero in _DIAS_SEMANA.items():
+        if re.search(rf"\b{nome}(-feira| feira)?\b", t):
+            dias = (numero - hoje.weekday()) % 7
+            if re.search(r"\b(proxima|proximo|que vem)\b", t) and dias == 0:
+                dias = 7
+            return hoje + timedelta(days=dias)
+    if m := _RE_DIA.search(t):
+        dia = int(m.group(1))
+        for mais in (0, 1):
+            mes = (hoje.month - 1 + mais) % 12 + 1
+            ano = hoje.year + (hoje.month - 1 + mais) // 12
+            try:
+                data = date(ano, mes, dia)
+            except ValueError:
+                continue
+            if data >= hoje:
+                return data
+        return None
+    if contem_frase(t, "semana que vem"):
+        return hoje + timedelta(days=7)
+    return None
+
+
+def ler_hora(texto: str) -> str:
+    """'8h', '8:30', 'às 15h', '3 da tarde', 'meio-dia' -> 'HH:MM' (ou '' se não houver hora)."""
+    t = normalizar(texto).replace("meio-dia", "meio dia")
+    if contem_frase(t, "meio dia"):
+        return "12:00"
+    if m := _RE_PERIODO.search(t):
+        hora, periodo = int(m.group(1)), m.group(2)
+        if periodo in ("tarde", "noite") and hora < 12:
+            hora += 12
+        return f"{hora % 24:02d}:00"
+    sem_datas = _RE_DATA_NUM.sub(" ", t)
+    for m in _RE_HORA.finditer(sem_datas):
+        hora, minutos = int(m.group(1)), int(m.group(2) or 0)
+        if hora <= 23 and minutos <= 59:
+            return f"{hora:02d}:{minutos:02d}"
+    if (m := re.search(r"\b(?:as|a)\s+(\d{1,2})\b", sem_datas)) and int(m.group(1)) <= 23:  # "às 7"
+        return f"{int(m.group(1)):02d}:00"
+    return ""
+
+
+_NOMES_DIAS = ("segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado", "domingo")
+_NOMES_MESES = ("janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro",
+                "novembro", "dezembro")
+
+
+def data_por_extenso(dia: date, com_dia_semana: bool = True) -> str:
+    """date(2026, 10, 26) -> 'segunda-feira, 26 de outubro'."""
+    texto = f"{dia.day} de {_NOMES_MESES[dia.month - 1]}"
+    return f"{_NOMES_DIAS[dia.weekday()]}, {texto}" if com_dia_semana else texto

@@ -22,13 +22,34 @@ import subprocess
 import sys
 import threading
 import warnings
+import weakref
 
 import numpy as np
 
-from jarvis.audio.efeitos import AltoFalante
+from jarvis.audio.efeitos import AltoFalante, reamostrar
 from jarvis.texto import preparar_para_fala
 
 VOZES_PT_BR = ("pm_alex", "pm_santa", "pf_dora")
+
+# Nenhum motor local tem voz infantil em português. Estes perfis deixam as vozes neurais mais
+# jovens e amigáveis elevando o "tom" (altura e timbre) sem mudar a velocidade da fala.
+# Medido: a voz Dora com tom 1,30 chega a ~234 Hz (faixa de uma criança) e o Whisper ainda
+# entende 100% das palavras.
+PERFIS_VOZ: dict[str, dict] = {
+    "robo_amigo": {"nome": "🤖 Robô Amigo", "descricao": "voz jovem e animada (padrão)",
+                   "kokoro": "pm_alex", "edge": "pt-BR-AntonioNeural", "velocidade": 1.05, "tom": 1.12},
+    "estrela": {"nome": "⭐ Estrela Guia", "descricao": "voz feminina jovem e alegre",
+                "kokoro": "pf_dora", "edge": "pt-BR-FranciscaNeural", "velocidade": 1.05, "tom": 1.12},
+    "explorador": {"nome": "🧒 Mini-Jarvis Explorador", "descricao": "voz de menino, bem infantil",
+                   "kokoro": "pm_alex", "edge": "pt-BR-AntonioNeural", "velocidade": 1.0, "tom": 1.32},
+    "estrelinha": {"nome": "👧 Mini-Jarvis Estrelinha", "descricao": "voz de menina, bem infantil",
+                   "kokoro": "pf_dora", "edge": "pt-BR-FranciscaNeural", "velocidade": 1.0, "tom": 1.30},
+    "capitao": {"nome": "🚀 Capitão", "descricao": "a voz clássica do Jarvis",
+                "kokoro": "pm_alex", "edge": "pt-BR-AntonioNeural", "velocidade": 1.1, "tom": 1.0},
+    "sabio": {"nome": "🦉 Professor Sábio", "descricao": "voz grave e calma",
+              "kokoro": "pm_santa", "edge": "pt-BR-AntonioNeural", "velocidade": 0.97, "tom": 1.0},
+}
+VOZ_PADRAO = "robo_amigo"
 
 
 class MotorVoz:
@@ -63,13 +84,19 @@ class VozKokoro(MotorVoz):
         self.sintetizar("Olá.", {})  # aquece o modelo
 
     def sintetizar(self, texto: str, voz: dict) -> tuple[np.ndarray, int] | None:
+        tom = voz.get("tom", 1.0)
+        # Fala mais devagar e depois "acelera" a gravação: o tom sobe e a velocidade final fica a pedida.
+        velocidade = voz.get("velocidade", self.velocidade) / tom
         partes = []
-        for _grafemas, _fonemas, audio in self.pipeline(
-            texto, voice=voz.get("kokoro", self.voz_padrao), speed=voz.get("velocidade", self.velocidade)
-        ):
+        for _grafemas, _fonemas, audio in self.pipeline(texto, voice=voz.get("kokoro", self.voz_padrao), speed=velocidade):
             if audio is not None:
                 partes.append(audio.numpy() if hasattr(audio, "numpy") else np.asarray(audio))
-        return (np.concatenate(partes).astype(np.float32), 24_000) if partes else None
+        if not partes:
+            return None
+        audio = np.concatenate(partes).astype(np.float32)
+        if abs(tom - 1.0) > 0.01:
+            audio = reamostrar(audio, round(24_000 * tom), 24_000)
+        return audio, 24_000
 
 
 class VozEdge(MotorVoz):
@@ -91,10 +118,11 @@ class VozEdge(MotorVoz):
         import soundfile as sf
 
         taxa = f"{round((voz.get('velocidade', self.velocidade) - 1) * 100):+d}%"
+        altura = f"{round((voz.get('tom', 1.0) - 1) * 150):+d}Hz"
 
         async def baixar() -> bytes:
             dados = b""
-            comunicador = edge_tts.Communicate(texto, voz.get("edge", self.voz_padrao), rate=taxa)
+            comunicador = edge_tts.Communicate(texto, voz.get("edge", self.voz_padrao), rate=taxa, pitch=altura)
             async for pedaco in comunicador.stream():
                 if pedaco["type"] == "audio":
                     dados += pedaco["data"]
@@ -234,7 +262,11 @@ class FluxoFala:
                 if resultado is not None:
                     self._entregar(resultado)
             else:
-                self.motor.falar(texto, self.voz)
+                self.alto_falante.notificar("inicio")
+                try:
+                    self.motor.falar(texto, self.voz)
+                finally:
+                    self.alto_falante.notificar("fim")
 
     def _reprodutor(self) -> None:
         while True:
@@ -250,6 +282,8 @@ class Voz:
     def __init__(self, preferido: str, voz_kokoro: str, voz_edge: str, velocidade: float, alto_falante: AltoFalante):
         self.alto_falante = alto_falante
         self.avisos: list[str] = []
+        self.padrao: dict = dict(PERFIS_VOZ[VOZ_PADRAO])  # trocado pela voz que cada criança escolher
+        self._fluxos: weakref.WeakSet[FluxoFala] = weakref.WeakSet()
         ordem = {
             "auto": ["kokoro", "sistema"],
             "kokoro": ["kokoro", "sistema"],
@@ -281,8 +315,23 @@ class Voz:
     def ativa(self) -> bool:
         return type(self.motor) is not MotorVoz
 
+    def definir_padrao(self, perfil_voz: dict) -> None:
+        self.padrao = dict(perfil_voz)
+
+    def com(self, **ajustes) -> dict:
+        """A voz escolhida pela criança com algum ajuste, ex.: ``voz.com(velocidade=0.9)`` para rezar."""
+        return {**self.padrao, **ajustes}
+
     def iniciar_fluxo(self, voz: dict | None = None) -> FluxoFala:
-        return FluxoFala(self.motor, self.alto_falante, voz or {})
+        fluxo = FluxoFala(self.motor, self.alto_falante, self.padrao if voz is None else voz)
+        self._fluxos.add(fluxo)
+        return fluxo
+
+    def silenciar(self) -> None:
+        """Botão 'parar de falar': interrompe a fala atual e as frases que ainda viriam."""
+        for fluxo in list(self._fluxos):
+            fluxo.cancelar()
+        self.alto_falante.parar()
 
     def falar(self, texto: str, voz: dict | None = None) -> None:
         fluxo = self.iniciar_fluxo(voz)

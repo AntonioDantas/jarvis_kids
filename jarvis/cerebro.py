@@ -109,26 +109,38 @@ class Cerebro:
         except Exception as exc:
             raise ErroCerebro(f"Não consegui baixar o modelo '{self.modelo}': {exc}") from exc
 
-    def aquecer(self) -> None:
-        """Um prompt vazio só carrega o modelo na memória (primeira resposta fica rápida)."""
+    def aquecer(self, system_prompt: str | None = None) -> None:
+        """
+        Carrega o modelo na memória. Com ``system_prompt``, o Ollama também já processa as regras
+        do Jarvis e guarda em cache: a primeira pergunta da criança é respondida bem mais rápido.
+        """
         try:
-            self.cliente.generate(model=self.modelo, prompt="", keep_alive=self.plano.manter_carregado)
+            if system_prompt is None:
+                self.cliente.generate(model=self.modelo, prompt="", keep_alive=self.plano.manter_carregado)
+            else:
+                self.cliente.chat(model=self.modelo, messages=[{"role": "system", "content": system_prompt},
+                                                               {"role": "user", "content": "Oi"}],
+                                  options={**self.plano.opcoes_ollama, "num_predict": 1},
+                                  keep_alive=self.plano.manter_carregado)
         except Exception:
             pass
 
     # ------------------------------------------------------------- conversa
-    def responder(self, pergunta: str, system_prompt: str, fontes: str | None = None) -> Iterator[str]:
+    def responder(self, pergunta: str, system_prompt: str, fontes: str | None = None,
+                  temperatura: float | None = None) -> Iterator[str]:
         mensagens = [{"role": "system", "content": system_prompt}, *self.historico]
-        if fontes:
-            mensagens.append({"role": "system", "content": fontes})
-        mensagens.append({"role": "user", "content": pergunta})
+        # As fontes vão na mesma mensagem da pergunta: modelos pequenos dão mais atenção ao que está perto dela
+        # (o Ollama junta todas as mensagens "system" no começo, longe da pergunta).
+        conteudo = f"{fontes}\n\nPERGUNTA DA CRIANÇA: {pergunta}" if fontes else pergunta
+        mensagens.append({"role": "user", "content": conteudo})
         filtro = FiltroPensamento()
         try:
             for parte in self.cliente.chat(
                 model=self.modelo,
                 messages=mensagens,
                 stream=True,
-                options=self.plano.opcoes_ollama,
+                options=self.plano.opcoes_ollama if temperatura is None else {**self.plano.opcoes_ollama,
+                                                                                "temperature": temperatura},
                 keep_alive=self.plano.manter_carregado,
             ):
                 texto = filtro.filtrar(_campo(_campo(parte, "message", {}), "content", "") or "")

@@ -15,7 +15,8 @@ A forma mais valiosa de contribuir é revisar e ampliar os arquivos em [`dados/`
 | `oracoes.json` | orações tradicionais e orações do projeto |
 | `quiz.json` | perguntas do Quiz Desafio |
 | `exame_consciencia.json` | Inspectorum (Exame de Consciência) |
-| `calendario_santos.json` | festas do calendário litúrgico |
+| `calendario_santos.json` | santo ou festa de cada dia (Calendário Romano Geral + Brasil) |
+| `terco.json` | mistérios do terço e meditações para crianças |
 | `seguranca.json` | frases de risco e respostas fixas do Guardião |
 
 **Checklist de conteúdo:**
@@ -32,8 +33,11 @@ A forma mais valiosa de contribuir é revisar e ampliar os arquivos em [`dados/`
 ```bash
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements-dev.txt
-pytest -q          # 149 testes, rodam sem GPU, microfone ou Ollama
+pytest -q          # 377 testes, rodam sem GPU, microfone, navegador ou Ollama
 ruff check .       # estilo e erros comuns
+
+# Teste com a IA de verdade (precisa do Ollama ligado): 40 casos de proteção, doutrina e estudos
+python ferramentas/avaliar_ia.py --modelo llama3.2:3b
 ```
 
 Princípios do projeto:
@@ -43,9 +47,13 @@ Princípios do projeto:
 2. **Tudo degrada com elegância.** Sem GPU, microfone, PortAudio, Kokoro ou Ollama, o Jarvis continua funcionando
    com uma alternativa (CPU, teclado, voz do sistema, módulos sem IA).
 3. **Segurança antes da IA.** Situações de risco têm resposta fixa; a saída da IA passa pelo Guardião antes de ser
-   mostrada ou falada. Novas funções que mostram texto da IA devem usar `Interacao.responder_em_fluxo`.
-4. **Privacidade da criança.** O Exame de Consciência nunca grava respostas. Não adicione telemetria.
-5. **Código em português**, simples e com testes para regras novas (mesada, pontos, filtros, comandos).
+   mostrada ou falada. Novas funções que mostram texto da IA devem usar `Interacao.responder_em_fluxo`. Se mudar o
+   System Prompt ou o Guardião, rode `ferramentas/avaliar_ia.py` e compare com os resultados do README.
+4. **Uma tela, dois jeitos.** Os módulos desenham só com as funções de `jarvis/ui.py` (`fala`, `painel`, `tabela`,
+   `menu`, `entrada(tipo=...)`…): elas funcionam no terminal e na janela futurista (`jarvis/web/`). A janela não
+   pode carregar nada da internet (a política de conteúdo do servidor bloqueia).
+5. **Privacidade da criança.** O Exame de Consciência nunca grava respostas. Não adicione telemetria.
+6. **Código em português**, simples e com testes para regras novas (mesada, pontos, filtros, comandos).
 
 ## 🛡️ Encontrou um problema de segurança infantil?
 

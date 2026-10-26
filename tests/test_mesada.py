@@ -27,7 +27,7 @@ def test_distribuir_pelos_maiores_restos():
 def test_deposito_divide_nos_cofrinhos_e_registra_extrato(perfil):
     mesada = Mesada(perfil)
     resultado = mesada.depositar(1000, "teste")
-    assert resultado.distribuicao == {"dizimo": 100, "poupar": 300, "gastar": 500, "doar": 100}
+    assert resultado.distribuicao == {"dizimo": 100, "poupar": 200, "investir": 200, "gastar": 400, "doar": 100}
     assert mesada.saldo_total() == 1000
     assert mesada.extrato(1)[0]["tipo"] == "deposito"
 
@@ -73,11 +73,11 @@ def test_gastar_transferir_e_saldo_insuficiente(perfil):
     mesada = Mesada(perfil)
     mesada.depositar(1000, "mesada")
     mesada.retirar("gastar", 200, "lanche")
-    assert mesada.cofrinho("gastar")["saldo"] == 300
+    assert mesada.cofrinho("gastar")["saldo"] == 200
     with pytest.raises(ErroMesada):
-        mesada.retirar("gastar", 301, "videogame")
-    mesada.transferir("gastar", "poupar", 300)
-    assert mesada.cofrinho("poupar")["saldo"] == 600 and mesada.cofrinho("gastar")["saldo"] == 0
+        mesada.retirar("gastar", 201, "videogame")
+    mesada.transferir("gastar", "poupar", 200)
+    assert mesada.cofrinho("poupar")["saldo"] == 400 and mesada.cofrinho("gastar")["saldo"] == 0
     with pytest.raises(ErroMesada):
         mesada.transferir("poupar", "poupar", 10)
 
@@ -93,15 +93,15 @@ def test_entregar_dizimo(perfil):
 def test_percentuais_precisam_somar_100(perfil):
     mesada = Mesada(perfil)
     with pytest.raises(ErroMesada):
-        mesada.definir_percentuais({"dizimo": 10, "poupar": 10, "gastar": 10, "doar": 10})
-    mesada.definir_percentuais({"dizimo": 10, "poupar": 40, "gastar": 40, "doar": 10})
+        mesada.definir_percentuais({"dizimo": 10, "poupar": 10, "investir": 10, "gastar": 10, "doar": 10})
+    mesada.definir_percentuais({"dizimo": 10, "poupar": 40, "investir": 0, "gastar": 40, "doar": 10})
     assert mesada.cofrinho("poupar")["percentual"] == 40
 
 
 def test_cofrinho_de_sonho_com_meta(perfil):
     mesada = Mesada(perfil)
     sonho = mesada.criar_cofrinho("Bicicleta", "🚲", meta=1000)
-    mesada.definir_percentuais({"dizimo": 10, "poupar": 0, "gastar": 0, "doar": 0, sonho["id"]: 90})
+    mesada.definir_percentuais({"dizimo": 10, "poupar": 0, "investir": 0, "gastar": 0, "doar": 0, sonho["id"]: 90})
     assert mesada.depositar(1000, "a").metas_atingidas == []
     assert mesada.depositar(200, "b").metas_atingidas == ["Bicicleta"]
     mesada.remover_cofrinho(sonho["id"])  # saldo e percentual voltam para a poupança

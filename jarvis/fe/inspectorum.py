@@ -11,9 +11,6 @@ from __future__ import annotations
 
 import random
 
-from rich.panel import Panel
-from rich.text import Text
-
 from jarvis import ui
 from jarvis.armazenamento import hoje
 from jarvis.contexto import Contexto, carregar_dados
@@ -39,20 +36,16 @@ def executar(ctx: Contexto) -> None:
 
     try:
         for m in mandamentos:
-            corpo = Text(m["explicacao"] + "\n\n", style="italic #e4d7ff")
-            for pergunta in m["perguntas"]:
-                corpo.append("  ◇ ", style=ui.CORES["fe"])
-                corpo.append(pergunta + "\n")
-            corpo.append(f"\n  ✦ Virtude: {m['virtude']}", style="bold #ffd75f")
-            ui.console.print(Panel(corpo, title=f"[bold {ui.CORES['fe']}]{m['numero']}º · {m['titulo']}[/]",
-                                   border_style=ui.CORES["fe"]))
+            perguntas = "\n".join(f"◇ {pergunta}" for pergunta in m["perguntas"])
+            ui.painel(f"{m['numero']}º · {m['titulo']}", f"{m['explicacao']}\n\n{perguntas}", ui.CORES["fe"],
+                      destaque=f"Virtude: {m['virtude']}")
             ctx.io.dizer(f"{m['numero']}º mandamento: {m['titulo']}. {m['explicacao']} " + " ".join(m["perguntas"]),
                          mostrar=False)
             ui.info("Pense em silêncio. Sua resposta fica só entre você e Deus.")
             if ctx.io.maos_livres:
                 ctx.io.ouvir()  # diga "próximo" para continuar
             else:
-                ui.entrada("Aperte ENTER para continuar")
+                ui.entrada("Aperte ENTER para continuar", tipo="continuar")
     except (KeyboardInterrupt, EOFError):
         ui.info("Exame interrompido. Tudo bem, você pode voltar quando quiser.")
         return
@@ -70,8 +63,8 @@ def executar(ctx: Contexto) -> None:
 
     ctx.io.dizer("Agora vamos rezar juntos o Ato de Contrição.", cor=ui.CORES["fe"])
     for linha in next(o for o in oracoes.oracoes() if o["id"] == "ato_contricao")["linhas"]:
-        ui.console.print(f"  [bold {ui.CORES['fe']}]✝[/] [italic]{linha}[/]")
-        ctx.io.voz.falar(linha, {"velocidade": 0.9})
+        ui.linha_oracao(linha)
+        ctx.io.voz.falar(linha, ctx.io.voz.com(velocidade=0.9))
     for frase in dados["encerramento"]:
         ctx.io.dizer(frase, titulo="INSPECTORUM", cor=ui.CORES["fe"])
 

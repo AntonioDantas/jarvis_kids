@@ -59,3 +59,27 @@ def test_resposta_com_palavrao_e_bloqueada_antes_de_ser_falada():
 
 def test_sem_microfone_a_escuta_fica_desligada():
     assert not criar_interacao().escuta_ativa
+
+
+def test_citacao_inventada_tira_so_a_frase_dela():
+    io = criar_interacao()
+    tokens = iter(['A hóstia consagrada é Jesus de verdade. O Papa disse que "a hóstia é um pequeno pão do céu para '
+                   'as crianças". Que tal visitar Jesus no sacrário? '])
+    texto, bloqueado = io.responder_em_fluxo(tokens)
+    assert not bloqueado and io.ultimo_bloqueio == "citacao"
+    assert io.voz.falado == ["A hóstia consagrada é Jesus de verdade.", "Que tal visitar Jesus no sacrário?"]
+    assert "pequeno pão" not in texto
+
+
+def test_citacao_inventada_sozinha_vira_aviso():
+    io = criar_interacao()
+    tokens = iter(['Santo Agostinho disse: "quem canta reza duas vezes por dia na escola".'])
+    texto, bloqueado = io.responder_em_fluxo(tokens)
+    assert bloqueado and texto == io.guardiao.resposta_citacao
+
+
+def test_citacao_presente_nas_fontes_e_falada():
+    io = criar_interacao()
+    frase = 'São João Bosco dizia: "Sejam sempre alegres".'
+    texto, bloqueado = io.responder_em_fluxo(iter([frase]), autorizados="Frase autêntica: Sejam sempre alegres")
+    assert not bloqueado and io.voz.falado == [frase]

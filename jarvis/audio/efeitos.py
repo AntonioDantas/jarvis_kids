@@ -30,6 +30,7 @@ class AltoFalante:
     def __init__(self) -> None:
         self._trava = threading.Lock()
         self.erro = ""
+        self.observador = None  # função(evento, audio, taxa): a interface gráfica anima a voz
         try:
             import sounddevice as sd
 
@@ -48,6 +49,7 @@ class AltoFalante:
             return
         audio = np.clip(np.asarray(audio, dtype=np.float32), -1.0, 1.0)
         with self._trava:
+            self.notificar("inicio", audio, taxa)
             try:
                 self._sd.play(audio, taxa)
                 self._sd.wait()
@@ -58,6 +60,15 @@ class AltoFalante:
                     self._sd.wait()
                 except Exception as exc:
                     self.erro = str(exc)
+            finally:
+                self.notificar("fim")
+
+    def notificar(self, evento: str, audio: np.ndarray | None = None, taxa: int = 0) -> None:
+        if self.observador:
+            try:
+                self.observador(evento, audio, taxa)
+            except Exception:
+                pass
 
     def parar(self) -> None:
         if self._sd is not None:

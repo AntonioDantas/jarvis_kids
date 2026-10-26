@@ -21,12 +21,22 @@ COMANDOS: dict[str, list[str]] = {
     "conquistas": ["6", "conquistas", "medalhas", "minhas medalhas", "meu nivel", "meus pontos", "missoes",
                    "minhas missoes", "missoes do dia", "status", "pontos", "nivel"],
     "pais": ["7", "area dos pais", "pais", "modo pais", "painel dos pais"],
+    "terco": ["8", "terco", "rosario", "rezar o terco", "terco guiado", "rezar o rosario", "o terco"],
+    "calendario": ["9", "calendario", "calendario liturgico", "tempo liturgico", "cor liturgica", "liturgia"],
+    "agenda": ["agenda", "minha agenda", "planner", "meu planner", "compromissos", "meus compromissos", "calendario de "
+               "compromissos", "o que eu tenho hoje", "o que tenho hoje", "o que eu tenho amanha", "o que tenho amanha"],
+    "voz": ["mudar voz", "mudar a voz", "trocar voz", "trocar a voz", "voz", "escolher voz", "outra voz"],
     "sair": ["0", "sair", "tchau", "desligar", "ate logo", "ate mais", "boa noite", "fui", "encerrar", "tchau tchau"],
     "ajuda": ["ajuda", "comandos", "o que voce sabe fazer", "o que voce faz", "menu", "opcoes", "help"],
 }
 # Estas frases valem em qualquer parte da fala
 EM_QUALQUER_LUGAR: dict[str, list[str]] = {
     "conquistas": ["qual o meu nivel", "qual e o meu nivel", "quantos pontos eu tenho", "minhas conquistas"],
+    "calendario": ["quanto falta para o natal", "quanto falta pro natal", "quanto falta para a pascoa",
+                   "quanto falta pra pascoa", "que tempo liturgico", "qual a cor liturgica", "qual e a cor liturgica"],
+    "agenda": ["abre a agenda", "abrir a agenda", "abre o planner", "abrir o planner", "minha agenda",
+               "o que tem na agenda", "o que tem na minha agenda", "o que eu tenho pra hoje", "o que tenho pra hoje"],
+    "voz": ["mudar sua voz", "trocar sua voz", "mudar de voz", "trocar de voz", "muda sua voz", "troca sua voz"],
     "saldo": ["quanto eu tenho", "meu saldo", "quanto tenho no cofrinho", "quanto dinheiro eu tenho",
               "quanto tem no meu cofrinho", "quanto tem nos meus cofrinhos"],
     "normal": ["voltar ao normal", "volta ao normal", "modo jarvis", "sair do modo santo", "desligar holograma",

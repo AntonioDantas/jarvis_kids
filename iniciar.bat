@@ -64,7 +64,14 @@ if errorlevel 1 (
   )
 )
 
-rem --- 4. Decolar!
+rem --- 4. So na primeira vez: baixa todos os modelos de IA de uma vez
+if not exist ".venv\.modelos_preparados" (
+  echo Baixando os modelos de IA: cerebro ~2 GB, ouvido ~0,5 GB e voz ~0,3 GB. So acontece uma vez!
+  ".venv\Scripts\python.exe" main.py --preparar
+  if not errorlevel 1 echo ok> ".venv\.modelos_preparados"
+)
+
+rem --- 5. Decolar!
 ".venv\Scripts\python.exe" main.py %*
 echo.
 pause

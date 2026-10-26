@@ -66,5 +66,13 @@ elif ! ollama_ligado; then
   for _ in 1 2 3 4 5 6 7 8 9 10; do ollama_ligado && break; sleep 1; done
 fi
 
-# --- 5. Decolar!
+# --- 5. Só na primeira vez: baixa todos os modelos de IA de uma vez, com barra de progresso
+if [ ! -f .venv/.modelos_preparados ]; then
+  azul "🧠 Baixando os modelos de IA (cérebro ~2 GB, ouvido ~0,5 GB, voz ~0,3 GB). Só acontece uma vez!"
+  if .venv/bin/python main.py --preparar; then
+    touch .venv/.modelos_preparados
+  fi
+fi
+
+# --- 6. Decolar!
 exec .venv/bin/python main.py "$@"

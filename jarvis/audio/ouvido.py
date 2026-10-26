@@ -52,6 +52,7 @@ class Microfone:
         limiar_inicio: float = 0.5,
         limiar_fim: float = 0.35,
         ao_detectar_fala: Callable[[], None] | None = None,
+        ao_nivel: Callable[[float], None] | None = None,
     ) -> np.ndarray | None:
         """
         Espera a criança começar a falar e devolve o áudio (16 kHz, mono) quando ela termina.
@@ -60,7 +61,7 @@ class Microfone:
         fila: queue.Queue = queue.Queue()
         pre_fala: deque = deque(maxlen=int(300 / MS_POR_QUADRO))  # 300 ms antes da fala
         fala: list[np.ndarray] = []
-        falando, seguidos, silencio = False, 0, 0
+        falando, seguidos, silencio, quadros_lidos = False, 0, 0, 0
         sobra = np.zeros(0, dtype=np.float32)
         inicio = time.monotonic()
         self.sensor.reiniciar()
@@ -83,6 +84,9 @@ class Microfone:
                     while sobra.size >= TAMANHO_QUADRO:
                         quadro, sobra = sobra[:TAMANHO_QUADRO], sobra[TAMANHO_QUADRO:]
                         prob = self.sensor.probabilidade(quadro)
+                        quadros_lidos += 1
+                        if ao_nivel and quadros_lidos % 3 == 0:  # ~10 vezes por segundo
+                            ao_nivel(min(1.0, float(np.sqrt(np.mean(quadro ** 2))) * 12))
                         if not falando:
                             pre_fala.append(quadro)
                             seguidos = seguidos + 1 if prob >= limiar_inicio else 0

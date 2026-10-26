@@ -1,0 +1,9 @@
+Fontes usadas pela janela do J.A.R.V.I.S. Kids (todas sob a SIL Open Font License 1.1):
+
+* Orbitron.ttf — The League of Moveable Type / The Orbitron Project Authors
+  (https://github.com/theleagueof/orbitron). Arquivo ORIGINAL, sem nenhuma modificação
+  (o nome "Orbitron" é reservado pela licença). Licença: OFL-Orbitron.txt
+
+* Rajdhani-*.ttf — Indian Type Foundry (https://github.com/itfoundry/rajdhani).
+  Subconjunto com os caracteres latinos (português), para a janela abrir mais rápido.
+  Licença: OFL-Rajdhani.txt

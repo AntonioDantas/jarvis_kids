@@ -1,0 +1,75 @@
+{
+  "_sobre": "Terço guiado do J.A.R.V.I.S. Kids. Títulos tradicionais dos mistérios, referências bíblicas e meditações curtas escritas pelo projeto para crianças. Dias da semana conforme a carta Rosarium Virginis Mariae (2002).",
+  "dias": {"0": "gozosos", "1": "dolorosos", "2": "gloriosos", "3": "luminosos", "4": "dolorosos", "5": "gozosos", "6": "gloriosos"},
+  "misterios": {
+    "gozosos": {
+      "nome": "Mistérios Gozosos",
+      "emoji": "🌟",
+      "lista": [
+        {"titulo": "A Anunciação do Anjo Gabriel a Nossa Senhora", "referencia": "Lc 1,26-38", "fruto": "humildade",
+         "meditacao": "O anjo Gabriel trouxe a maior notícia da história, e Maria respondeu: faça-se em mim segundo a tua palavra. Vamos pedir um coração que diz sim a Deus."},
+        {"titulo": "A Visitação de Nossa Senhora à sua prima Isabel", "referencia": "Lc 1,39-56", "fruto": "amor ao próximo",
+         "meditacao": "Maria viajou depressa pelas montanhas para ajudar a prima Isabel. Vamos pensar em alguém que precisa da nossa ajuda hoje."},
+        {"titulo": "O Nascimento de Jesus em Belém", "referencia": "Lc 2,1-20", "fruto": "simplicidade",
+         "meditacao": "O Rei do universo nasceu numa manjedoura, bem pertinho dos animais. Vamos agradecer por tudo o que temos, mesmo as coisas simples."},
+        {"titulo": "A Apresentação do Menino Jesus no Templo", "referencia": "Lc 2,22-40", "fruto": "obediência",
+         "meditacao": "Maria e José levaram Jesus ao Templo, cumprindo a lei de Deus, e o velho Simeão reconheceu o Salvador. Vamos oferecer a Deus o nosso dia."},
+        {"titulo": "A Perda e o Encontro do Menino Jesus no Templo", "referencia": "Lc 2,41-52", "fruto": "buscar a Deus",
+         "meditacao": "Aos 12 anos, Jesus ficou no Templo conversando com os mestres, e Maria e José o procuraram por três dias. Vamos procurar Jesus sempre, como eles."}
+      ]
+    },
+    "dolorosos": {
+      "nome": "Mistérios Dolorosos",
+      "emoji": "✝️",
+      "lista": [
+        {"titulo": "A Agonia de Jesus no Horto das Oliveiras", "referencia": "Lc 22,39-46", "fruto": "confiança em Deus",
+         "meditacao": "Na noite antes da cruz, Jesus rezou ao Pai: não se faça a minha vontade, mas a tua. Vamos pedir coragem para confiar em Deus nos momentos difíceis."},
+        {"titulo": "A Flagelação de Jesus", "referencia": "Jo 19,1", "fruto": "paciência",
+         "meditacao": "Jesus sofreu com paciência por amor a nós. Vamos oferecer a Ele as pequenas dificuldades do nosso dia."},
+        {"titulo": "A Coroação de Espinhos", "referencia": "Mt 27,27-31", "fruto": "humildade",
+         "meditacao": "Zombaram de Jesus, mas Ele continuou amando. Vamos pedir força para nunca zombar de ninguém e para perdoar quem zomba de nós."},
+        {"titulo": "Jesus carrega a Cruz até o Calvário", "referencia": "Jo 19,17", "fruto": "perseverança",
+         "meditacao": "Simão de Cirene ajudou Jesus a carregar a cruz. Vamos ajudar a carregar o peso de quem está triste ou cansado."},
+        {"titulo": "A Crucifixão e Morte de Jesus", "referencia": "Lc 23,33-46", "fruto": "amor e perdão",
+         "meditacao": "Na cruz, Jesus perdoou e entregou a vida por amor a cada um de nós. Vamos agradecer esse amor tão grande e perdoar de coração."}
+      ]
+    },
+    "gloriosos": {
+      "nome": "Mistérios Gloriosos",
+      "emoji": "🌅",
+      "lista": [
+        {"titulo": "A Ressurreição de Jesus", "referencia": "Mt 28,1-10", "fruto": "fé",
+         "meditacao": "O túmulo estava vazio: Jesus venceu a morte! Vamos pedir uma fé forte e alegre."},
+        {"titulo": "A Ascensão de Jesus ao Céu", "referencia": "At 1,6-11", "fruto": "esperança",
+         "meditacao": "Jesus subiu ao Céu e prometeu estar conosco todos os dias. Vamos lembrar que o Céu é o nosso destino final."},
+        {"titulo": "A Vinda do Espírito Santo sobre Maria e os Apóstolos", "referencia": "At 2,1-13", "fruto": "coragem",
+         "meditacao": "Em Pentecostes, o Espírito Santo encheu os apóstolos de coragem para anunciar Jesus. Vamos pedir os dons do Espírito Santo."},
+        {"titulo": "A Assunção de Nossa Senhora ao Céu", "referencia": "CIC 966", "fruto": "amor a Maria",
+         "meditacao": "Maria foi levada ao Céu de corpo e alma. Ela é nossa Mãe e cuida de nós lá do Céu. Vamos confiar a ela a nossa família."},
+        {"titulo": "A Coroação de Nossa Senhora como Rainha do Céu e da Terra", "referencia": "Ap 12,1", "fruto": "perseverança",
+         "meditacao": "Maria é Rainha porque é a Mãe do Rei, Jesus, e sempre disse sim a Deus. Vamos pedir para sermos fiéis até o fim."}
+      ]
+    },
+    "luminosos": {
+      "nome": "Mistérios Luminosos",
+      "emoji": "💡",
+      "lista": [
+        {"titulo": "O Batismo de Jesus no rio Jordão", "referencia": "Mt 3,13-17", "fruto": "viver como filho de Deus",
+         "meditacao": "Quando Jesus foi batizado, o Pai disse: este é o meu Filho amado. No nosso Batismo, também nos tornamos filhos de Deus!"},
+        {"titulo": "Jesus nas Bodas de Caná", "referencia": "Jo 2,1-12", "fruto": "confiança",
+         "meditacao": "Maria disse aos servos: fazei tudo o que Ele vos disser. E Jesus transformou a água em vinho. Vamos ouvir e obedecer a Jesus."},
+        {"titulo": "O Anúncio do Reino de Deus e o convite à conversão", "referencia": "Mc 1,14-15", "fruto": "conversão",
+         "meditacao": "Jesus anunciou: o Reino de Deus está próximo, convertei-vos e crede no Evangelho. Vamos mudar o que nos afasta de Deus."},
+        {"titulo": "A Transfiguração de Jesus", "referencia": "Lc 9,28-36", "fruto": "desejo de santidade",
+         "meditacao": "No alto do monte, o rosto de Jesus brilhou como o sol, e o Pai disse: escutai-o! Vamos escutar Jesus na oração."},
+        {"titulo": "A Instituição da Eucaristia", "referencia": "Lc 22,14-20", "fruto": "amor à Eucaristia",
+         "meditacao": "Na Última Ceia, Jesus deu-nos o seu Corpo e Sangue. Ele está vivo na Eucaristia, a autoestrada para o Céu de São Carlo Acutis."}
+      ]
+    }
+  },
+  "oracoes": {
+    "oferecimento": "Divino Jesus, nós vos oferecemos este terço que vamos rezar, contemplando os mistérios da nossa redenção. Concedei-nos, por intercessão de Maria, vossa Mãe Santíssima, as virtudes de que precisamos para bem rezá-lo.",
+    "fatima": "Ó meu Jesus, perdoai-nos, livrai-nos do fogo do inferno, levai as almas todas para o Céu e socorrei principalmente as que mais precisarem.",
+    "salve_rainha": "Salve, Rainha, Mãe de misericórdia, vida, doçura e esperança nossa, salve! A vós bradamos, os degredados filhos de Eva. A vós suspiramos, gemendo e chorando neste vale de lágrimas. Eia, pois, advogada nossa, esses vossos olhos misericordiosos a nós volvei. E depois deste desterro, mostrai-nos Jesus, bendito fruto do vosso ventre. Ó clemente, ó piedosa, ó doce sempre Virgem Maria. Rogai por nós, santa Mãe de Deus, para que sejamos dignos das promessas de Cristo. Amém."
+  }
+}

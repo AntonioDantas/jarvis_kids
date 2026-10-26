@@ -4,11 +4,9 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from rich.panel import Panel
-from rich.text import Text
-
 from jarvis import ui
 from jarvis.contexto import Contexto, carregar_dados
+from jarvis.fe.liturgia import dia_liturgico
 from jarvis.gamificacao import PONTOS
 
 
@@ -18,7 +16,11 @@ def oracoes() -> list[dict]:
 
 def _sugerida() -> str:
     hora = datetime.now().hour
-    return "manha" if hora < 12 else "refeicao" if 12 <= hora < 14 else "noite" if hora >= 18 else "estudo"
+    if hora < 11:
+        return "manha"
+    if hora < 13:  # meio-dia: Angelus, ou Rainha do Céu no Tempo Pascal
+        return "regina_caeli" if dia_liturgico().tempo == "Tempo Pascal" else "angelus"
+    return "estudo" if hora < 18 else "noite"
 
 
 def executar(ctx: Contexto, oracao_id: str | None = None) -> None:
@@ -42,22 +44,21 @@ def executar(ctx: Contexto, oracao_id: str | None = None) -> None:
     if ctx.io.confirmar("Quer rezar por alguma intenção especial? Por alguém doente, pela família, por um amigo?"):
         intencao = ctx.io.pedir_texto("Por quem ou pelo que vamos rezar?")
         analise = ctx.guardiao.analisar_entrada(intencao) if intencao else None
-        if analise:
+        if analise and analise.bloquear:
             ctx.io.dizer(analise.resposta, cor=ui.CORES["alerta"])
             if analise.alerta_pais and ctx.prefs.alertas_seguranca:
                 ctx.perfil.registrar_alerta(analise.categoria, intencao)
             return
 
-    ui.console.print(Panel(Text("\n".join(oracao["linhas"]), style="#e4d7ff"),
-                           title=f"[bold {ui.CORES['fe']}]{oracao['emoji']} {oracao['titulo']}[/]",
-                           subtitle=f"[grey50]{oracao['origem']}[/]", border_style=ui.CORES["fe"]))
+    ui.painel(f"{oracao['emoji']} {oracao['titulo']}", "\n".join(oracao["linhas"]), ui.CORES["fe"],
+              subtitulo=oracao["origem"])
     ctx.io.dizer("Vamos começar. Reze comigo, em voz alta ou no coração.", mostrar=False)
     if intencao:
         ctx.io.dizer(f"Senhor, colocamos em tuas mãos esta intenção especial: {intencao.rstrip('.')}.", cor=ui.CORES["fe"])
     try:
         for linha in oracao["linhas"]:
-            ui.console.print(f"  [bold {ui.CORES['fe']}]✝[/] [italic]{linha}[/]")
-            ctx.io.voz.falar(linha, {"velocidade": 0.9})
+            ui.linha_oracao(linha)
+            ctx.io.voz.falar(linha, ctx.io.voz.com(velocidade=0.9))
     except KeyboardInterrupt:
         ctx.io.voz.alto_falante.parar()
         return

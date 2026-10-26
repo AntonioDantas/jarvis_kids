@@ -88,8 +88,9 @@ class Biblioteca:
         santos = pasta_dados / "santos.json"
         if santos.exists():
             for s in json.loads(santos.read_text(encoding="utf-8"))["santos"]:
+                citacoes = " ".join(f'Frase autêntica: "{c["texto"]}" ({c["fonte"]}).' for c in s.get("citacoes", []))
                 self.trechos.append(Trecho(
-                    f"santo-{s['id']}", f"{s['nome']} ({s['anos']})", " ".join(s["fatos"]),
+                    f"santo-{s['id']}", f"{s['nome']} ({s['anos']})", " ".join(s["fatos"]) + " " + citacoes,
                     [f"Festa: {s['festa']}"], s.get("palavras_chave", []) + [s["apelido"]],
                     "Vidas dos santos — J.A.R.V.I.S. Kids",
                 ))

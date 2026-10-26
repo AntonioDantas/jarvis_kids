@@ -6,456 +6,1179 @@
       "id": "deus-criador",
       "titulo": "Quem é Deus",
       "texto": "Deus é o Criador de tudo o que existe: das galáxias às formigas. Ele sempre existiu e nunca vai deixar de existir. Deus é infinitamente bom, sabe tudo, pode tudo e, o mais importante, Deus é amor. Ele criou o mundo por amor e criou cada pessoa porque quis, de propósito, para ser feliz com Ele para sempre.",
-      "referencias": ["CIC 198-221", "CIC 279-301", "1Jo 4,8"],
-      "palavras_chave": ["deus", "criador", "quem e deus", "existe", "criou o mundo", "amor"]
+      "referencias": [
+        "CIC 198-221",
+        "CIC 279-301",
+        "1Jo 4,8"
+      ],
+      "palavras_chave": [
+        "deus",
+        "criador",
+        "quem e deus",
+        "existe",
+        "criou o mundo",
+        "amor"
+      ]
     },
     {
       "id": "deus-existe",
       "titulo": "Como sabemos que Deus existe",
       "texto": "Podemos conhecer Deus pela razão, olhando o mundo, e pela fé, ouvindo o que Ele revelou. São Tomás de Aquino mostrou cinco 'caminhos': tudo o que se move foi movido por outro; tudo tem uma causa; as coisas poderiam não existir, mas existem; há graus de bondade e beleza; e a natureza segue uma ordem inteligente. No começo de tudo precisa haver Alguém que não foi causado por ninguém: é Deus. A Igreja ensina que a razão humana pode chegar a saber que Deus existe.",
-      "referencias": ["CIC 31-36", "ST I, q.2, a.3"],
-      "palavras_chave": ["deus existe", "prova", "provar", "cinco vias", "sao tomas", "razao", "ateu"]
+      "referencias": [
+        "CIC 31-36",
+        "ST I, q.2, a.3"
+      ],
+      "palavras_chave": [
+        "deus existe",
+        "prova",
+        "provar",
+        "cinco vias",
+        "sao tomas",
+        "razao",
+        "ateu"
+      ]
     },
     {
       "id": "trindade",
       "titulo": "A Santíssima Trindade",
-      "texto": "Existe um só Deus em três Pessoas: o Pai, o Filho (Jesus) e o Espírito Santo. Não são três deuses, e sim um único Deus. As três Pessoas são iguais, eternas e vivem numa comunhão perfeita de amor. É o mistério central da nossa fé. Cuidado: comparações como 'água, gelo e vapor' não servem, porque Deus não fica trocando de forma; as três Pessoas existem ao mesmo tempo, sempre. Fazemos o Sinal da Cruz em nome da Trindade.",
-      "referencias": ["CIC 232-267", "CIC 234", "CIC 253-255", "Mt 28,19"],
-      "palavras_chave": ["trindade", "santissima trindade", "pai filho espirito santo", "tres pessoas", "um so deus"]
+      "texto": "Existe um só Deus em três Pessoas: o Pai, o Filho (Jesus) e o Espírito Santo. Não são três deuses, e sim um único Deus. As três Pessoas são distintas: o Pai não é o Filho, e o Filho não é o Espírito Santo. Mas as três são iguais, eternas e vivem numa comunhão perfeita de amor. É o mistério central da nossa fé. Cuidado: comparações como 'água, gelo e vapor' não servem, porque Deus não fica trocando de forma; as três Pessoas existem ao mesmo tempo, sempre. Fazemos o Sinal da Cruz em nome da Trindade.",
+      "referencias": [
+        "CIC 232-267",
+        "CIC 234",
+        "CIC 253-255",
+        "Mt 28,19"
+      ],
+      "palavras_chave": [
+        "trindade",
+        "santissima trindade",
+        "pai filho espirito santo",
+        "tres pessoas",
+        "um so deus"
+      ]
     },
     {
       "id": "jesus",
       "titulo": "Quem é Jesus",
       "texto": "Jesus Cristo é o Filho de Deus que se fez homem para nos salvar. Ele é verdadeiro Deus e verdadeiro homem ao mesmo tempo. Nasceu da Virgem Maria, em Belém, há cerca de dois mil anos, cresceu em Nazaré com Maria e São José, ensinou, curou doentes, perdoou pecados e mostrou como Deus nos ama. Seu nome quer dizer 'Deus salva'.",
-      "referencias": ["CIC 422-424", "CIC 456-469", "Lc 2,1-20", "Mt 1,21"],
-      "palavras_chave": ["jesus", "cristo", "filho de deus", "encarnacao", "verdadeiro deus verdadeiro homem", "quem e jesus"]
+      "referencias": [
+        "CIC 422-424",
+        "CIC 456-469",
+        "Lc 2,1-20",
+        "Mt 1,21"
+      ],
+      "palavras_chave": [
+        "jesus",
+        "cristo",
+        "filho de deus",
+        "encarnacao",
+        "verdadeiro deus verdadeiro homem",
+        "quem e jesus"
+      ]
     },
     {
       "id": "cruz-ressurreicao",
       "titulo": "Por que Jesus morreu e ressuscitou",
       "texto": "Jesus aceitou morrer na cruz por amor, para nos libertar do pecado e nos reconciliar com Deus. Foi o maior ato de amor da história: Ele deu a vida por todos. Mas a história não acabou ali! No terceiro dia, Jesus ressuscitou, venceu a morte e está vivo. A Ressurreição é a grande vitória que celebramos na Páscoa, e é por isso que temos esperança de viver para sempre com Deus.",
-      "referencias": ["CIC 599-623", "CIC 638-658", "Jo 3,16", "1Cor 15,14"],
-      "palavras_chave": ["cruz", "morte de jesus", "por que jesus morreu", "ressurreicao", "ressuscitou", "pascoa", "sexta-feira santa"]
+      "referencias": [
+        "CIC 599-623",
+        "CIC 638-658",
+        "Jo 3,16",
+        "1Cor 15,14"
+      ],
+      "palavras_chave": [
+        "cruz",
+        "morte de jesus",
+        "por que jesus morreu",
+        "ressurreicao",
+        "ressuscitou",
+        "pascoa",
+        "sexta-feira santa"
+      ]
     },
     {
       "id": "espirito-santo",
       "titulo": "O Espírito Santo",
-      "texto": "O Espírito Santo é a terceira Pessoa da Santíssima Trindade, Deus como o Pai e o Filho. Jesus prometeu enviá-Lo, e Ele desceu sobre os Apóstolos e Maria no dia de Pentecostes, como línguas de fogo. Ele é como a energia de Deus dentro de nós: dá coragem, ajuda a rezar, a entender a fé e a fazer o bem. Nós O recebemos no Batismo e de modo especial na Crisma.",
-      "referencias": ["CIC 683-747", "CIC 731-732", "At 2,1-4"],
-      "palavras_chave": ["espirito santo", "pentecostes", "linguas de fogo", "pomba", "paraclito"]
+      "texto": "O Espírito Santo é a terceira Pessoa da Santíssima Trindade, Deus como o Pai e o Filho. Jesus prometeu enviá-Lo, e Ele desceu sobre os Apóstolos e Maria no dia de Pentecostes, como línguas de fogo. Ele não é uma força ou energia: é uma Pessoa divina, que mora em nós como o melhor amigo e nos dá coragem, ajuda a rezar, a entender a fé e a fazer o bem. Nós O recebemos no Batismo e de modo especial na Crisma.",
+      "referencias": [
+        "CIC 683-747",
+        "CIC 731-732",
+        "At 2,1-4"
+      ],
+      "palavras_chave": [
+        "espirito santo",
+        "pentecostes",
+        "linguas de fogo",
+        "pomba",
+        "paraclito"
+      ]
     },
     {
       "id": "dons-espirito",
       "titulo": "Os sete dons do Espírito Santo",
       "texto": "O Espírito Santo nos dá sete dons, como ferramentas especiais para a missão da vida: Sabedoria, Entendimento, Conselho, Fortaleza, Ciência, Piedade e Temor de Deus. A Fortaleza, por exemplo, é a coragem para fazer o certo mesmo quando é difícil; a Piedade é o carinho de filho para com Deus. Esses dons nos ajudam a obedecer às inspirações de Deus.",
-      "referencias": ["CIC 1830-1831", "Is 11,1-2"],
-      "palavras_chave": ["dons do espirito santo", "sete dons", "sabedoria", "fortaleza", "piedade", "temor de deus", "entendimento", "conselho", "ciencia"]
+      "referencias": [
+        "CIC 1830-1831",
+        "Is 11,1-2"
+      ],
+      "palavras_chave": [
+        "dons do espirito santo",
+        "sete dons",
+        "sabedoria",
+        "fortaleza",
+        "piedade",
+        "temor de deus",
+        "entendimento",
+        "conselho",
+        "ciencia"
+      ]
     },
     {
       "id": "maria",
       "titulo": "Nossa Senhora, a Mãe de Jesus",
       "texto": "Maria é a Mãe de Jesus e, por isso, Mãe de Deus. Deus a preservou de todo pecado desde o primeiro instante da sua vida: é a Imaculada Conceição. Ela disse 'sim' ao plano de Deus, e no fim da vida foi levada ao Céu de corpo e alma, a Assunção. Jesus a deu como Mãe para todos nós. Nós a honramos e pedimos sua ajuda, mas adoramos somente a Deus.",
-      "referencias": ["CIC 484-511", "CIC 490-495", "CIC 966", "CIC 971", "Lc 1,26-38", "Jo 19,26-27"],
-      "palavras_chave": ["maria", "nossa senhora", "mae de deus", "virgem maria", "imaculada conceicao", "assuncao", "ave maria"]
+      "referencias": [
+        "CIC 484-511",
+        "CIC 490-495",
+        "CIC 966",
+        "CIC 971",
+        "Lc 1,26-38",
+        "Jo 19,26-27"
+      ],
+      "palavras_chave": [
+        "maria",
+        "nossa senhora",
+        "mae de deus",
+        "virgem maria",
+        "imaculada conceicao",
+        "assuncao",
+        "ave maria"
+      ]
     },
     {
       "id": "aparecida",
       "titulo": "Nossa Senhora Aparecida",
       "texto": "Em 1717, três pescadores jogaram a rede no rio Paraíba do Sul e encontraram uma pequena imagem de Nossa Senhora, primeiro o corpo e depois a cabeça. Depois disso, a pesca foi abundante! A devoção cresceu e, em 1930, Nossa Senhora da Conceição Aparecida foi proclamada Padroeira do Brasil. Sua festa é em 12 de outubro, mesmo dia em que o Brasil comemora o Dia das Crianças.",
-      "referencias": ["Tradição da Igreja no Brasil"],
-      "palavras_chave": ["aparecida", "padroeira do brasil", "pescadores", "12 de outubro", "rio paraiba"]
+      "referencias": [
+        "Tradição da Igreja no Brasil"
+      ],
+      "palavras_chave": [
+        "aparecida",
+        "padroeira do brasil",
+        "pescadores",
+        "12 de outubro",
+        "rio paraiba"
+      ]
     },
     {
       "id": "anjos",
       "titulo": "Os anjos e o Anjo da Guarda",
       "texto": "Os anjos são criaturas espirituais: não têm corpo, são inteligentes e servem a Deus como mensageiros. Os arcanjos Miguel, Gabriel e Rafael aparecem na Bíblia. A Igreja ensina que cada pessoa tem um anjo que a protege e a guia desde o começo da vida até o fim: o Anjo da Guarda. Você pode conversar com ele e rezar a oração 'Santo Anjo do Senhor'.",
-      "referencias": ["CIC 328-336", "CIC 336", "ST I, q.113", "Sl 91,11"],
-      "palavras_chave": ["anjo", "anjos", "anjo da guarda", "sao miguel", "gabriel", "rafael", "arcanjo"]
+      "referencias": [
+        "CIC 328-336",
+        "CIC 336",
+        "ST I, q.113",
+        "Sl 91,11"
+      ],
+      "palavras_chave": [
+        "anjo",
+        "anjos",
+        "anjo da guarda",
+        "sao miguel",
+        "gabriel",
+        "rafael",
+        "arcanjo"
+      ]
     },
     {
       "id": "alma",
       "titulo": "A alma",
       "texto": "Cada pessoa é corpo e alma. A alma é a parte espiritual que faz você ser você: é por ela que pensamos, escolhemos e amamos. A alma é criada diretamente por Deus e é imortal: não morre quando o corpo morre. Por isso cada pessoa tem uma dignidade enorme.",
-      "referencias": ["CIC 362-368", "CIC 366"],
-      "palavras_chave": ["alma", "alma imortal", "corpo e alma", "espirito humano"]
+      "referencias": [
+        "CIC 362-368",
+        "CIC 366"
+      ],
+      "palavras_chave": [
+        "alma",
+        "alma imortal",
+        "corpo e alma",
+        "espirito humano"
+      ]
     },
     {
       "id": "jarvis-ia",
       "titulo": "O Jarvis é uma inteligência artificial",
       "texto": "Uma inteligência artificial, como o Jarvis, é um programa de computador muito avançado que aprendeu padrões em muitos textos. Ela não tem alma, não tem sentimentos de verdade, não ama e pode errar. A Igreja, no documento Antiqua et Nova, de 2025, explica que a IA é uma ferramenta feita pela inteligência humana e deve servir ao bem das pessoas, nunca tomar o lugar delas. Você, sim, foi criado por Deus, com alma e capacidade de amar.",
-      "referencias": ["Antiqua et Nova (2025)", "CIC 357"],
-      "palavras_chave": ["inteligencia artificial", "ia", "robo", "voce tem alma", "voce e vivo", "voce sente", "computador pensa", "jarvis"]
+      "referencias": [
+        "Antiqua et Nova (2025)",
+        "CIC 357"
+      ],
+      "palavras_chave": [
+        "inteligencia artificial",
+        "ia",
+        "robo",
+        "voce tem alma",
+        "voce e vivo",
+        "voce sente",
+        "computador pensa",
+        "jarvis"
+      ]
     },
     {
       "id": "pessoa-imagem-de-deus",
       "titulo": "Feitos à imagem de Deus",
       "texto": "Deus criou o ser humano à sua imagem e semelhança. Isso quer dizer que cada pessoa, seja de qualquer cor, país, idade ou jeito, tem um valor imenso e merece respeito. Por isso zombar, humilhar ou excluir alguém, inclusive com bullying, fere a dignidade que Deus deu a essa pessoa. Se você sofrer ou presenciar bullying, conte para um adulto de confiança.",
-      "referencias": ["CIC 355-357", "CIC 1700", "CIC 1934-1935", "Gn 1,27"],
-      "palavras_chave": ["imagem e semelhanca", "dignidade", "respeito", "bullying", "racismo", "preconceito", "zoar"]
+      "referencias": [
+        "CIC 355-357",
+        "CIC 1700",
+        "CIC 1934-1935",
+        "Gn 1,27"
+      ],
+      "palavras_chave": [
+        "imagem e semelhanca",
+        "dignidade",
+        "respeito",
+        "bullying",
+        "racismo",
+        "preconceito",
+        "zoar"
+      ]
     },
     {
       "id": "pecado-original",
       "titulo": "O pecado original",
       "texto": "Os primeiros pais, Adão e Eva, desobedeceram a Deus e perderam a amizade perfeita com Ele. Essa ferida passou para toda a humanidade: é o pecado original. Por isso sentimos às vezes vontade de fazer o que é errado. O Batismo apaga o pecado original e nos faz filhos de Deus, e a graça de Deus nos ajuda a lutar contra o mal.",
-      "referencias": ["CIC 396-409", "CIC 405", "Gn 3"],
-      "palavras_chave": ["pecado original", "adao e eva", "fruto proibido", "serpente", "paraiso"]
+      "referencias": [
+        "CIC 396-409",
+        "CIC 405",
+        "Gn 3"
+      ],
+      "palavras_chave": [
+        "pecado original",
+        "adao e eva",
+        "fruto proibido",
+        "serpente",
+        "paraiso"
+      ]
     },
     {
       "id": "pecado",
       "titulo": "O que é pecado",
       "texto": "Pecado é escolher livremente fazer o mal, desobedecendo a Deus e ferindo o amor a Ele, aos outros ou a nós mesmos. Há pecados graves, que rompem a amizade com Deus, e pecados leves, que a enfraquecem. Errar sem querer, por acidente, não é pecado. O mais importante: Deus está sempre pronto para perdoar quem se arrepende.",
-      "referencias": ["CIC 1849-1864"],
-      "palavras_chave": ["pecado", "pecar", "pecado mortal", "pecado venial", "o que e pecado", "errar"]
+      "referencias": [
+        "CIC 1849-1864"
+      ],
+      "palavras_chave": [
+        "pecado",
+        "pecar",
+        "pecado mortal",
+        "pecado venial",
+        "o que e pecado",
+        "errar"
+      ]
     },
     {
       "id": "consciencia",
       "titulo": "A consciência",
       "texto": "A consciência é como um radar dentro de você, onde Deus fala ao seu coração: ela diz 'faça o bem, evite o mal'. Esse radar precisa ser calibrado: aprendemos o que é certo com a Palavra de Deus, com a Igreja, com os pais e rezando. Fazer o exame de consciência todos os dias ajuda a crescer nas virtudes.",
-      "referencias": ["CIC 1776-1785", "CIC 1454"],
-      "palavras_chave": ["consciencia", "voz interior", "exame de consciencia", "certo e errado"]
+      "referencias": [
+        "CIC 1776-1785",
+        "CIC 1454"
+      ],
+      "palavras_chave": [
+        "consciencia",
+        "voz interior",
+        "exame de consciencia",
+        "certo e errado"
+      ]
     },
     {
       "id": "graca",
       "titulo": "A graça de Deus",
       "texto": "A graça é a ajuda gratuita que Deus nos dá para sermos seus filhos e fazermos o bem. É como a fonte de energia que mantém o escudo da nave ligado: sem ela não conseguimos chegar ao Céu sozinhos. Recebemos a graça especialmente pelos sacramentos e pela oração.",
-      "referencias": ["CIC 1996-2005"],
-      "palavras_chave": ["graca", "graca de deus", "graca santificante", "ajuda de deus"]
+      "referencias": [
+        "CIC 1996-2005"
+      ],
+      "palavras_chave": [
+        "graca",
+        "graca de deus",
+        "graca santificante",
+        "ajuda de deus"
+      ]
     },
     {
       "id": "igreja",
       "titulo": "A Igreja",
       "texto": "A Igreja é a família de Deus, fundada por Jesus. Ela é chamada de Corpo de Cristo: Jesus é a cabeça e nós somos os membros. Jesus escolheu Pedro como pedra sobre a qual construiria sua Igreja, e o Papa é o sucessor de Pedro. A Igreja é una, santa, católica e apostólica. 'Católica' quer dizer universal: é para o mundo inteiro.",
-      "referencias": ["CIC 748-975", "CIC 787-796", "CIC 811", "CIC 881-882", "Mt 16,18"],
-      "palavras_chave": ["igreja", "igreja catolica", "corpo de cristo", "una santa catolica apostolica", "o que e a igreja"]
+      "referencias": [
+        "CIC 748-975",
+        "CIC 787-796",
+        "CIC 811",
+        "CIC 881-882",
+        "Mt 16,18"
+      ],
+      "palavras_chave": [
+        "igreja",
+        "igreja catolica",
+        "corpo de cristo",
+        "una santa catolica apostolica",
+        "o que e a igreja"
+      ]
     },
     {
       "id": "papa",
       "titulo": "O Papa",
       "texto": "O Papa é o sucessor de São Pedro, o primeiro Papa, e o pastor de toda a Igreja. Ele é o Bispo de Roma e guia a Igreja junto com os bispos. Desde maio de 2025, o Papa é Leão XIV, o primeiro Papa nascido nos Estados Unidos, que também viveu muitos anos como missionário no Peru.",
-      "referencias": ["CIC 880-882", "Mt 16,18-19"],
-      "palavras_chave": ["papa", "sumo pontifice", "sao pedro", "vaticano", "leao xiv", "quem e o papa"]
+      "referencias": [
+        "CIC 880-882",
+        "Mt 16,18-19"
+      ],
+      "palavras_chave": [
+        "papa",
+        "sumo pontifice",
+        "sao pedro",
+        "vaticano",
+        "leao xiv",
+        "quem e o papa"
+      ]
     },
     {
       "id": "santos",
       "titulo": "Os santos",
       "texto": "Santos são pessoas que viveram a amizade com Deus de forma heroica e agora estão no Céu. Eles são como os super-heróis da fé: cada um com seu jeito, mas todos com o mesmo superpoder, o amor. A Igreja reconhece alguns oficialmente pela canonização. Podemos pedir que rezem por nós, como pedimos a um amigo. Todos nós somos chamados a ser santos!",
-      "referencias": ["CIC 828", "CIC 946-962", "CIC 956", "CIC 2013"],
-      "palavras_chave": ["santos", "santo", "canonizacao", "comunhao dos santos", "intercessao", "como alguem vira santo", "ser santo"]
+      "referencias": [
+        "CIC 828",
+        "CIC 946-962",
+        "CIC 956",
+        "CIC 2013"
+      ],
+      "palavras_chave": [
+        "santos",
+        "santo",
+        "canonizacao",
+        "comunhao dos santos",
+        "intercessao",
+        "como alguem vira santo",
+        "ser santo"
+      ]
     },
     {
       "id": "biblia",
       "titulo": "A Bíblia",
       "texto": "A Bíblia é a Palavra de Deus escrita por pessoas inspiradas pelo Espírito Santo. A Bíblia católica tem 73 livros: 46 no Antigo Testamento, que conta a história do povo de Deus antes de Jesus, e 27 no Novo Testamento, que fala de Jesus e da Igreja. Ela é como uma biblioteca inteira, com histórias, poesias, leis, profecias e cartas. Os Evangelhos de Mateus, Marcos, Lucas e João contam a vida de Jesus.",
-      "referencias": ["CIC 101-141", "CIC 105-108", "CIC 120", "2Tm 3,16"],
-      "palavras_chave": ["biblia", "palavra de deus", "antigo testamento", "novo testamento", "evangelho", "quantos livros", "escritura"]
+      "referencias": [
+        "CIC 101-141",
+        "CIC 105-108",
+        "CIC 120",
+        "2Tm 3,16"
+      ],
+      "palavras_chave": [
+        "biblia",
+        "palavra de deus",
+        "antigo testamento",
+        "novo testamento",
+        "evangelho",
+        "quantos livros",
+        "escritura"
+      ]
     },
     {
       "id": "oracao",
       "titulo": "O que é rezar",
       "texto": "Rezar é conversar com Deus, como um filho conversa com o pai que o ama. O Catecismo ensina que a oração é elevar a mente e o coração a Deus. Podemos rezar de muitos jeitos: adorando, pedindo, rezando pelos outros, agradecendo e louvando. Pode ser com orações decoradas ou com nossas próprias palavras, em qualquer lugar e a qualquer hora.",
-      "referencias": ["CIC 2558-2565", "CIC 2559", "CIC 2626-2643"],
-      "palavras_chave": ["rezar", "oracao", "orar", "como rezar", "conversar com deus", "deus me ouve"]
+      "referencias": [
+        "CIC 2558-2565",
+        "CIC 2559",
+        "CIC 2626-2643"
+      ],
+      "palavras_chave": [
+        "rezar",
+        "oracao",
+        "orar",
+        "como rezar",
+        "conversar com deus",
+        "deus me ouve"
+      ]
     },
     {
       "id": "pai-nosso",
       "titulo": "O Pai-Nosso",
       "texto": "O Pai-Nosso é a oração que o próprio Jesus ensinou aos discípulos quando pediram 'Senhor, ensina-nos a rezar'. Ela é chamada de resumo de todo o Evangelho. Nela chamamos Deus de Pai, pedimos que seu Reino venha, pedimos o pão de cada dia, o perdão dos nossos pecados, ao mesmo tempo que perdoamos os outros, e a proteção contra o mal.",
-      "referencias": ["CIC 2759-2865", "CIC 2761", "Mt 6,9-13", "Lc 11,1-4"],
-      "palavras_chave": ["pai nosso", "oracao do senhor", "oracao que jesus ensinou"]
+      "referencias": [
+        "CIC 2759-2865",
+        "CIC 2761",
+        "Mt 6,9-13",
+        "Lc 11,1-4"
+      ],
+      "palavras_chave": [
+        "pai nosso",
+        "oracao do senhor",
+        "oracao que jesus ensinou"
+      ]
     },
     {
       "id": "sinal-da-cruz",
       "titulo": "O Sinal da Cruz",
       "texto": "O cristão começa o dia, as orações e as tarefas com o Sinal da Cruz, dizendo: 'Em nome do Pai, e do Filho e do Espírito Santo. Amém.' É como ativar o escudo da fé: lembramos que somos de Deus, que fomos salvos pela cruz de Jesus e que acreditamos na Santíssima Trindade.",
-      "referencias": ["CIC 2157", "CIC 1235"],
-      "palavras_chave": ["sinal da cruz", "persignar", "em nome do pai"]
+      "referencias": [
+        "CIC 2157",
+        "CIC 1235"
+      ],
+      "palavras_chave": [
+        "sinal da cruz",
+        "persignar",
+        "em nome do pai"
+      ]
     },
     {
       "id": "terco",
       "titulo": "O Terço e o Rosário",
       "texto": "O Rosário é uma oração em que, rezando Ave-Marias nas contas, meditamos a vida de Jesus junto com Maria. Os mistérios são: Gozosos (alegria), Dolorosos (paixão), Gloriosos (ressurreição) e Luminosos (vida pública de Jesus), estes acrescentados por São João Paulo II em 2002. Um terço é uma parte do Rosário. Tradicionalmente: Gozosos na segunda e no sábado, Dolorosos na terça e na sexta, Gloriosos na quarta e no domingo, Luminosos na quinta.",
-      "referencias": ["CIC 971", "CIC 2678", "CIC 2708", "Rosarium Virginis Mariae (2002)"],
-      "palavras_chave": ["terco", "rosario", "misterios", "contas", "gozosos", "dolorosos", "gloriosos", "luminosos"]
+      "referencias": [
+        "CIC 971",
+        "CIC 2678",
+        "CIC 2708",
+        "Rosarium Virginis Mariae (2002)"
+      ],
+      "palavras_chave": [
+        "terco",
+        "rosario",
+        "misterios",
+        "contas",
+        "gozosos",
+        "dolorosos",
+        "gloriosos",
+        "luminosos"
+      ]
     },
     {
       "id": "sacramentos",
       "titulo": "Os sete sacramentos",
       "texto": "Os sacramentos são sinais visíveis criados por Jesus que nos dão a graça de Deus de verdade. São sete: Batismo, Crisma (Confirmação), Eucaristia, Confissão (Penitência ou Reconciliação), Unção dos Enfermos, Ordem e Matrimônio. Eles acompanham toda a nossa vida, como estações de abastecimento da nave a caminho do Céu.",
-      "referencias": ["CIC 1113-1131", "CIC 1210"],
-      "palavras_chave": ["sacramentos", "sete sacramentos", "quantos sacramentos", "sacramento"]
+      "referencias": [
+        "CIC 1113-1131",
+        "CIC 1210"
+      ],
+      "palavras_chave": [
+        "sacramentos",
+        "sete sacramentos",
+        "quantos sacramentos",
+        "sacramento"
+      ]
     },
     {
       "id": "batismo",
       "titulo": "O Batismo",
       "texto": "O Batismo é o primeiro sacramento, a porta de entrada da vida cristã. Com a água e as palavras 'eu te batizo em nome do Pai, e do Filho e do Espírito Santo', a pessoa é lavada do pecado original e de todos os pecados, torna-se filha de Deus e membro da Igreja. É um selo que fica para sempre.",
-      "referencias": ["CIC 1213-1284", "CIC 1263", "CIC 1272", "Mt 28,19"],
-      "palavras_chave": ["batismo", "batizado", "batizar", "padrinho", "madrinha", "agua benta"]
+      "referencias": [
+        "CIC 1213-1284",
+        "CIC 1263",
+        "CIC 1272",
+        "Mt 28,19"
+      ],
+      "palavras_chave": [
+        "batismo",
+        "batizado",
+        "batizar",
+        "padrinho",
+        "madrinha",
+        "agua benta"
+      ]
     },
     {
       "id": "crisma",
       "titulo": "A Crisma (Confirmação)",
       "texto": "Na Crisma, o Espírito Santo vem de modo especial para fortalecer a pessoa batizada, como em Pentecostes. O bispo unge a testa com o óleo do Crisma. A pessoa crismada recebe força para viver e testemunhar a fé com coragem, como um soldado de Cristo, e completa a graça do Batismo.",
-      "referencias": ["CIC 1285-1321", "CIC 1303"],
-      "palavras_chave": ["crisma", "confirmacao", "crismado", "bispo", "oleo"]
+      "referencias": [
+        "CIC 1285-1321",
+        "CIC 1303"
+      ],
+      "palavras_chave": [
+        "crisma",
+        "confirmacao",
+        "crismado",
+        "bispo",
+        "oleo"
+      ]
     },
     {
       "id": "eucaristia",
       "titulo": "A Eucaristia",
       "texto": "Na Missa, pelas palavras do padre e pelo poder do Espírito Santo, o pão e o vinho se tornam verdadeiramente o Corpo e o Sangue de Jesus, mesmo continuando com aparência de pão e vinho. Jesus está realmente presente: corpo, sangue, alma e divindade. A Eucaristia é a fonte e o ponto mais alto da vida cristã. São Carlo Acutis a chamava de 'minha autoestrada para o Céu'. Na Primeira Comunhão recebemos Jesus pela primeira vez.",
-      "referencias": ["CIC 1322-1419", "CIC 1324", "CIC 1374-1376", "Jo 6,51"],
-      "palavras_chave": ["eucaristia", "comunhao", "primeira comunhao", "hostia", "corpo de cristo", "presenca real", "transubstanciacao"]
+      "referencias": [
+        "CIC 1322-1419",
+        "CIC 1324",
+        "CIC 1374-1376",
+        "Jo 6,51"
+      ],
+      "palavras_chave": [
+        "eucaristia",
+        "comunhao",
+        "primeira comunhao",
+        "hostia",
+        "corpo de cristo",
+        "presenca real",
+        "transubstanciacao"
+      ]
     },
     {
       "id": "missa",
       "titulo": "A Santa Missa",
       "texto": "A Missa é a celebração mais importante da Igreja: nela Jesus se oferece ao Pai, como na Última Ceia e na cruz, e se dá a nós na Comunhão. Ela tem duas grandes partes: a Liturgia da Palavra, quando ouvimos a Bíblia, e a Liturgia Eucarística. Os católicos são chamados a participar da Missa todos os domingos e festas de guarda, porque domingo é o dia da Ressurreição.",
-      "referencias": ["CIC 1345-1355", "CIC 1346", "CIC 2180-2181"],
-      "palavras_chave": ["missa", "domingo", "ir a missa", "por que ir a missa", "liturgia", "celebracao"]
+      "referencias": [
+        "CIC 1345-1355",
+        "CIC 1346",
+        "CIC 2180-2181"
+      ],
+      "palavras_chave": [
+        "missa",
+        "domingo",
+        "ir a missa",
+        "por que ir a missa",
+        "liturgia",
+        "celebracao"
+      ]
     },
     {
       "id": "confissao",
       "titulo": "A Confissão (Reconciliação)",
       "texto": "Na Confissão, Jesus, por meio do padre, perdoa os pecados de quem está arrependido. É o abraço do Pai, como na parábola do filho pródigo. Os passos são: exame de consciência, arrependimento, contar os pecados ao padre, receber a absolvição e cumprir a penitência. O padre nunca, jamais, pode contar a ninguém o que ouviu: é o sigilo sacramental. Depois, a alma fica limpa e leve!",
-      "referencias": ["CIC 1422-1498", "CIC 1454", "CIC 1467", "Lc 15,11-32", "Jo 20,22-23"],
-      "palavras_chave": ["confissao", "confessar", "reconciliacao", "penitencia", "perdao dos pecados", "padre conta", "sigilo"]
+      "referencias": [
+        "CIC 1422-1498",
+        "CIC 1454",
+        "CIC 1467",
+        "Lc 15,11-32",
+        "Jo 20,22-23"
+      ],
+      "palavras_chave": [
+        "confissao",
+        "confessar",
+        "reconciliacao",
+        "penitencia",
+        "perdao dos pecados",
+        "padre conta",
+        "sigilo"
+      ]
     },
     {
       "id": "uncao-ordem-matrimonio",
       "titulo": "Unção dos Enfermos, Ordem e Matrimônio",
       "texto": "A Unção dos Enfermos dá força e conforto de Deus a quem está gravemente doente ou idoso. A Ordem é o sacramento pelo qual homens se tornam diáconos, padres e bispos para servir o povo de Deus. O Matrimônio une um homem e uma mulher numa aliança de amor fiel e para a vida toda, aberta aos filhos.",
-      "referencias": ["CIC 1499-1532", "CIC 1536-1600", "CIC 1601-1666"],
-      "palavras_chave": ["uncao dos enfermos", "ordem", "padre", "sacerdote", "matrimonio", "casamento"]
+      "referencias": [
+        "CIC 1499-1532",
+        "CIC 1536-1600",
+        "CIC 1601-1666"
+      ],
+      "palavras_chave": [
+        "uncao dos enfermos",
+        "ordem",
+        "padre",
+        "sacerdote",
+        "matrimonio",
+        "casamento"
+      ]
     },
     {
       "id": "mandamentos",
       "titulo": "Os Dez Mandamentos",
       "texto": "Deus deu os Dez Mandamentos a Moisés no monte Sinai. Eles são como o manual de instruções para uma vida feliz e livre. Na tradição católica: 1. Amar a Deus sobre todas as coisas. 2. Não tomar seu santo nome em vão. 3. Guardar domingos e festas. 4. Honrar pai e mãe. 5. Não matar. 6. Não pecar contra a castidade. 7. Não furtar. 8. Não levantar falso testemunho. 9. Não desejar a mulher do próximo. 10. Não cobiçar as coisas alheias. Jesus resumiu tudo em amar a Deus e ao próximo.",
-      "referencias": ["CIC 2052-2082", "Ex 20,1-17", "Dt 5,6-21", "Mt 22,37-40"],
-      "palavras_chave": ["dez mandamentos", "mandamentos", "lei de deus", "moises", "tabuas", "sinai"]
+      "referencias": [
+        "CIC 2052-2082",
+        "Ex 20,1-17",
+        "Dt 5,6-21",
+        "Mt 22,37-40"
+      ],
+      "palavras_chave": [
+        "dez mandamentos",
+        "mandamentos",
+        "lei de deus",
+        "moises",
+        "tabuas",
+        "sinai"
+      ]
     },
     {
       "id": "mandamento-1",
       "titulo": "1º Mandamento: Amar a Deus sobre todas as coisas",
       "texto": "Deus é o número um da nossa vida. Cumprimos este mandamento rezando, confiando em Deus e não colocando nada no lugar d'Ele, nem dinheiro, nem fama, nem videogame. Superstições, horóscopo, simpatias e magia vão contra este mandamento, porque buscam poder longe de Deus.",
-      "referencias": ["CIC 2084-2141", "CIC 2110-2117"],
-      "palavras_chave": ["primeiro mandamento", "amar a deus", "idolatria", "supersticao", "horoscopo", "magia", "simpatia"]
+      "referencias": [
+        "CIC 2084-2141",
+        "CIC 2110-2117"
+      ],
+      "palavras_chave": [
+        "primeiro mandamento",
+        "amar a deus",
+        "idolatria",
+        "supersticao",
+        "horoscopo",
+        "magia",
+        "simpatia"
+      ]
     },
     {
       "id": "mandamento-2",
       "titulo": "2º Mandamento: Não tomar seu santo nome em vão",
       "texto": "O nome de Deus é santo. Usamos com respeito o nome de Deus, de Jesus, de Maria e dos santos: para rezar e louvar, nunca para xingar, fazer piada ou jurar mentiras. Cumprir promessas feitas a Deus também faz parte deste mandamento.",
-      "referencias": ["CIC 2142-2167"],
-      "palavras_chave": ["segundo mandamento", "nome de deus", "em vao", "jurar", "palavrao", "blasfemia"]
+      "referencias": [
+        "CIC 2142-2167"
+      ],
+      "palavras_chave": [
+        "segundo mandamento",
+        "nome de deus",
+        "em vao",
+        "jurar",
+        "palavrao",
+        "blasfemia"
+      ]
     },
     {
       "id": "mandamento-3",
       "titulo": "3º Mandamento: Guardar domingos e festas",
       "texto": "O domingo é o dia do Senhor, porque Jesus ressuscitou num domingo. Nesse dia participamos da Missa, descansamos, ficamos com a família e fazemos o bem. É como a recarga semanal da bateria da alma.",
-      "referencias": ["CIC 2168-2195", "CIC 2180-2185"],
-      "palavras_chave": ["terceiro mandamento", "domingo", "dia do senhor", "descanso", "festas de guarda"]
+      "referencias": [
+        "CIC 2168-2195",
+        "CIC 2180-2185"
+      ],
+      "palavras_chave": [
+        "terceiro mandamento",
+        "domingo",
+        "dia do senhor",
+        "descanso",
+        "festas de guarda"
+      ]
     },
     {
       "id": "mandamento-4",
       "titulo": "4º Mandamento: Honrar pai e mãe",
       "texto": "Deus pede que os filhos amem, respeitem, agradeçam e obedeçam aos pais enquanto vivem com eles, e que ajudem em casa. É também respeitar avós, professores e quem cuida de nós. Os pais, por sua vez, têm a missão de educar e proteger os filhos com amor. Ajudar nas tarefas de casa é um jeito concreto de viver este mandamento.",
-      "referencias": ["CIC 2196-2257", "CIC 2214-2220", "Ef 6,1-3"],
-      "palavras_chave": ["quarto mandamento", "honrar pai e mae", "obedecer", "pais", "familia", "tarefas de casa", "avos"]
+      "referencias": [
+        "CIC 2196-2257",
+        "CIC 2214-2220",
+        "Ef 6,1-3"
+      ],
+      "palavras_chave": [
+        "quarto mandamento",
+        "honrar pai e mae",
+        "obedecer",
+        "pais",
+        "familia",
+        "tarefas de casa",
+        "avos"
+      ]
     },
     {
       "id": "mandamento-5",
       "titulo": "5º Mandamento: Não matar",
       "texto": "A vida é um presente sagrado de Deus, do começo ao fim. Este mandamento pede que protejamos a vida e a saúde, nossa e dos outros. Também vai contra ele brigar, bater, desejar o mal, guardar raiva e fazer coisas perigosas que podem machucar. Jesus pediu até mais: perdoar e amar até os inimigos.",
-      "referencias": ["CIC 2258-2330", "Mt 5,21-22", "Mt 5,44"],
-      "palavras_chave": ["quinto mandamento", "nao matar", "vida", "briga", "raiva", "violencia", "saude"]
+      "referencias": [
+        "CIC 2258-2330",
+        "Mt 5,21-22",
+        "Mt 5,44"
+      ],
+      "palavras_chave": [
+        "quinto mandamento",
+        "nao matar",
+        "vida",
+        "briga",
+        "raiva",
+        "violencia",
+        "saude"
+      ]
     },
     {
       "id": "mandamento-6-9",
       "titulo": "6º e 9º Mandamentos: Pureza e respeito ao corpo",
       "texto": "Nosso corpo é templo do Espírito Santo e é muito valioso. Estes mandamentos pedem pureza no olhar, nos pensamentos, nas palavras e nas atitudes, e respeito ao próprio corpo e ao corpo dos outros. Se alguém tentar tocar você de um jeito estranho, mostrar imagens impróprias ou pedir fotos, isso é errado: conte imediatamente para seus pais. Dúvidas sobre esse assunto são ótimas para conversar com eles.",
-      "referencias": ["CIC 2331-2400", "CIC 2514-2533", "1Cor 6,19"],
-      "palavras_chave": ["sexto mandamento", "nono mandamento", "castidade", "pureza", "corpo", "templo do espirito santo"]
+      "referencias": [
+        "CIC 2331-2400",
+        "CIC 2514-2533",
+        "1Cor 6,19"
+      ],
+      "palavras_chave": [
+        "sexto mandamento",
+        "nono mandamento",
+        "castidade",
+        "pureza",
+        "corpo",
+        "templo do espirito santo"
+      ]
     },
     {
       "id": "mandamento-7",
       "titulo": "7º Mandamento: Não furtar",
       "texto": "Não pegamos o que é dos outros sem permissão, cuidamos das coisas emprestadas e devolvemos o que não é nosso. Também faz parte deste mandamento ser honesto com o dinheiro, cuidar da natureza e ajudar os pobres. Se pegou algo errado, o certo é devolver ou reparar.",
-      "referencias": ["CIC 2401-2463", "CIC 2412"],
-      "palavras_chave": ["setimo mandamento", "nao furtar", "roubar", "pegar escondido", "devolver", "honestidade"]
+      "referencias": [
+        "CIC 2401-2463",
+        "CIC 2412"
+      ],
+      "palavras_chave": [
+        "setimo mandamento",
+        "nao furtar",
+        "roubar",
+        "pegar escondido",
+        "devolver",
+        "honestidade"
+      ]
     },
     {
       "id": "mandamento-8",
       "titulo": "8º Mandamento: Não levantar falso testemunho",
       "texto": "Este mandamento pede que digamos a verdade. Mentir é falar algo falso para enganar alguém. Também vai contra ele espalhar fofocas, inventar coisas sobre os outros e colar em provas. Jesus disse que a verdade nos liberta. Ser alguém de palavra é um superpoder de confiança!",
-      "referencias": ["CIC 2464-2513", "CIC 2482-2486", "Jo 8,32"],
-      "palavras_chave": ["oitavo mandamento", "mentira", "mentir", "verdade", "fofoca", "colar na prova", "falso testemunho"]
+      "referencias": [
+        "CIC 2464-2513",
+        "CIC 2482-2486",
+        "Jo 8,32"
+      ],
+      "palavras_chave": [
+        "oitavo mandamento",
+        "mentira",
+        "mentir",
+        "verdade",
+        "fofoca",
+        "colar na prova",
+        "falso testemunho"
+      ]
     },
     {
       "id": "mandamento-10",
       "titulo": "10º Mandamento: Não cobiçar as coisas alheias",
       "texto": "Cobiçar é desejar demais o que é dos outros, a ponto de ficar com inveja ou triste com a alegria do amigo. Este mandamento nos ensina a ser gratos pelo que temos, a nos alegrar com o bem dos outros e a não deixar que coisas e dinheiro mandem no nosso coração.",
-      "referencias": ["CIC 2534-2557", "CIC 2538-2540"],
-      "palavras_chave": ["decimo mandamento", "cobica", "inveja", "ganancia", "gratidao", "querer o que e dos outros"]
+      "referencias": [
+        "CIC 2534-2557",
+        "CIC 2538-2540"
+      ],
+      "palavras_chave": [
+        "decimo mandamento",
+        "cobica",
+        "inveja",
+        "ganancia",
+        "gratidao",
+        "querer o que e dos outros"
+      ]
     },
     {
       "id": "virtudes-teologais",
       "titulo": "As virtudes teologais: Fé, Esperança e Caridade",
       "texto": "As virtudes teologais são presentes de Deus que nos ligam diretamente a Ele. Fé é acreditar em Deus e em tudo o que Ele revelou. Esperança é confiar que Deus vai cumprir suas promessas e nos levar ao Céu. Caridade é amar a Deus acima de tudo e ao próximo como a nós mesmos. A maior delas é a caridade.",
-      "referencias": ["CIC 1812-1829", "1Cor 13,13"],
-      "palavras_chave": ["virtudes teologais", "fe", "esperanca", "caridade", "amor"]
+      "referencias": [
+        "CIC 1812-1829",
+        "1Cor 13,13"
+      ],
+      "palavras_chave": [
+        "virtudes teologais",
+        "fe",
+        "esperanca",
+        "caridade",
+        "amor"
+      ]
     },
     {
       "id": "virtudes-cardeais",
       "titulo": "As virtudes cardeais",
       "texto": "Virtude é o hábito de fazer o bem, como um músculo que fica mais forte com treino. As quatro virtudes cardeais são os superpoderes do caráter: Prudência (pensar antes de agir e escolher bem), Justiça (dar a cada um o que é seu), Fortaleza (coragem para fazer o certo mesmo com medo) e Temperança (controlar as vontades, como comer doce ou jogar demais, na medida certa).",
-      "referencias": ["CIC 1803-1809", "ST I-II, q.61"],
-      "palavras_chave": ["virtudes cardeais", "virtude", "prudencia", "justica", "fortaleza", "temperanca", "carater"]
+      "referencias": [
+        "CIC 1803-1809",
+        "ST I-II, q.61"
+      ],
+      "palavras_chave": [
+        "virtudes cardeais",
+        "virtude",
+        "prudencia",
+        "justica",
+        "fortaleza",
+        "temperanca",
+        "carater"
+      ]
     },
     {
       "id": "bem-aventurancas",
       "titulo": "As Bem-aventuranças",
       "texto": "No Sermão da Montanha, Jesus ensinou o caminho da verdadeira felicidade. Ele disse que são felizes os pobres em espírito, os mansos, os que choram, os que têm fome e sede de justiça, os misericordiosos, os puros de coração, os que promovem a paz e os perseguidos por causa do bem. É o retrato do coração de Jesus.",
-      "referencias": ["CIC 1716-1729", "Mt 5,3-12"],
-      "palavras_chave": ["bem aventurancas", "sermao da montanha", "felicidade", "felizes"]
+      "referencias": [
+        "CIC 1716-1729",
+        "Mt 5,3-12"
+      ],
+      "palavras_chave": [
+        "bem aventurancas",
+        "sermao da montanha",
+        "felicidade",
+        "felizes"
+      ]
     },
     {
       "id": "obras-misericordia",
       "titulo": "As obras de misericórdia",
       "texto": "As obras de misericórdia são jeitos concretos de amar o próximo. Corporais: dar de comer a quem tem fome, dar de beber a quem tem sede, vestir os nus, acolher os peregrinos, visitar os doentes, visitar os presos e enterrar os mortos. Espirituais: dar bom conselho, ensinar quem não sabe, corrigir com carinho quem erra, consolar os tristes, perdoar as ofensas, ter paciência com os defeitos dos outros e rezar pelos vivos e pelos mortos.",
-      "referencias": ["CIC 2447", "Mt 25,31-46"],
-      "palavras_chave": ["obras de misericordia", "misericordia", "ajudar o proximo", "caridade", "pobres"]
+      "referencias": [
+        "CIC 2447",
+        "Mt 25,31-46"
+      ],
+      "palavras_chave": [
+        "obras de misericordia",
+        "misericordia",
+        "ajudar o proximo",
+        "caridade",
+        "pobres"
+      ]
     },
     {
       "id": "perdao",
       "titulo": "Perdoar os outros",
       "texto": "Jesus nos ensinou a perdoar sempre: quando Pedro perguntou se devia perdoar sete vezes, Jesus respondeu 'setenta vezes sete', ou seja, sempre. No Pai-Nosso pedimos que Deus nos perdoe assim como perdoamos. Perdoar não é fingir que nada aconteceu, é decidir não guardar ódio e desejar o bem. Às vezes é difícil, e podemos pedir essa força a Deus.",
-      "referencias": ["CIC 2838-2845", "Mt 18,21-22", "Mt 6,12"],
-      "palavras_chave": ["perdoar", "perdao", "setenta vezes sete", "magoa", "briga com amigo", "fazer as pazes"]
+      "referencias": [
+        "CIC 2838-2845",
+        "Mt 18,21-22",
+        "Mt 6,12"
+      ],
+      "palavras_chave": [
+        "perdoar",
+        "perdao",
+        "setenta vezes sete",
+        "magoa",
+        "briga com amigo",
+        "fazer as pazes"
+      ]
     },
     {
       "id": "ceu-purgatorio-inferno",
       "titulo": "Céu, Purgatório e Inferno",
       "texto": "Deus nos criou para sermos felizes com Ele para sempre no Céu, uma alegria maior do que qualquer coisa que possamos imaginar. Quem morre na amizade com Deus, mas ainda precisa ser purificado, passa pelo Purgatório antes do Céu, e podemos rezar por essas pessoas. O Inferno é ficar longe de Deus para sempre, por escolha livre de rejeitar o amor d'Ele. Deus não manda ninguém para o Inferno por acaso: Ele quer que todos se salvem.",
-      "referencias": ["CIC 1023-1037", "CIC 1030-1032", "CIC 1037", "1Tm 2,4"],
-      "palavras_chave": ["ceu", "paraiso", "purgatorio", "inferno", "vida eterna", "depois da morte", "salvacao"]
+      "referencias": [
+        "CIC 1023-1037",
+        "CIC 1030-1032",
+        "CIC 1037",
+        "1Tm 2,4"
+      ],
+      "palavras_chave": [
+        "ceu",
+        "paraiso",
+        "purgatorio",
+        "inferno",
+        "vida eterna",
+        "depois da morte",
+        "salvacao"
+      ]
     },
     {
       "id": "morte-luto",
       "titulo": "Quando alguém que amamos morre",
       "texto": "Quando alguém que amamos morre, é normal ficar muito triste e chorar; até Jesus chorou pelo amigo Lázaro. Para os cristãos, a morte não é o fim: Jesus ressuscitou e prometeu a vida eterna. Podemos rezar por quem morreu, e a Igreja dedica o dia 2 de novembro aos fiéis falecidos. Conversar com os pais sobre a saudade ajuda muito.",
-      "referencias": ["CIC 1005-1014", "CIC 1032", "Jo 11,35", "Jo 11,25"],
-      "palavras_chave": ["morte", "morreu", "luto", "saudade", "finados", "vovo morreu", "faleceu"]
+      "referencias": [
+        "CIC 1005-1014",
+        "CIC 1032",
+        "Jo 11,35",
+        "Jo 11,25"
+      ],
+      "palavras_chave": [
+        "morte",
+        "morreu",
+        "luto",
+        "saudade",
+        "finados",
+        "vovo morreu",
+        "faleceu"
+      ]
     },
     {
       "id": "sofrimento-mal",
       "titulo": "Por que existe o mal e o sofrimento",
       "texto": "Essa é uma das perguntas mais difíceis do mundo, e até os santos pensaram muito nela. Deus não quer o mal. Ele nos criou livres, e às vezes as pessoas usam a liberdade para fazer o mal. A fé nos ensina que Deus é tão poderoso que consegue tirar o bem até do mal, como na história de José do Egito. E Jesus, na cruz, sofreu junto conosco e venceu a morte.",
-      "referencias": ["CIC 309-314", "CIC 312", "Gn 50,20"],
-      "palavras_chave": ["por que existe o mal", "sofrimento", "por que deus permite", "coisas ruins", "doenca"]
+      "referencias": [
+        "CIC 309-314",
+        "CIC 312",
+        "Gn 50,20"
+      ],
+      "palavras_chave": [
+        "por que existe o mal",
+        "sofrimento",
+        "por que deus permite",
+        "coisas ruins",
+        "doenca"
+      ]
     },
     {
       "id": "fe-e-ciencia",
       "titulo": "Fé e ciência",
       "texto": "Fé e ciência não brigam, porque o mesmo Deus que revela a fé criou o universo que a ciência estuda. Muitos cientistas foram católicos: o padre Georges Lemaître propôs a ideia do 'átomo primordial', que deu origem à teoria do Big Bang, e o frade Gregor Mendel descobriu as leis da genética estudando ervilhas. O Vaticano tem até um observatório astronômico! A ciência explica como o universo funciona; a fé responde quem o criou e para quê.",
-      "referencias": ["CIC 159", "CIC 283-284"],
-      "palavras_chave": ["ciencia", "big bang", "evolucao", "lemaitre", "mendel", "fe e ciencia", "universo", "dinossauros"]
+      "referencias": [
+        "CIC 159",
+        "CIC 283-284"
+      ],
+      "palavras_chave": [
+        "ciencia",
+        "big bang",
+        "evolucao",
+        "lemaitre",
+        "mendel",
+        "fe e ciencia",
+        "universo",
+        "dinossauros"
+      ]
     },
     {
       "id": "cuidar-da-criacao",
       "titulo": "Cuidar da criação",
       "texto": "Deus confiou o mundo aos seres humanos para cuidarmos dele como jardineiros, não como donos que destroem. Os animais são criaturas de Deus e devem ser tratados com bondade. O Papa Francisco escreveu a encíclica Laudato Si', em 2015, sobre o cuidado da nossa casa comum. Economizar água, não jogar lixo no chão e respeitar os animais são jeitos de rezar com as mãos.",
-      "referencias": ["CIC 2415-2418", "CIC 2416", "Laudato Si' (2015)", "Gn 2,15"],
-      "palavras_chave": ["natureza", "meio ambiente", "animais", "ecologia", "planeta", "cuidar da criacao", "laudato si"]
+      "referencias": [
+        "CIC 2415-2418",
+        "CIC 2416",
+        "Laudato Si' (2015)",
+        "Gn 2,15"
+      ],
+      "palavras_chave": [
+        "natureza",
+        "meio ambiente",
+        "animais",
+        "ecologia",
+        "planeta",
+        "cuidar da criacao",
+        "laudato si"
+      ]
     },
     {
       "id": "dizimo",
       "titulo": "O dízimo e a generosidade",
       "texto": "A Igreja ensina que os fiéis têm o dever de ajudar nas necessidades da Igreja, cada um conforme suas possibilidades. Na Bíblia, Abraão ofereceu a décima parte de tudo, e daí vem a palavra dízimo. Muitas paróquias do Brasil têm a Pastoral do Dízimo. Jesus elogiou a viúva pobre que deu duas moedinhas, porque deu com o coração. São Paulo ensina que Deus ama quem dá com alegria. O importante não é o tamanho do valor, e sim a gratidão.",
-      "referencias": ["CIC 2043", "Gn 14,20", "Mc 12,41-44", "2Cor 9,7"],
-      "palavras_chave": ["dizimo", "oferta", "doar", "generosidade", "dar dinheiro para a igreja", "cofrinho do dizimo", "viuva pobre"]
+      "referencias": [
+        "CIC 2043",
+        "Gn 14,20",
+        "Mc 12,41-44",
+        "2Cor 9,7"
+      ],
+      "palavras_chave": [
+        "dizimo",
+        "oferta",
+        "doar",
+        "generosidade",
+        "dar dinheiro para a igreja",
+        "cofrinho do dizimo",
+        "viuva pobre"
+      ]
     },
     {
       "id": "dinheiro",
       "titulo": "O cristão e o dinheiro",
       "texto": "O dinheiro é uma ferramenta boa quando bem usada: serve para cuidar da família, ajudar os outros e realizar sonhos. Mas Jesus avisou: 'Não podeis servir a Deus e ao dinheiro'. O dinheiro deve ser servo, nunca patrão do nosso coração. A Igreja ensina que os bens da terra são para o bem de todos, e que o trabalho honesto tem grande dignidade. Poupar, gastar com sabedoria e partilhar são atitudes de quem confia em Deus.",
-      "referencias": ["CIC 2402-2406", "CIC 2427-2428", "CIC 2536", "Mt 6,24", "Mt 6,19-21"],
-      "palavras_chave": ["dinheiro", "mesada", "rico", "riqueza", "poupar", "economizar", "trabalho", "consumismo"]
+      "referencias": [
+        "CIC 2402-2406",
+        "CIC 2427-2428",
+        "CIC 2536",
+        "Mt 6,24",
+        "Mt 6,19-21"
+      ],
+      "palavras_chave": [
+        "dinheiro",
+        "mesada",
+        "rico",
+        "riqueza",
+        "poupar",
+        "economizar",
+        "trabalho",
+        "consumismo"
+      ]
     },
     {
       "id": "tecnologia-internet",
       "titulo": "Tecnologia, internet e telas",
       "texto": "A tecnologia é um presente da inteligência humana e pode ser usada para o bem, como fez São Carlo Acutis, que criou um site sobre os milagres eucarísticos. O Catecismo pede moderação e disciplina no uso dos meios de comunicação, para não ficarmos presos a eles. Dicas de agente: combine o tempo de tela com seus pais, nunca fale com estranhos na internet e conte para um adulto se algo te deixar desconfortável.",
-      "referencias": ["CIC 2493-2499", "CIC 2496"],
-      "palavras_chave": ["internet", "celular", "videogame", "tela", "redes sociais", "youtube", "tecnologia", "jogos"]
+      "referencias": [
+        "CIC 2493-2499",
+        "CIC 2496"
+      ],
+      "palavras_chave": [
+        "internet",
+        "celular",
+        "videogame",
+        "tela",
+        "redes sociais",
+        "youtube",
+        "tecnologia",
+        "jogos"
+      ]
     },
     {
       "id": "outras-religioes",
       "titulo": "Outras religiões",
       "texto": "A Igreja respeita as pessoas de outras religiões e reconhece o que há de verdadeiro e bom nelas. Os judeus são nossos 'irmãos mais velhos' na fé, e os muçulmanos também adoram um só Deus. Ao mesmo tempo, a Igreja anuncia com alegria que Jesus é o Caminho, a Verdade e a Vida. Por isso tratamos todos com amizade e respeito, sem achar que tanto faz no que se acredita.",
-      "referencias": ["CIC 839-848", "CIC 843", "Nostra Aetate (1965)", "Jo 14,6"],
-      "palavras_chave": ["outras religioes", "evangelico", "protestante", "judeu", "muculmano", "espirita", "todas as religioes sao iguais", "religiao certa"]
+      "referencias": [
+        "CIC 839-848",
+        "CIC 843",
+        "Nostra Aetate (1965)",
+        "Jo 14,6"
+      ],
+      "palavras_chave": [
+        "outras religioes",
+        "evangelico",
+        "protestante",
+        "judeu",
+        "muculmano",
+        "espirita",
+        "todas as religioes sao iguais",
+        "religiao certa"
+      ]
     },
     {
       "id": "supersticao",
       "titulo": "Superstição, horóscopo e magia",
       "texto": "Horóscopo, signos, ler a mão, simpatias, amuletos e 'magias' não têm poder de verdade e não combinam com a fé, porque buscam conhecer ou controlar o futuro longe de Deus. Quem confia em Deus não precisa de amuleto: está nas mãos do Pai. Já mágicas de ilusionismo, de truque, são diversão! Dom Bosco até fazia truques para alegrar os jovens.",
-      "referencias": ["CIC 2110-2117", "CIC 2116"],
-      "palavras_chave": ["horoscopo", "signo", "supersticao", "simpatia", "amuleto", "magia", "bruxa", "feitico", "sexta-feira 13"]
+      "referencias": [
+        "CIC 2110-2117",
+        "CIC 2116"
+      ],
+      "palavras_chave": [
+        "horoscopo",
+        "signo",
+        "supersticao",
+        "simpatia",
+        "amuleto",
+        "magia",
+        "bruxa",
+        "feitico",
+        "sexta-feira 13"
+      ]
     },
     {
       "id": "ano-liturgico",
       "titulo": "O Ano Litúrgico e suas cores",
       "texto": "A Igreja tem um calendário próprio que conta a vida de Jesus ao longo do ano. Começa no Advento, a espera do Natal (cor roxa). Depois vem o Natal (branco). A Quaresma são 40 dias de preparação para a Páscoa (roxo). A Páscoa celebra a Ressurreição (branco), e Pentecostes, a vinda do Espírito Santo (vermelho). O restante é o Tempo Comum (verde), tempo de crescer na fé.",
-      "referencias": ["CIC 1163-1173"],
-      "palavras_chave": ["ano liturgico", "cores", "advento", "tempo comum", "cor roxa", "cor verde", "calendario da igreja"]
+      "referencias": [
+        "CIC 1163-1173"
+      ],
+      "palavras_chave": [
+        "ano liturgico",
+        "cores",
+        "advento",
+        "tempo comum",
+        "cor roxa",
+        "cor verde",
+        "calendario da igreja"
+      ]
     },
     {
       "id": "natal",
       "titulo": "O Natal",
       "texto": "No Natal celebramos o nascimento de Jesus em Belém. Maria e José não encontraram lugar na hospedaria, e Jesus nasceu num lugar simples e foi colocado numa manjedoura. Os anjos anunciaram a boa notícia aos pastores. Deus se fez pequeno para ficar perto de nós! São Francisco de Assis montou o primeiro presépio, em 1223.",
-      "referencias": ["CIC 525-526", "Lc 2,1-20"],
-      "palavras_chave": ["natal", "nascimento de jesus", "presepio", "belem", "manjedoura", "pastores", "reis magos"]
+      "referencias": [
+        "CIC 525-526",
+        "Lc 2,1-20"
+      ],
+      "palavras_chave": [
+        "natal",
+        "nascimento de jesus",
+        "presepio",
+        "belem",
+        "manjedoura",
+        "pastores",
+        "reis magos"
+      ]
     },
     {
       "id": "quaresma-pascoa",
       "titulo": "Quaresma, Semana Santa e Páscoa",
       "texto": "A Quaresma começa na Quarta-feira de Cinzas e dura 40 dias, lembrando os 40 dias de Jesus no deserto. É um tempo de treino espiritual com três exercícios: oração, jejum (fazer pequenas renúncias) e esmola (ajudar quem precisa). Na Semana Santa lembramos a entrada de Jesus em Jerusalém, a Última Ceia, a Paixão e, no Domingo de Páscoa, a Ressurreição, a maior festa do ano!",
-      "referencias": ["CIC 540", "CIC 1438", "CIC 1169", "Mt 6,1-18"],
-      "palavras_chave": ["quaresma", "cinzas", "jejum", "semana santa", "pascoa", "renuncia", "esmola", "ovo de pascoa"]
+      "referencias": [
+        "CIC 540",
+        "CIC 1438",
+        "CIC 1169",
+        "Mt 6,1-18"
+      ],
+      "palavras_chave": [
+        "quaresma",
+        "cinzas",
+        "jejum",
+        "semana santa",
+        "pascoa",
+        "renuncia",
+        "esmola",
+        "ovo de pascoa"
+      ]
     },
     {
       "id": "vocacao-santidade",
       "titulo": "Todos são chamados à santidade",
       "texto": "Deus tem um plano especial para cada pessoa: é a vocação. Alguns são chamados ao casamento, outros ao sacerdócio ou à vida religiosa, e todos são chamados a ser santos no dia a dia: estudando, ajudando em casa, brincando com alegria e sendo bons amigos. Santidade não é coisa só de gente antiga; Carlo Acutis foi santo jogando videogame com moderação e programando computadores!",
-      "referencias": ["CIC 2012-2016", "CIC 2013"],
-      "palavras_chave": ["vocacao", "santidade", "ser santo", "plano de deus", "o que deus quer de mim", "futuro"]
+      "referencias": [
+        "CIC 2012-2016",
+        "CIC 2013"
+      ],
+      "palavras_chave": [
+        "vocacao",
+        "santidade",
+        "ser santo",
+        "plano de deus",
+        "o que deus quer de mim",
+        "futuro"
+      ]
     },
     {
       "id": "trabalho-casa",
       "titulo": "Ajudar em casa e o valor do trabalho",
       "texto": "Trabalhar é participar da obra criadora de Deus. Jesus trabalhou como carpinteiro com São José em Nazaré. Quando você arruma a cama, ajuda na louça ou cuida do pet, está treinando responsabilidade e amor à família, vivendo o quarto mandamento. Fazer bem as pequenas coisas é um caminho de santidade, como ensinava Santa Teresinha.",
-      "referencias": ["CIC 2427-2428", "CIC 2214-2220", "Mc 6,3"],
-      "palavras_chave": ["trabalho", "ajudar em casa", "tarefas", "responsabilidade", "sao jose", "carpinteiro", "preguica"]
+      "referencias": [
+        "CIC 2427-2428",
+        "CIC 2214-2220",
+        "Mc 6,3"
+      ],
+      "palavras_chave": [
+        "trabalho",
+        "ajudar em casa",
+        "tarefas",
+        "responsabilidade",
+        "sao jose",
+        "carpinteiro",
+        "preguica"
+      ]
     },
     {
       "id": "suma-teologica",
       "titulo": "São Tomás de Aquino e a Suma Teológica",
       "texto": "São Tomás de Aquino foi um frade dominicano do século XIII, um dos maiores pensadores da história. Escreveu a Suma Teológica, uma obra enorme que organiza perguntas sobre Deus, o ser humano, as virtudes e Jesus, cada uma com objeções, respostas e argumentos, como um grande banco de dados da fé. Ele é Doutor da Igreja e padroeiro dos estudantes.",
-      "referencias": ["ST (Summa Theologiae)"],
-      "palavras_chave": ["sao tomas de aquino", "suma teologica", "summa", "doutor da igreja", "padroeiro dos estudantes", "filosofia"]
+      "referencias": [
+        "ST (Summa Theologiae)"
+      ],
+      "palavras_chave": [
+        "sao tomas de aquino",
+        "suma teologica",
+        "summa",
+        "doutor da igreja",
+        "padroeiro dos estudantes",
+        "filosofia"
+      ]
     },
     {
       "id": "gratidao-alegria",
       "titulo": "Gratidão e alegria cristã",
       "texto": "O cristão é chamado a viver com alegria, porque se sabe amado por Deus. Agradecer é uma das formas de oração: podemos agradecer pela vida, pela família, pelos amigos e até pelos desafios que nos fazem crescer. São Paulo escreveu: 'Alegrai-vos sempre no Senhor'. São Domingos Sávio, aluno de Dom Bosco, dizia que a santidade consiste em estar sempre alegre.",
-      "referencias": ["CIC 2637-2638", "Fl 4,4", "1Ts 5,16-18"],
-      "palavras_chave": ["gratidao", "agradecer", "alegria", "felicidade", "tristeza", "obrigado"]
+      "referencias": [
+        "CIC 2637-2638",
+        "Fl 4,4",
+        "1Ts 5,16-18"
+      ],
+      "palavras_chave": [
+        "gratidao",
+        "agradecer",
+        "alegria",
+        "felicidade",
+        "tristeza",
+        "obrigado"
+      ]
     },
     {
       "id": "medo-confianca",
       "titulo": "Quando sentimos medo",
       "texto": "Todo mundo sente medo às vezes, até os heróis. A Bíblia repete muitas vezes 'Não tenhas medo!', porque Deus está sempre conosco. Quando o medo chegar, você pode respirar fundo, rezar ao seu Anjo da Guarda e conversar com seus pais. Coragem não é não sentir medo; é fazer o que é certo mesmo com medo. Isso se chama Fortaleza.",
-      "referencias": ["CIC 1808", "Is 41,10", "Js 1,9"],
-      "palavras_chave": ["medo", "ansiedade", "pesadelo", "coragem", "escuro", "tenho medo"]
+      "referencias": [
+        "CIC 1808",
+        "Is 41,10",
+        "Js 1,9"
+      ],
+      "palavras_chave": [
+        "medo",
+        "ansiedade",
+        "pesadelo",
+        "coragem",
+        "escuro",
+        "tenho medo"
+      ]
     }
   ]
 }

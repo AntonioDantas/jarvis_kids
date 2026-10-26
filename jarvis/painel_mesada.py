@@ -10,7 +10,15 @@ from jarvis import ui
 from jarvis.contexto import Contexto, carregar_dados
 from jarvis.fe import oracoes
 from jarvis.gamificacao import PONTOS
-from jarvis.mesada import CATEGORIAS, DICA_PEDAGOGICA, SUGESTOES_ATIVIDADES, ErroMesada, ResultadoDeposito, simular_poupanca
+from jarvis.mesada import (
+    CATEGORIAS,
+    DICA_PEDAGOGICA,
+    INVESTIMENTO,
+    SUGESTOES_ATIVIDADES,
+    ErroMesada,
+    ResultadoDeposito,
+    simular_poupanca,
+)
 from jarvis.texto import formatar_reais, reais_por_extenso
 
 COR = ui.CORES["dinheiro"]
@@ -19,15 +27,19 @@ EMOJIS_SONHO = ["🎯", "🚲", "🎮", "⚽", "📚", "🎸", "🛹", "🧸", "
 
 def mostrar_cofrinhos(ctx: Contexto) -> None:
     linhas = []
+    ctx.mesada.atualizar_rendimentos()
     for c in ctx.mesada.cofrinhos:
-        if c.get("meta"):
+        if c.get("tipo") == "investimento":
+            rendeu = formatar_reais(c["rendimento_total"])
+            meta = Text(f"rende {_pct(ctx.mesada.taxa_rendimento)} ao mês · já rendeu {rendeu}", style="#5fffaf")
+        elif c.get("meta"):
             meta = Text.assemble(ui.barra(c["saldo"], c["meta"], 12, COR), (f" {formatar_reais(c['meta'])}", "grey62"))
         else:
             meta = Text("—", style="grey50")
         saldo = Text(formatar_reais(c["saldo"]), style=f"bold {COR}")
         linhas.append([f"{c['emoji']} {c['nome']}", f"{c['percentual']}%", saldo, meta])
     linhas.append(["[bold]TOTAL[/]", "100%", Text(formatar_reais(ctx.mesada.saldo_total()), style="bold"), ""])
-    ui.tabela("🐷 MEUS COFRINHOS", ["Cofrinho", "Parte", "Saldo", "Meta"], linhas, COR)
+    ui.tabela("🐷 MEUS COFRINHOS", ["Cofrinho", "Parte", "Saldo", "Meta / Rendimento"], linhas, COR)
     if ctx.mesada.pendentes:
         total = sum(p["valor"] for p in ctx.mesada.pendentes)
         ui.info(f"⏳ {len(ctx.mesada.pendentes)} atividade(s) esperando aprovação dos pais ({formatar_reais(total)}).")
@@ -36,7 +48,7 @@ def mostrar_cofrinhos(ctx: Contexto) -> None:
 def _anunciar_deposito(ctx: Contexto, valor: int, resultado: ResultadoDeposito) -> None:
     nomes = {c["id"]: f"{c['emoji']} {c['nome']}" for c in ctx.mesada.cofrinhos}
     for cid, parte in resultado.distribuicao.items():
-        ui.console.print(f"    [{COR}]+{formatar_reais(parte)}[/] → {nomes.get(cid, cid)}")
+        ui.sucesso(f"+{formatar_reais(parte)} → {nomes.get(cid, cid)}")
     ctx.io.efeitos.tocar("moeda")
     ctx.io.dizer(f"Missão cumprida! {reais_por_extenso(valor)} foram divididos entre os seus cofrinhos.",
                  cor=COR, mostrar=False)
@@ -61,7 +73,11 @@ def concluir_atividade(ctx: Contexto, atividade: dict | None = None) -> None:
         atividade = mesada.atividades[i]
 
     precisa_aprovacao = ctx.prefs.aprovacao_dos_pais and ctx.prefs.tem_pin
-    status, resultado = mesada.concluir_atividade(atividade["id"], precisa_aprovacao)
+    try:
+        status, resultado = mesada.concluir_atividade(atividade["id"], precisa_aprovacao)
+    except ErroMesada as exc:
+        ctx.io.dizer(str(exc), cor=COR)
+        return
     if status == "pendente":
         ctx.io.efeitos.tocar("missao")
         ctx.io.dizer(f"Registrado: {atividade['nome']}! Enviei para os seus pais aprovarem. Quando aprovarem, "
@@ -205,11 +221,21 @@ def gastar(ctx: Contexto) -> None:
                  "Agente esperto anota tudo o que gasta!", cor=COR)
 
 
-def transferir(ctx: Contexto) -> None:
-    origem = _escolher_cofrinho(ctx, "De qual cofrinho vai sair?", lambda c: c["saldo"] > 0)
+def transferir(ctx: Contexto, origem_id: str | None = None, destino_id: str | None = None) -> None:
+    if origem_id:
+        origem = ctx.mesada.cofrinho(origem_id)
+        if origem["saldo"] <= 0:
+            ctx.io.dizer(f"O cofrinho {origem['nome']} está vazio.", cor=COR)
+            return
+    else:
+        origem = _escolher_cofrinho(ctx, "De qual cofrinho vai sair?",
+                                    lambda c: c["saldo"] > 0 and c["id"] != destino_id)
     if not origem:
         return
-    destino = _escolher_cofrinho(ctx, "Para qual cofrinho vai?", lambda c: c["id"] != origem["id"])
+    if destino_id:
+        destino = ctx.mesada.cofrinho(destino_id)
+    else:
+        destino = _escolher_cofrinho(ctx, "Para qual cofrinho vai?", lambda c: c["id"] != origem["id"])
     if not destino:
         return
     valor = ctx.io.pedir_valor("Quanto você quer transferir?")
@@ -260,11 +286,53 @@ def entregar(ctx: Contexto) -> None:
         oracoes.executar(ctx, "dizimo")
 
 
+def _pct(valor: float) -> str:
+    return f"{valor:.2f}".rstrip("0").rstrip(".").replace(".", ",") + "%"
+
+
+def investimento(ctx: Contexto) -> None:
+    """Mostra com clareza quanto o cofrinho de Investimento já rendeu e quanto vai render."""
+    rendeu_agora = ctx.mesada.atualizar_rendimentos()
+    r = ctx.mesada.relatorio_investimento()
+    if r.taxa_mensal <= 0:
+        ctx.io.dizer("Seu cofrinho de Investimento ainda não rende, porque o Banco da Família está com taxa zero. "
+                     "Peça para seus pais definirem o rendimento na Área dos Pais!", cor=COR)
+        return
+    linhas = [
+        ["💰 Saldo hoje", formatar_reais(r.saldo)],
+        ["📥 Você colocou", formatar_reais(r.aportado)],
+        ["✨ Já rendeu", f"+{formatar_reais(r.rendimento_total)}  (+{_pct(r.rentabilidade_pct)})"],
+        ["🏦 Taxa do Banco da Família", f"{_pct(r.taxa_mensal)} ao mês (≈ {_pct(r.taxa_anual)} ao ano)"],
+        ["📅 Rende por dia",
+         f"≈ {formatar_reais(round(r.rende_por_dia))}" if r.rende_por_dia >= 0.5 else "menos de 1 centavo"],
+        ["🔮 No próximo mês", f"≈ +{formatar_reais(r.rende_proximo_mes)}"],
+    ]
+    linhas += [[f"🚀 Daqui a {m} {'mês' if m == 1 else 'meses'}", formatar_reais(v)] for m, v in r.projecao.items()]
+    if r.anos_para_dobrar:
+        linhas.append(["⏳ Regra do 72", f"seu dinheiro dobra em cerca de {r.anos_para_dobrar:.0f} anos".replace(".", ",")])
+    ui.tabela("📈 MEU INVESTIMENTO — Banco da Família", ["", ""], linhas, "#5fffaf")
+    ui.info("Juros compostos: o que rende também passa a render. É o seu dinheiro trabalhando para você!")
+    fala = (f"Seu investimento tem {reais_por_extenso(r.saldo)}. Você colocou {reais_por_extenso(r.aportado)}, "
+            f"e ele já rendeu {reais_por_extenso(r.rendimento_total)}. No próximo mês, deve render mais uns "
+            f"{reais_por_extenso(r.rende_proximo_mes)}, sem você fazer nada!")
+    if rendeu_agora:
+        fala = f"Novidade: desde a última vez, rendeu {reais_por_extenso(rendeu_agora)}! " + fala
+    ctx.io.dizer(fala, cor=COR, mostrar=False)
+    acao = ctx.io.escolher("", ["📥 Investir mais (tirar de outro cofrinho)", "📤 Resgatar (tirar do investimento)"],
+                           titulo="📈 Investimento", falar=False, cor=COR)
+    if acao == 0:
+        transferir(ctx, destino_id=INVESTIMENTO)
+    elif acao == 1:
+        ctx.io.dizer("Lembre: o que sair do investimento para de render.", cor=COR)
+        transferir(ctx, origem_id=INVESTIMENTO)
+
+
 def simulador(ctx: Contexto) -> None:
     semanal = ctx.io.pedir_valor("Simulador de poupança! Quanto você conseguiria guardar por semana?")
     if not semanal:
         return
-    juros = 1.0 if ctx.io.confirmar("Quer ver também com juros de 1% ao mês, como num investimento?", falar=False) else 0.0
+    taxa = ctx.mesada.taxa_rendimento or 1.0
+    juros = taxa if ctx.io.confirmar(f"Quer ver também com o rendimento de {_pct(taxa)} ao mês?", falar=False) else 0.0
     sem_juros = simular_poupanca(semanal, 52)
     com_juros = simular_poupanca(semanal, 52, juros) if juros else sem_juros
     linhas = [[f"{s} semanas", formatar_reais(sem_juros[s - 1]), formatar_reais(com_juros[s - 1])]
@@ -296,13 +364,14 @@ def extrato(ctx: Contexto) -> None:
 def executar(ctx: Contexto) -> None:
     acoes = [
         ("✅ Concluí uma atividade!", concluir_atividade),
+        ("📈 Meu Investimento (quanto está rendendo)", investimento),
         ("📋 Minhas atividades e valores", gerenciar_atividades),
         ("🎯 Criar cofrinho de sonho (meta)", criar_cofrinho),
         ("⚖️  Ajustar as porcentagens dos cofrinhos", ajustar_percentuais),
         ("🛒 Gastar dinheiro", gastar),
         ("🔁 Transferir entre cofrinhos", transferir),
         ("🙏 Entregar dízimo ou doação", entregar),
-        ("📈 Simulador de poupança", simulador),
+        ("🧮 Simulador de poupança", simulador),
         ("🧾 Ver extrato", extrato),
     ]
     dica = random.choice(carregar_dados("dicas_financeiras.json")["dicas"])

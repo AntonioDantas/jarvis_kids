@@ -8,9 +8,6 @@ from __future__ import annotations
 import random
 from datetime import date
 
-from rich.panel import Panel
-from rich.text import Text
-
 from jarvis import ui
 from jarvis.contexto import Contexto, carregar_dados
 from jarvis.gamificacao import PONTOS
@@ -45,11 +42,10 @@ def ativar_santo(ctx: Contexto, santo: dict) -> None:
     if ctx.cerebro:
         ctx.cerebro.esquecer()  # conversa nova com o santo
     cor = ui.CORES["santo"]
-    ui.console.print(Panel(
-        Text.assemble((f"{santo['emoji']}  {santo['nome']}", f"bold {cor}"), (f"  ({santo['anos']})\n", "grey62"),
-                      (f"Festa: {santo['festa']} · Padroeiro {santo['padroeiro']}", "grey70")),
-        title="[bold #ffaf5f]◢ HOLOGRAMA EDUCATIVO ATIVADO ◣[/]", border_style=cor,
-        subtitle="[grey50]baseado em fatos verificados · diga 'voltar ao normal' para sair[/]"))
+    ui.painel("◢ HOLOGRAMA EDUCATIVO ATIVADO ◣",
+              f"{santo['emoji']}  {santo['nome']}  ({santo['anos']})\n"
+              f"Festa: {santo['festa']} · Padroeiro {santo['padroeiro']}",
+              cor, subtitulo="baseado em fatos verificados · diga 'voltar ao normal' para sair")
     ctx.io.efeitos.tocar("inicializar")
     ctx.io.dizer(santo["saudacao"], titulo=santo["nome"], cor=cor, voz=santo["voz"])
     if ctx.jogo.dentro_do_limite(f"santo_{santo['id']}", 1):
@@ -67,12 +63,10 @@ def desativar_santo(ctx: Contexto) -> None:
 
 def contar_historia(ctx: Contexto, historia: dict) -> None:
     cor = ui.CORES["fe"]
-    ui.console.print(Panel(Text(historia["texto"], style="#eeeeee"),
-                           title=f"[bold {cor}]{historia['emoji']} {historia['titulo']}[/]",
-                           subtitle=f"[grey50]{historia['referencia']} — leia também na sua Bíblia![/]",
-                           border_style=cor))
+    ui.painel(f"{historia['emoji']} {historia['titulo']}", historia["texto"], cor,
+              subtitulo=f"{historia['referencia']} — leia também na sua Bíblia!")
     try:
-        ctx.io.voz.falar(f"{historia['titulo']}. {historia['texto']}", {"velocidade": 1.0})
+        ctx.io.voz.falar(f"{historia['titulo']}. {historia['texto']}", ctx.io.voz.com(velocidade=1.0))
     except KeyboardInterrupt:
         ctx.io.voz.alto_falante.parar()
     ctx.io.dizer(f"Lição da missão: {historia['licao']}", cor=cor)
@@ -111,6 +105,6 @@ def executar(ctx: Contexto) -> str | None:
         historia = random.choice(lista)
     contar_historia(ctx, historia)
     resposta = ctx.io.ouvir("Sua resposta (ou ENTER para pular)")
-    if not resposta:
+    if not resposta or normalizar(resposta).strip(" .!") in {"pular", "pula", "passar", "voltar", "sair", "nada"}:
         return None
     return f"Sobre a história '{historia['titulo']}' ({historia['referencia']}), eu respondo: {resposta}"

@@ -7,8 +7,12 @@ Como funciona:
   * Ao concluir uma atividade, o valor vai para "aprovação dos pais" (se a
     família ativou um PIN) ou direto para os cofrinhos.
   * Todo dinheiro que entra é dividido automaticamente entre os cofrinhos,
-    pelos percentuais que a criança definiu: Dízimo, Poupança, Gastar,
-    Ajudar o Próximo — e quantos cofrinhos-meta ela quiser criar.
+    pelos percentuais que a criança definiu: Dízimo, Poupança, Investimento,
+    Gastar, Ajudar o Próximo — e quantos cofrinhos-meta ela quiser criar.
+  * O cofrinho de Investimento RENDE: o "Banco da Família" (os pais) paga
+    juros compostos, calculados dia a dia, a uma taxa mensal definida na
+    Área dos Pais. A criança vê quanto colocou, quanto já rendeu e quanto
+    vai render.
 
 Os valores são guardados em CENTAVOS (números inteiros) para nunca haver
 erro de arredondamento.
@@ -18,13 +22,17 @@ from __future__ import annotations
 
 import uuid
 from dataclasses import dataclass, field
+from datetime import date
 
-from jarvis.armazenamento import Perfil, agora
+from jarvis.armazenamento import Perfil, agora, hoje
 from jarvis.texto import formatar_reais
 
 VALOR_MAXIMO_ATIVIDADE = 100_00     # R$ 100,00 — evita erros de digitação
-MAXIMO_COFRINHOS = 7
+MAXIMO_POR_ATIVIDADE_DIA = 3        # a mesma atividade conta no máximo 3 vezes por dia
+MAXIMO_COFRINHOS = 8
 MAXIMO_EXTRATO = 500
+INVESTIMENTO = "investir"           # id do cofrinho que rende
+TAXA_MAXIMA_MENSAL = 5.0            # % ao mês (trava contra erro de digitação dos pais)
 
 CATEGORIAS = {
     "casa": "🏠 Casa",
@@ -89,6 +97,34 @@ def distribuir(valor: int, percentuais: list[tuple[str, int]]) -> dict[str, int]
     return partes
 
 
+def novo_cofrinho_investimento(percentual: int = 0) -> dict:
+    return {"id": INVESTIMENTO, "nome": "Investimento", "emoji": "📈", "percentual": percentual, "saldo": 0,
+            "meta": 0, "tipo": "investimento", "fixo": True, "aportado": 0, "rendimento_total": 0,
+            "rendimento_fracao": 0.0, "ultimo_rendimento": ""}
+
+
+def rendimento_composto(saldo: float, taxa_mensal_pct: float, dias: int) -> float:
+    """Juros compostos (em centavos) de ``dias`` dias, com mês de 30 dias."""
+    return saldo * ((1 + taxa_mensal_pct / 100) ** (dias / 30) - 1)
+
+
+@dataclass
+class RelatorioInvestimento:
+    saldo: int
+    aportado: int                 # quanto a criança colocou (e ainda está aplicado)
+    rendimento_total: int         # quanto já rendeu desde o começo
+    taxa_mensal: float
+    taxa_anual: float
+    rende_por_dia: float          # centavos (pode ser fração)
+    rende_proximo_mes: int
+    projecao: dict[int, int]      # meses -> saldo previsto, sem novos depósitos
+    anos_para_dobrar: float | None
+
+    @property
+    def rentabilidade_pct(self) -> float:
+        return 100 * self.rendimento_total / self.aportado if self.aportado else 0.0
+
+
 def simular_poupanca(valor_semanal: int, semanas: int, juros_mensal_pct: float = 0.0) -> list[int]:
     """Saldo (centavos) ao fim de cada semana. Juros aplicados a cada 4 semanas."""
     saldo, historico = 0.0, []
@@ -101,8 +137,20 @@ def simular_poupanca(valor_semanal: int, semanas: int, juros_mensal_pct: float =
 
 
 class Mesada:
-    def __init__(self, perfil: Perfil):
+    def __init__(self, perfil: Perfil, taxa_rendimento_mensal: float = 1.0):
         self.perfil = perfil
+        self.taxa_rendimento = max(0.0, min(float(taxa_rendimento_mensal), TAXA_MAXIMA_MENSAL))
+        self._garantir_investimento()
+
+    def _garantir_investimento(self) -> None:
+        """Perfis antigos ganham o cofrinho de Investimento (com 0%, sem mexer no plano da criança)."""
+        if not any(c.get("tipo") == "investimento" for c in self.cofrinhos):
+            self.cofrinhos.insert(min(2, len(self.cofrinhos)), novo_cofrinho_investimento(0))
+        investimento = self.investimento
+        for chave, valor in novo_cofrinho_investimento().items():
+            investimento.setdefault(chave, valor)
+        if not investimento["ultimo_rendimento"]:
+            investimento["ultimo_rendimento"] = hoje()
 
     # ------------------------------------------------------------- consultas
     @property
@@ -127,8 +175,53 @@ class Mesada:
                 return c
         raise ErroMesada("Não encontrei esse cofrinho.")
 
+    @property
+    def investimento(self) -> dict:
+        return next(c for c in self.cofrinhos if c.get("tipo") == "investimento")
+
     def saldo_total(self) -> int:
         return sum(c["saldo"] for c in self.cofrinhos)
+
+    # --------------------------------------------------------- investimento
+    def atualizar_rendimentos(self, dia: date | None = None) -> int:
+        """Credita os juros desde a última atualização. Retorna quantos centavos rendeu agora."""
+        investimento = self.investimento
+        dia = dia or date.today()
+        ultimo = date.fromisoformat(investimento["ultimo_rendimento"])
+        dias = (dia - ultimo).days
+        if dias <= 0:
+            return 0
+        investimento["ultimo_rendimento"] = dia.isoformat()
+        if self.taxa_rendimento <= 0 or investimento["saldo"] <= 0:
+            self.perfil.salvar()
+            return 0
+        juros = rendimento_composto(investimento["saldo"] + investimento["rendimento_fracao"], self.taxa_rendimento, dias)
+        investimento["rendimento_fracao"] += juros
+        rendeu = int(investimento["rendimento_fracao"])  # só centavos inteiros entram no saldo
+        investimento["rendimento_fracao"] -= rendeu
+        if rendeu:
+            investimento["saldo"] += rendeu
+            investimento["rendimento_total"] += rendeu
+            taxa = f"{self.taxa_rendimento:.2f}".rstrip("0").rstrip(".").replace(".", ",")
+            self._extrato("rendimento", rendeu, INVESTIMENTO, f"Rendimento de {dias} dia(s) a {taxa}% ao mês")
+        self.perfil.salvar()
+        return rendeu
+
+    def relatorio_investimento(self) -> RelatorioInvestimento:
+        investimento = self.investimento
+        saldo, taxa = investimento["saldo"], self.taxa_rendimento
+        anual = ((1 + taxa / 100) ** 12 - 1) * 100
+        return RelatorioInvestimento(
+            saldo=saldo, aportado=investimento["aportado"], rendimento_total=investimento["rendimento_total"],
+            taxa_mensal=taxa, taxa_anual=anual, rende_por_dia=rendimento_composto(saldo, taxa, 1),
+            rende_proximo_mes=round(rendimento_composto(saldo, taxa, 30)),
+            projecao={m: round(saldo * (1 + taxa / 100) ** m) for m in (1, 3, 6, 12)},
+            anos_para_dobrar=round(72 / anual, 1) if anual > 0 else None,  # "regra do 72"
+        )
+
+    def _movimentar_aporte(self, cofrinho: dict, valor: int) -> None:
+        if cofrinho.get("tipo") == "investimento":
+            cofrinho["aportado"] = max(0, cofrinho["aportado"] + valor)
 
     def resumo_falado(self) -> str:
         partes = [f"{c['nome']}: {formatar_reais(c['saldo'])}" for c in self.cofrinhos]
@@ -168,7 +261,16 @@ class Mesada:
     def concluir_atividade(self, atividade_id: str, precisa_aprovacao: bool) -> tuple[str, ResultadoDeposito | None]:
         """Retorna ("pendente", None), ("sem_valor", None) ou ("creditado", resultado)."""
         atividade = self.atividade(atividade_id)
+        registros = self.dados.setdefault("registros_do_dia", {})
+        if registros.get("data") != hoje():
+            registros.clear()
+            registros.update({"data": hoje(), "contagens": {}})
+        if registros["contagens"].get(atividade_id, 0) >= MAXIMO_POR_ATIVIDADE_DIA:
+            raise ErroMesada(f"Você já registrou '{atividade['nome']}' {MAXIMO_POR_ATIVIDADE_DIA} vezes hoje. "
+                             "Amanhã tem mais missões!")
+        registros["contagens"][atividade_id] = registros["contagens"].get(atividade_id, 0) + 1
         if atividade["valor"] == 0:
+            self.perfil.salvar()
             return "sem_valor", None
         if precisa_aprovacao:
             self.pendentes.append({"id": _novo_id(), "atividade_id": atividade["id"],
@@ -197,11 +299,13 @@ class Mesada:
     # ------------------------------------------------------------- dinheiro
     def depositar(self, valor: int, descricao: str) -> ResultadoDeposito:
         self._validar_valor(valor)
+        self.atualizar_rendimentos()  # juros sobre o saldo antigo antes de entrar dinheiro novo
         partes = distribuir(valor, [(c["id"], c["percentual"]) for c in self.cofrinhos])
         resultado = ResultadoDeposito(distribuicao={k: v for k, v in partes.items() if v})
         for c in self.cofrinhos:
             antes = c["saldo"]
             c["saldo"] += partes.get(c["id"], 0)
+            self._movimentar_aporte(c, partes.get(c["id"], 0))
             if c.get("meta") and antes < c["meta"] <= c["saldo"]:
                 resultado.metas_atingidas.append(c["nome"])
         self._extrato("deposito", valor, None, descricao)
@@ -213,10 +317,13 @@ class Mesada:
         origem, destino = self.cofrinho(origem_id), self.cofrinho(destino_id)
         if origem is destino:
             raise ErroMesada("Escolha dois cofrinhos diferentes.")
+        self.atualizar_rendimentos()
         self._exigir_saldo(origem, valor)
         antes = destino["saldo"]
         origem["saldo"] -= valor
         destino["saldo"] += valor
+        self._movimentar_aporte(origem, -valor)
+        self._movimentar_aporte(destino, valor)
         self._extrato("transferencia", valor, origem_id, f"{origem['nome']} → {destino['nome']}")
         self.perfil.salvar()
         meta = destino.get("meta")
@@ -225,9 +332,11 @@ class Mesada:
     def retirar(self, cofrinho_id: str, valor: int, motivo: str) -> None:
         """Gastar dinheiro (ex.: comprar um lanche)."""
         self._validar_valor(valor)
+        self.atualizar_rendimentos()
         cofrinho = self.cofrinho(cofrinho_id)
         self._exigir_saldo(cofrinho, valor)
         cofrinho["saldo"] -= valor
+        self._movimentar_aporte(cofrinho, -valor)
         self._extrato("retirada", valor, cofrinho_id, motivo.strip() or "Compra")
         self.perfil.salvar()
 

@@ -2,24 +2,19 @@
 
 from __future__ import annotations
 
-import json
 from dataclasses import dataclass
-from functools import cache
 
-from config import PASTA_DADOS, PlanoIA, Preferencias, montar_system_prompt
+from config import PlanoIA, Preferencias, montar_system_prompt
+from jarvis.agenda import Agenda
 from jarvis.armazenamento import Perfil
 from jarvis.cerebro import Cerebro
+from jarvis.dados import carregar_dados  # noqa: F401  (reexportado para os módulos)
 from jarvis.fe.conhecimento import Biblioteca
 from jarvis.gamificacao import Evento, Gamificacao
 from jarvis.interacao import Interacao
 from jarvis.mesada import Mesada
 from jarvis.seguranca import Guardiao
 from jarvis.texto import reais_por_extenso
-
-
-@cache
-def carregar_dados(nome: str) -> dict:
-    return json.loads((PASTA_DADOS / nome).read_text(encoding="utf-8"))
 
 
 @dataclass
@@ -34,13 +29,20 @@ class Contexto:
     guardiao: Guardiao
     cerebro: Cerebro | None
     persona: dict | None = None
+    agenda: Agenda | None = None
 
     @property
     def voz_atual(self) -> dict | None:
         return self.persona["voz"] if self.persona else None
 
     def system_prompt(self) -> str:
-        return montar_system_prompt(self.perfil.nome, self.perfil.idade, self.jogo.nome_nivel, self.persona)
+        from jarvis.fe.liturgia import dia_liturgico
+
+        hoje = dia_liturgico()
+        resumo = f"{hoje.data.strftime('%d/%m/%Y')}, {hoje.tempo}, cor {hoje.cor}, ano {hoje.ano}"
+        if hoje.celebracao:
+            resumo += f"; celebração: {hoje.celebracao}"
+        return montar_system_prompt(self.perfil.nome, self.perfil.idade, self.jogo.nome_nivel, self.persona, resumo)
 
     def premiar(self, pontos: int, motivo: str, estatistica: str | None = None, quantidade: int = 1) -> None:
         eventos = self.jogo.ganhar(pontos, motivo)

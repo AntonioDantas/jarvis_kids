@@ -153,6 +153,63 @@
         "Ensina-me a partilhar com alegria, como o menino dos cinco pães.",
         "Que a minha pequena oferta ajude a tua Igreja e os mais pobres. Amém."
       ]
+    },
+    {
+      "id": "angelus",
+      "titulo": "Angelus (O Anjo do Senhor)",
+      "emoji": "🔔",
+      "momento": "meio_dia",
+      "origem": "oração tradicional (fora do Tempo Pascal)",
+      "linhas": [
+        "O Anjo do Senhor anunciou a Maria. E ela concebeu do Espírito Santo.",
+        "Ave Maria, cheia de graça, o Senhor é convosco, bendita sois vós entre as mulheres e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora de nossa morte. Amém.",
+        "Eis aqui a serva do Senhor. Faça-se em mim segundo a vossa palavra.",
+        "Ave Maria, cheia de graça, o Senhor é convosco, bendita sois vós entre as mulheres e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora de nossa morte. Amém.",
+        "E o Verbo se fez carne. E habitou entre nós.",
+        "Ave Maria, cheia de graça, o Senhor é convosco, bendita sois vós entre as mulheres e bendito é o fruto do vosso ventre, Jesus. Santa Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora de nossa morte. Amém.",
+        "Rogai por nós, santa Mãe de Deus. Para que sejamos dignos das promessas de Cristo.",
+        "Oremos: Infundi, Senhor, como vos pedimos, a vossa graça em nossas almas, para que nós, que pela anunciação do Anjo viemos ao conhecimento da encarnação de Cristo, vosso Filho, pela sua paixão e morte na cruz sejamos conduzidos à glória da ressurreição. Pelo mesmo Cristo, Senhor nosso. Amém."
+      ]
+    },
+    {
+      "id": "regina_caeli",
+      "titulo": "Rainha do Céu (Regina Caeli)",
+      "emoji": "👑",
+      "momento": "meio_dia",
+      "origem": "oração tradicional (no Tempo Pascal, no lugar do Angelus)",
+      "linhas": [
+        "Rainha do Céu, alegrai-vos, aleluia!",
+        "Porque aquele que merecestes trazer em vosso seio, aleluia!",
+        "Ressuscitou como disse, aleluia!",
+        "Rogai a Deus por nós, aleluia!",
+        "Exultai e alegrai-vos, ó Virgem Maria, aleluia! Porque o Senhor ressuscitou verdadeiramente, aleluia!",
+        "Oremos: Ó Deus, que vos dignastes alegrar o mundo com a ressurreição do vosso Filho, Nosso Senhor Jesus Cristo, concedei-nos, vos suplicamos, que, por sua Mãe, a Virgem Maria, alcancemos as alegrias da vida eterna. Pelo mesmo Cristo, Senhor nosso. Amém."
+      ]
+    },
+    {
+      "id": "salve_rainha",
+      "titulo": "Salve-Rainha",
+      "emoji": "💙",
+      "origem": "oração tradicional",
+      "linhas": [
+        "Salve, Rainha, Mãe de misericórdia, vida, doçura e esperança nossa, salve!",
+        "A vós bradamos, os degredados filhos de Eva. A vós suspiramos, gemendo e chorando neste vale de lágrimas.",
+        "Eia, pois, advogada nossa, esses vossos olhos misericordiosos a nós volvei.",
+        "E depois deste desterro, mostrai-nos Jesus, bendito fruto do vosso ventre.",
+        "Ó clemente, ó piedosa, ó doce sempre Virgem Maria.",
+        "Rogai por nós, santa Mãe de Deus, para que sejamos dignos das promessas de Cristo. Amém."
+      ]
+    },
+    {
+      "id": "vinde_espirito",
+      "titulo": "Vinde, Espírito Santo",
+      "emoji": "🕊️",
+      "origem": "oração tradicional",
+      "linhas": [
+        "Vinde, Espírito Santo, enchei os corações dos vossos fiéis e acendei neles o fogo do vosso amor.",
+        "Enviai o vosso Espírito e tudo será criado. E renovareis a face da terra.",
+        "Oremos: Ó Deus, que instruístes os corações dos vossos fiéis com a luz do Espírito Santo, concedei-nos que no mesmo Espírito saibamos o que é reto e gozemos sempre da sua consolação. Por Cristo, Senhor nosso. Amém."
+      ]
     }
   ]
 }

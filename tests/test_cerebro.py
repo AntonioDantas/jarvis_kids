@@ -33,8 +33,9 @@ def cerebro():
 def test_responder_em_streaming_com_fontes(cerebro):
     cerebro.cliente = ClienteFalso(["<think>hmm</think>Deus ", "é amor."])
     assert "".join(cerebro.responder("Quem é Deus?", "SISTEMA", "FONTES")) == "Deus é amor."
-    papeis = [m["role"] for m in cerebro.cliente.recebido["messages"]]
-    assert papeis == ["system", "system", "user"]
+    mensagens = cerebro.cliente.recebido["messages"]
+    assert [m["role"] for m in mensagens] == ["system", "user"]
+    assert mensagens[-1]["content"].startswith("FONTES") and "PERGUNTA DA CRIANÇA: Quem é Deus?" in mensagens[-1]["content"]
     assert cerebro.cliente.recebido["keep_alive"] == "30m"
 
 

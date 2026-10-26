@@ -36,6 +36,8 @@ PONTOS = {
     "missao": 20,
     "todas_missoes": 50,
     "conversa_santo": 5,
+    "terco": 50,
+    "agenda": 5,
     "sequencia_por_dia": 5,
 }
 LIMITE_DIARIO_PERGUNTAS = 60  # evita "farmar" pontos com perguntas repetidas
@@ -71,12 +73,14 @@ MEDALHAS = [
     Medalha("missao_perfeita", "Missão Perfeita", "💯", "Gabaritou uma rodada do Quiz", _e("quiz_perfeitos", 1)),
     Medalha("sentinela_oracao", "Sentinela da Oração", "🙏", "Rezou 7 vezes com o Jarvis", _e("oracoes", 7)),
     Medalha("guerreiro_manha", "Guerreiro da Manhã", "🌅", "Fez 7 orações matinais", _e("oracoes_matinais", 7)),
+    Medalha("guardiao_rosario", "Guardião do Rosário", "📿", "Rezou 5 terços com o Jarvis", _e("tercos", 5)),
     Medalha("coracao_limpo", "Coração Limpo", "💎", "Fez 7 Exames de Consciência", _e("exames", 7)),
     Medalha("explorador_biblia", "Explorador da Bíblia", "📜", "Ouviu 5 histórias da Bíblia", _e("historias", 5)),
     Medalha("maos_a_obra", "Mãos à Obra", "🛠️", "Concluiu 10 atividades da mesada", _e("tarefas", 10)),
     Medalha("coracao_generoso", "Coração Generoso", "❤️", "Entregou o dízimo ou uma doação",
             lambda est, _j: est.get("dizimos_entregues", 0) + est.get("doacoes_entregues", 0) >= 1),
     Medalha("poupador_estelar", "Poupador Estelar", "🐷", "Atingiu a meta de um cofrinho", _e("metas_atingidas", 1)),
+    Medalha("investidor_mirim", "Investidor Mirim", "📈", "O investimento já rendeu 1 real", _e("rendimento_centavos", 100)),
     Medalha("amigo_dos_santos", "Amigo dos Santos", "😇", "Conversou com 3 santos diferentes",
             lambda _est, jogo: len(jogo.get("santos_visitados", [])) >= 3),
     Medalha("combo_7", "Combo de 7 Dias", "🔥", "Usou o Jarvis 7 dias seguidos", _e("maior_sequencia", 7)),
@@ -92,6 +96,7 @@ MISSOES = {
     "pergunta": ("Fazer 2 perguntas curiosas", "perguntas", 2),
     "historia": ("Ouvir uma história da Bíblia", "historias", 1),
     "santo": ("Conversar com um santo", "conversas_santos", 1),
+    "terco": ("Rezar um terço (pode ser o mini-terço)", "tercos", 1),
 }
 
 _INTERROGATIVAS = ("por que", "porque", "como", "o que", "oque", "qual", "quais", "quem", "quando",
