@@ -1,0 +1,155 @@
+{
+  "_sobre": "Histórias da Bíblia recontadas pelo projeto em linguagem infantil (não são o texto bíblico literal). Sempre com a referência para a família ler junto na Bíblia.",
+  "historias": [
+    {
+      "id": "criacao",
+      "titulo": "A Criação do Mundo",
+      "referencia": "Gn 1-2",
+      "emoji": "🌍",
+      "texto": "No princípio, não havia nada além de Deus. Então Deus falou: 'Faça-se a luz!', e a luz apareceu, brilhante como o primeiro motor de uma nave ligando. Dia após dia, Deus separou o céu e as águas, fez surgir a terra seca, as plantas, o sol, a lua e as estrelas, os peixes, as aves e todos os animais. E Deus viu que tudo era bom. Por fim, Deus criou o ser humano, homem e mulher, à sua imagem e semelhança, e confiou o mundo aos seus cuidados. E Deus viu que tudo era muito bom. No sétimo dia, Deus descansou, ensinando que o descanso também é sagrado.",
+      "licao": "Tudo o que existe foi criado por amor, e você é a obra-prima de Deus.",
+      "pergunta": "Qual parte da criação de Deus você mais admira?",
+      "palavras_chave": ["criacao", "genesis", "adao", "sete dias", "principio"]
+    },
+    {
+      "id": "noe",
+      "titulo": "Noé e a Arca",
+      "referencia": "Gn 6-9",
+      "emoji": "🚢",
+      "texto": "Há muito tempo, as pessoas se esqueceram de Deus e encheram a terra de maldade. Mas Noé era um homem justo que amava a Deus. Deus pediu que ele construísse uma arca enorme, uma espécie de super-navio, e levasse para dentro sua família e casais de cada espécie de animal. Noé obedeceu, mesmo sem ver nuvem nenhuma no céu! Veio então um grande dilúvio, mas todos na arca ficaram protegidos. Quando as águas baixaram, Noé soltou uma pomba, que voltou trazendo um raminho de oliveira. Ao saírem da arca, Deus fez uma aliança com Noé e colocou o arco-íris no céu como sinal da sua promessa.",
+      "licao": "Confiar em Deus e obedecer, mesmo quando ainda não entendemos tudo.",
+      "pergunta": "O que você sente quando vê um arco-íris agora que conhece essa história?",
+      "palavras_chave": ["noe", "arca", "diluvio", "arco iris", "animais", "pomba"]
+    },
+    {
+      "id": "jose_egito",
+      "titulo": "José do Egito",
+      "referencia": "Gn 37-50",
+      "emoji": "🌾",
+      "texto": "José era o filho querido de Jacó, que lhe deu uma túnica muito bonita. Seus irmãos ficaram com tanta inveja que o venderam como escravo para mercadores que iam ao Egito. Lá, José passou por muitas dificuldades e até foi preso injustamente, mas nunca deixou de confiar em Deus. Deus deu a ele o dom de interpretar sonhos, e José explicou ao faraó que viriam sete anos de fartura e sete anos de fome. O faraó o colocou para governar o Egito, e José guardou comida para os tempos difíceis. Quando a fome chegou, seus irmãos foram ao Egito comprar alimento, sem saber que José era o governador. José os perdoou e disse que Deus tinha transformado o mal em bem.",
+      "licao": "O perdão é mais forte que a inveja, e Deus pode tirar o bem até das situações difíceis.",
+      "pergunta": "Você acha que foi fácil para José perdoar os irmãos? Por quê?",
+      "palavras_chave": ["jose do egito", "irmaos", "inveja", "faraó", "sonhos", "perdao"]
+    },
+    {
+      "id": "moises_mar",
+      "titulo": "Moisés e a travessia do Mar Vermelho",
+      "referencia": "Ex 14",
+      "emoji": "🌊",
+      "texto": "O povo de Israel era escravo no Egito, e Deus escolheu Moisés para libertá-lo. Depois de muitos sinais, o faraó deixou o povo partir, mas logo se arrependeu e mandou seu exército atrás deles. O povo ficou encurralado entre o exército e o mar, com muito medo. Moisés disse: 'Não tenham medo, o Senhor lutará por vocês!' Então ele estendeu a mão sobre o mar, e Deus fez soprar um vento forte que abriu um caminho seco no meio das águas, com paredes de água dos dois lados. Todo o povo atravessou em segurança. Mais tarde, no monte Sinai, Deus entregou a Moisés os Dez Mandamentos.",
+      "licao": "Deus abre caminhos onde parece não haver saída.",
+      "pergunta": "Em que situação da sua vida você gostaria que Deus abrisse um caminho?",
+      "palavras_chave": ["moises", "mar vermelho", "egito", "farao", "exodo", "abriu o mar"]
+    },
+    {
+      "id": "davi_golias",
+      "titulo": "Davi e Golias",
+      "referencia": "1Sm 17",
+      "emoji": "🪨",
+      "texto": "O exército de Israel estava apavorado com Golias, um guerreiro filisteu gigante, com armadura pesada, que desafiava qualquer um a lutar com ele. Ninguém tinha coragem. Então apareceu Davi, um jovem pastor de ovelhas que levava comida para os irmãos soldados. Davi disse: 'Eu vou! O Senhor, que me livrou do leão e do urso, vai me livrar desse gigante.' Ele recusou a armadura do rei, pegou seu cajado, sua funda e cinco pedras lisas do riacho. Golias riu dele. Mas Davi girou a funda, lançou uma pedra, e ela acertou bem na testa do gigante, que caiu no chão. Davi venceu não pela força, mas pela confiança em Deus.",
+      "licao": "Com Deus, até os pequenos vencem gigantes, como o medo e a preguiça.",
+      "pergunta": "Qual é o 'gigante' que você quer vencer com a ajuda de Deus?",
+      "palavras_chave": ["davi", "golias", "gigante", "funda", "pedra", "pastor"]
+    },
+    {
+      "id": "daniel_leoes",
+      "titulo": "Daniel na cova dos leões",
+      "referencia": "Dn 6",
+      "emoji": "🦁",
+      "texto": "Daniel era um homem sábio e honesto que servia ao rei Dario, na Babilônia. Alguns invejosos queriam derrubá-lo e convenceram o rei a criar uma lei: durante trinta dias, ninguém podia rezar a nenhum deus, só fazer pedidos ao rei. Daniel continuou rezando a Deus três vezes por dia, com a janela aberta, como sempre fazia. Por isso, foi jogado numa cova cheia de leões famintos! O rei, que gostava de Daniel, passou a noite sem dormir. De manhã correu até a cova e gritou por ele. Daniel respondeu: 'Meu Deus enviou seu anjo e fechou a boca dos leões!' Daniel saiu sem nenhum arranhão.",
+      "licao": "Ser fiel a Deus todos os dias, mesmo quando é difícil.",
+      "pergunta": "Que horas do dia você poderia reservar para conversar com Deus, como Daniel?",
+      "palavras_chave": ["daniel", "leoes", "cova", "babilonia", "rei dario", "oracao"]
+    },
+    {
+      "id": "jonas",
+      "titulo": "Jonas e o grande peixe",
+      "referencia": "Jn 1-3",
+      "emoji": "🐋",
+      "texto": "Deus pediu a Jonas que fosse à grande cidade de Nínive avisar o povo para mudar de vida. Mas Jonas não quis e embarcou num navio indo para o lado oposto! No meio do mar veio uma tempestade terrível. Jonas sabia que a culpa era dele e pediu para ser jogado na água. Então a tempestade parou, e um grande peixe engoliu Jonas. Ele ficou três dias e três noites na barriga do peixe, rezando e se arrependendo. Deus fez o peixe devolvê-lo à praia, e desta vez Jonas obedeceu. O povo de Nínive se converteu, e Deus os perdoou.",
+      "licao": "Fugir de Deus não adianta, e Ele sempre nos dá uma segunda chance.",
+      "pergunta": "Alguma vez você fugiu de uma tarefa que sabia que precisava fazer? O que aconteceu?",
+      "palavras_chave": ["jonas", "baleia", "grande peixe", "ninive", "tempestade"]
+    },
+    {
+      "id": "natal",
+      "titulo": "O nascimento de Jesus",
+      "referencia": "Lc 2,1-20",
+      "emoji": "⭐",
+      "texto": "O anjo Gabriel tinha anunciado a Maria que ela seria a mãe do Filho de Deus, e ela respondeu 'sim'. Meses depois, o imperador mandou todos se registrarem em sua cidade de origem, e José viajou com Maria, já grávida, até Belém. Lá não havia lugar para eles na hospedaria. Então Jesus nasceu num lugar simples, e Maria o enrolou em panos e o deitou numa manjedoura, onde os animais comiam. Naquela noite, um anjo apareceu a pastores que cuidavam de rebanhos e disse: 'Não tenham medo! Nasceu para vocês um Salvador!' E muitos anjos cantaram: 'Glória a Deus no mais alto dos céus!' Os pastores correram e encontraram o menino, exatamente como o anjo disse.",
+      "licao": "Deus, que é tão grande, se fez pequeno por amor a nós.",
+      "pergunta": "Se você fosse um dos pastores, o que teria levado de presente para o menino Jesus?",
+      "palavras_chave": ["natal", "nascimento de jesus", "belem", "manjedoura", "pastores", "anjos"]
+    },
+    {
+      "id": "jesus_templo",
+      "titulo": "Jesus aos 12 anos no Templo",
+      "referencia": "Lc 2,41-52",
+      "emoji": "🏛️",
+      "texto": "Quando Jesus tinha 12 anos, quase a sua idade, foi com Maria e José a Jerusalém para a festa da Páscoa. Na volta, eles caminhavam numa grande caravana e só perceberam depois de um dia que Jesus não estava com eles! Voltaram preocupadíssimos e procuraram por três dias. Finalmente o encontraram no Templo, sentado no meio dos mestres, ouvindo e fazendo perguntas. Todos estavam admirados com a inteligência dele. Maria disse: 'Filho, teu pai e eu estávamos aflitos te procurando!' Jesus respondeu que precisava estar na casa do seu Pai. Depois voltou com eles para Nazaré, era obediente a eles e crescia em sabedoria, em tamanho e em graça.",
+      "licao": "Fazer perguntas e buscar a Deus é coisa de quem quer crescer, e obedecer aos pais também!",
+      "pergunta": "Se você pudesse fazer uma pergunta aos mestres do Templo, qual seria?",
+      "palavras_chave": ["jesus menino", "templo", "doze anos", "perdido", "mestres", "nazare"]
+    },
+    {
+      "id": "multiplicacao",
+      "titulo": "O menino dos cinco pães e dois peixes",
+      "referencia": "Jo 6,1-14",
+      "emoji": "🐟",
+      "texto": "Uma multidão enorme, de uns cinco mil homens, seguia Jesus para ouvi-lo. Ficou tarde, e todos estavam com fome. Filipe calculou que nem com muito dinheiro dava para comprar pão para todos. Então André disse: 'Aqui está um menino que tem cinco pães de cevada e dois peixes, mas o que é isso para tanta gente?' O menino entregou o seu lanche para Jesus. Jesus deu graças a Deus e mandou distribuir. Todos comeram até ficar satisfeitos, e ainda sobraram doze cestos cheios de pedaços!",
+      "licao": "Quando entregamos a Jesus o pouco que temos, Ele faz milagres. Pense nisso no seu cofrinho de doação!",
+      "pergunta": "O que você poderia partilhar esta semana, como o menino partilhou seu lanche?",
+      "palavras_chave": ["multiplicacao dos paes", "cinco paes", "dois peixes", "menino", "milagre", "partilha"]
+    },
+    {
+      "id": "bom_samaritano",
+      "titulo": "O Bom Samaritano",
+      "referencia": "Lc 10,25-37",
+      "emoji": "🩹",
+      "texto": "Um mestre da lei perguntou a Jesus: 'Quem é o meu próximo?' Jesus contou uma história. Um homem descia de Jerusalém para Jericó e foi atacado por ladrões, que o deixaram machucado na beira da estrada. Passou por ali um sacerdote, viu o homem e seguiu adiante. Depois passou um levita e também foi embora. Então chegou um samaritano, de um povo que não se dava bem com os judeus. Ele sentiu compaixão, cuidou das feridas do homem, colocou-o em seu animal, levou-o a uma hospedaria e ainda pagou para que cuidassem dele. Jesus perguntou: 'Qual dos três foi o próximo do homem ferido?' 'Aquele que teve compaixão', respondeu o mestre. E Jesus disse: 'Vai e faze tu o mesmo.'",
+      "licao": "O próximo é qualquer pessoa que precisa de ajuda, mesmo que seja diferente de nós.",
+      "pergunta": "Quem perto de você está precisando de um 'bom samaritano' hoje?",
+      "palavras_chave": ["bom samaritano", "proximo", "parabola", "compaixao", "ajudar"]
+    },
+    {
+      "id": "filho_prodigo",
+      "titulo": "O Filho Pródigo",
+      "referencia": "Lc 15,11-32",
+      "emoji": "🏡",
+      "texto": "Um pai tinha dois filhos. O mais novo pediu sua parte da herança, foi para longe e gastou tudo em festas. Quando o dinheiro acabou, veio uma grande fome, e ele foi trabalhar cuidando de porcos, com tanta fome que queria comer a comida dos animais. Então caiu em si e pensou: 'Vou voltar para o meu pai e pedir perdão.' Quando ainda estava longe, o pai o viu, encheu-se de compaixão, correu, o abraçou e o beijou! Mandou trazer a melhor roupa, um anel e preparar uma grande festa, porque o filho que estava perdido foi encontrado. O irmão mais velho ficou com ciúmes, mas o pai explicou que era preciso festejar.",
+      "licao": "Deus é esse Pai que corre para nos abraçar quando voltamos. É isso que acontece na Confissão!",
+      "pergunta": "Como você imagina o rosto do pai quando viu o filho voltando?",
+      "palavras_chave": ["filho prodigo", "pai misericordioso", "parabola", "perdao", "voltar"]
+    },
+    {
+      "id": "zaqueu",
+      "titulo": "Zaqueu, o baixinho que subiu na árvore",
+      "referencia": "Lc 19,1-10",
+      "emoji": "🌳",
+      "texto": "Zaqueu era chefe dos cobradores de impostos em Jericó e era muito rico, mas as pessoas não gostavam dele, porque cobrava mais do que devia. Quando Jesus passou pela cidade, Zaqueu queria muito vê-lo, mas era baixinho e a multidão não deixava. Então correu na frente e subiu numa árvore chamada sicômoro. Quando Jesus chegou ali, olhou para cima e disse: 'Zaqueu, desce depressa, porque hoje preciso ficar na tua casa!' Zaqueu desceu cheio de alegria. Tocado pelo amor de Jesus, ele prometeu dar metade dos seus bens aos pobres e devolver quatro vezes mais a quem tivesse enganado.",
+      "licao": "Encontrar Jesus muda o coração, inclusive a forma como usamos o dinheiro.",
+      "pergunta": "Que 'árvore' você pode subir para ver Jesus melhor? A oração? A Missa?",
+      "palavras_chave": ["zaqueu", "arvore", "sicomoro", "cobrador de impostos", "jerico", "baixinho"]
+    },
+    {
+      "id": "ressurreicao",
+      "titulo": "A Ressurreição de Jesus",
+      "referencia": "Jo 20,1-18",
+      "emoji": "🌅",
+      "texto": "Na sexta-feira, Jesus morreu na cruz e foi colocado num túmulo fechado com uma grande pedra. Os discípulos estavam tristes e com medo. No domingo, bem cedinho, ainda escuro, Maria Madalena foi ao túmulo e viu que a pedra tinha sido retirada! Correu para avisar Pedro e João, que foram correndo até lá e encontraram só os panos dobrados. Maria ficou chorando do lado de fora, e alguém perguntou: 'Mulher, por que choras?' Ela pensou que era o jardineiro. Então Ele a chamou pelo nome: 'Maria!' Era Jesus, vivo! Ele tinha vencido a morte. Maria correu para anunciar aos discípulos: 'Eu vi o Senhor!'",
+      "licao": "Jesus está vivo e conhece você pelo nome. A morte não tem a última palavra!",
+      "pergunta": "Como você se sentiria se fosse a primeira pessoa a saber que Jesus ressuscitou?",
+      "palavras_chave": ["ressurreicao", "pascoa", "tumulo vazio", "maria madalena", "jesus vivo"]
+    },
+    {
+      "id": "pentecostes",
+      "titulo": "Pentecostes: o Espírito Santo desce",
+      "referencia": "At 2,1-41",
+      "emoji": "🔥",
+      "texto": "Depois que Jesus subiu ao Céu, os apóstolos estavam reunidos em Jerusalém com Maria, rezando. De repente, veio do céu um barulho como de um vento muito forte, que encheu toda a casa. Apareceram línguas como de fogo, que pousaram sobre cada um deles. Todos ficaram cheios do Espírito Santo e começaram a falar em outras línguas! Havia em Jerusalém pessoas de muitos países, e cada uma os ouvia falar na sua própria língua. Pedro, que antes tinha medo, encheu-se de coragem e anunciou Jesus para a multidão. Naquele dia, cerca de três mil pessoas foram batizadas. Foi o nascimento da Igreja em missão!",
+      "licao": "O Espírito Santo transforma medo em coragem. Ele também está em você desde o Batismo.",
+      "pergunta": "Em que momento você precisa da coragem que o Espírito Santo dá?",
+      "palavras_chave": ["pentecostes", "espirito santo", "linguas de fogo", "apostolos", "pedro", "coragem"]
+    }
+  ]
+}

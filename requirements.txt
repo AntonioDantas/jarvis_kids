@@ -1,0 +1,30 @@
+# =============================================================================
+#  J.A.R.V.I.S. Kids — dependências (versões fixadas e testadas)
+#  Python recomendado: 3.11 ou 3.12  (3.10 também funciona)
+# =============================================================================
+
+# --- Núcleo (obrigatório) ----------------------------------------------------
+ollama==0.6.1            # cliente do motor de IA local (Ollama)
+rich==14.3.3             # interface colorida estilo HUD no terminal
+numpy==2.2.6             # processamento de áudio
+psutil==7.2.2            # detecção de memória RAM / núcleos de CPU
+
+# --- Voz: microfone, alto-falante e efeitos sonoros ---------------------------
+sounddevice==0.5.5       # captura e reprodução de áudio (PortAudio)
+soundfile==0.13.1        # leitura/escrita de áudio (WAV/MP3)
+
+# --- Ouvido do Jarvis: VAD + Speech-to-Text -----------------------------------
+faster-whisper==1.2.1    # transcrição local (CTranslate2)
+# Silero VAD e Kokoro usam PyTorch. Macs Intel não têm PyTorch novo:
+# nesses computadores o Jarvis usa o VAD por energia e a voz do sistema.
+torch==2.8.0 ; sys_platform != "darwin" or platform_machine == "arm64"
+torchaudio==2.8.0 ; sys_platform != "darwin" or platform_machine == "arm64"
+silero-vad==6.2.1 ; sys_platform != "darwin" or platform_machine == "arm64"
+
+# --- Boca do Jarvis: Text-to-Speech ------------------------------------------
+# Kokoro-82M: voz neural 100% local em português do Brasil (Python 3.10–3.12)
+kokoro==0.9.4 ; python_version < "3.13" and (sys_platform != "darwin" or platform_machine == "arm64")
+# Voz do sistema operacional: reserva offline que funciona em qualquer PC
+pyttsx3==2.99
+# Edge-TTS: vozes da Microsoft (OPCIONAL, precisa de internet — desligado por padrão)
+edge-tts==7.2.8

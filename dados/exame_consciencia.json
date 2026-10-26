@@ -1,0 +1,134 @@
+{
+  "_sobre": "Inspectorum — Exame de Consciência infantil baseado nos Dez Mandamentos (CIC 1454). Foco em crescimento e virtudes, não em medo. As respostas da criança NUNCA são gravadas.",
+  "abertura": [
+    "Bem-vindo ao Inspectorum, agente. Aqui a gente faz um escaneamento do coração, como uma nave que confere seus sistemas antes de uma nova missão.",
+    "Isso fica só entre você e Deus. Eu não guardo nenhuma resposta, prometo.",
+    "Vamos começar pedindo luz: Espírito Santo, ilumina o meu coração para eu ver o que fiz de bom e o que posso melhorar. Amém."
+  ],
+  "mandamentos": [
+    {
+      "numero": 1,
+      "titulo": "Amar a Deus sobre todas as coisas",
+      "explicacao": "Deus é o número um da minha vida.",
+      "perguntas": [
+        "Hoje eu conversei com Deus, nem que fosse um pouquinho?",
+        "Deixei o celular, o videogame ou outra coisa ficar mais importante que Deus?",
+        "Acreditei em horóscopo, simpatias ou superstições?"
+      ],
+      "virtude": "Piedade",
+      "desafio": "Amanhã, ao acordar, faça o Sinal da Cruz e diga: Bom dia, Jesus!"
+    },
+    {
+      "numero": 2,
+      "titulo": "Não tomar o santo nome de Deus em vão",
+      "explicacao": "O nome de Deus é santo e merece carinho.",
+      "perguntas": [
+        "Usei o nome de Deus, de Jesus ou de Maria para brincar, xingar ou com raiva?",
+        "Jurei por Deus algo que não era verdade?"
+      ],
+      "virtude": "Reverência",
+      "desafio": "Quando ouvir o nome de Jesus, diga baixinho: Bendito seja Deus."
+    },
+    {
+      "numero": 3,
+      "titulo": "Guardar domingos e festas",
+      "explicacao": "Domingo é o dia do Senhor e da família.",
+      "perguntas": [
+        "No último domingo, participei da Missa com atenção?",
+        "Ajudei a fazer do domingo um dia de descanso e alegria em família?"
+      ],
+      "virtude": "Gratidão",
+      "desafio": "No próximo domingo, preste atenção numa frase do Evangelho e conte para alguém em casa."
+    },
+    {
+      "numero": 4,
+      "titulo": "Honrar pai e mãe",
+      "explicacao": "Amar, respeitar e ajudar quem cuida de mim.",
+      "perguntas": [
+        "Obedeci aos meus pais ou responsáveis sem reclamar demais?",
+        "Respondi mal ou fui grosseiro com alguém da família?",
+        "Ajudei nas tarefas de casa?",
+        "Respeitei meus professores?"
+      ],
+      "virtude": "Obediência",
+      "desafio": "Amanhã, faça uma tarefa de casa sem ninguém pedir. Missão surpresa!"
+    },
+    {
+      "numero": 5,
+      "titulo": "Não matar",
+      "explicacao": "Cuidar da vida e da paz, a minha e a dos outros.",
+      "perguntas": [
+        "Briguei, bati ou machuquei alguém?",
+        "Guardei raiva ou desejei o mal para alguém?",
+        "Zombei de alguém ou deixei alguém de fora de propósito?",
+        "Cuidei da minha saúde, comendo bem e dormindo na hora?"
+      ],
+      "virtude": "Mansidão",
+      "desafio": "Se alguém te irritar amanhã, respire fundo três vezes antes de responder."
+    },
+    {
+      "numero": 6,
+      "titulo": "Pureza e respeito ao corpo",
+      "explicacao": "Meu corpo é templo do Espírito Santo.",
+      "perguntas": [
+        "Respeitei meu corpo e o corpo dos outros?",
+        "Evitei ver, falar ou ouvir coisas que não são boas para a minha idade?",
+        "Se vi algo estranho na internet, contei para meus pais?"
+      ],
+      "virtude": "Pureza",
+      "desafio": "Escolha um filme, música ou vídeo que faça bem ao seu coração."
+    },
+    {
+      "numero": 7,
+      "titulo": "Não furtar",
+      "explicacao": "Respeitar o que é dos outros e cuidar das coisas.",
+      "perguntas": [
+        "Peguei algo de alguém sem pedir?",
+        "Estraguei ou fui descuidado com coisas da escola, da casa ou dos amigos?",
+        "Fui generoso e emprestei minhas coisas?"
+      ],
+      "virtude": "Generosidade",
+      "desafio": "Separe algo para o seu cofrinho de doação ou empreste um brinquedo com alegria."
+    },
+    {
+      "numero": 8,
+      "titulo": "Não mentir",
+      "explicacao": "A verdade é um superpoder de confiança.",
+      "perguntas": [
+        "Contei alguma mentira, mesmo pequena?",
+        "Fiz fofoca ou falei mal de alguém pelas costas?",
+        "Colei na prova ou copiei a lição de alguém?"
+      ],
+      "virtude": "Sinceridade",
+      "desafio": "Se errar amanhã, tenha a coragem de dizer a verdade logo de cara."
+    },
+    {
+      "numero": 9,
+      "titulo": "Pensamentos e desejos puros",
+      "explicacao": "Guardar o coração limpo, por dentro também.",
+      "perguntas": [
+        "Deixei pensamentos ruins ficarem muito tempo na minha cabeça?",
+        "Procurei pensar em coisas boas, bonitas e verdadeiras?"
+      ],
+      "virtude": "Pureza de coração",
+      "desafio": "Quando vier um pensamento ruim, troque por uma oração rápida: Jesus, eu confio em vós."
+    },
+    {
+      "numero": 10,
+      "titulo": "Não cobiçar as coisas alheias",
+      "explicacao": "Ser grato pelo que tenho e feliz com a alegria dos outros.",
+      "perguntas": [
+        "Senti inveja do que um amigo tem ou conseguiu?",
+        "Reclamei do que eu tenho em vez de agradecer?",
+        "Fiquei feliz com a vitória de outra pessoa?"
+      ],
+      "virtude": "Gratidão",
+      "desafio": "Antes de dormir amanhã, agradeça a Deus por três coisas que você tem."
+    }
+  ],
+  "encerramento": [
+    "Escaneamento concluído, agente! Lembre-se: Deus não está procurando defeitos em você. Ele te ama como você é e quer te ajudar a crescer.",
+    "Se você percebeu algo que gostaria de mudar, peça perdão a Deus agora, no seu coração.",
+    "E quando puder, a Confissão é o abraço de Deus que deixa a alma limpinha. O padre nunca conta nada a ninguém."
+  ]
+}

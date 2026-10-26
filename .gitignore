@@ -1,0 +1,17 @@
+# Dados da família (perfis, cofrinhos, PIN) — NUNCA vão para o GitHub
+meus_dados/
+
+# Ambiente Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Sistema / editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

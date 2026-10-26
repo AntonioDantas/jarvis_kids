@@ -1,0 +1,24 @@
+name: testes
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      # Os testes não precisam de GPU, microfone, PyTorch nem Ollama: só do núcleo leve.
+      - name: Instalar dependências leves
+        run: pip install ollama==0.6.1 rich==14.3.3 numpy==2.2.6 psutil==7.2.2 pytest==9.0.3 ruff==0.14.0
+      - name: Lint (ruff)
+        run: ruff check .
+      - name: Testes (pytest)
+        run: pytest -q

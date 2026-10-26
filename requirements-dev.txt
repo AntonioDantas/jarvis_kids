@@ -1,0 +1,4 @@
+# Ferramentas para quem desenvolve o projeto (não são necessárias para usar o Jarvis)
+-r requirements.txt
+pytest==9.0.3
+ruff==0.14.0

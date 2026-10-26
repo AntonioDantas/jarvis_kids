@@ -1,0 +1,158 @@
+{
+  "_sobre": "Orações tradicionais da Igreja no Brasil (domínio comum) e algumas orações infantis escritas pelo projeto (marcadas como 'oração do projeto'). Cada linha é falada com uma pequena pausa, para a criança rezar junto.",
+  "oracoes": [
+    {
+      "id": "manha",
+      "titulo": "Oração da Manhã",
+      "emoji": "🌅",
+      "momento": "manha",
+      "origem": "oração do projeto",
+      "linhas": [
+        "Em nome do Pai, e do Filho e do Espírito Santo. Amém.",
+        "Bom dia, Senhor! Obrigado por esta noite e por este novo dia.",
+        "Eu te ofereço tudo o que eu pensar, falar e fizer hoje.",
+        "Abençoa minha família, meus amigos e meus professores.",
+        "Dá-me coragem para fazer o bem e alegria para ajudar quem precisar.",
+        "Nossa Senhora, minha mãe, segura a minha mão o dia inteiro.",
+        "Santo Anjo do Senhor, meu zeloso guardador, se a ti me confiou a piedade divina, sempre me rege, me guarda, me governa e me ilumina. Amém."
+      ]
+    },
+    {
+      "id": "noite",
+      "titulo": "Oração da Noite",
+      "emoji": "🌙",
+      "momento": "noite",
+      "origem": "oração do projeto",
+      "linhas": [
+        "Em nome do Pai, e do Filho e do Espírito Santo. Amém.",
+        "Obrigado, Jesus, por tudo de bom que aconteceu hoje.",
+        "Perdão pelas vezes em que não fui tão bom quanto podia.",
+        "Cuida de quem está doente, triste ou sozinho nesta noite.",
+        "Protege a minha casa e a minha família enquanto dormimos.",
+        "Ave Maria, cheia de graça, o Senhor é convosco, bendita sois vós entre as mulheres e bendito é o fruto do vosso ventre, Jesus.",
+        "Santa Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora de nossa morte. Amém."
+      ]
+    },
+    {
+      "id": "sinal_cruz",
+      "titulo": "Sinal da Cruz",
+      "emoji": "✝️",
+      "origem": "oração tradicional",
+      "linhas": [
+        "Pelo sinal da Santa Cruz,",
+        "livrai-nos, Deus, Nosso Senhor, dos nossos inimigos.",
+        "Em nome do Pai, e do Filho e do Espírito Santo. Amém."
+      ]
+    },
+    {
+      "id": "pai_nosso",
+      "titulo": "Pai-Nosso",
+      "emoji": "🙏",
+      "origem": "oração tradicional (Mt 6,9-13)",
+      "linhas": [
+        "Pai nosso, que estais nos céus, santificado seja o vosso nome,",
+        "venha a nós o vosso Reino, seja feita a vossa vontade, assim na terra como no céu.",
+        "O pão nosso de cada dia nos dai hoje,",
+        "perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido,",
+        "e não nos deixeis cair em tentação, mas livrai-nos do mal. Amém."
+      ]
+    },
+    {
+      "id": "ave_maria",
+      "titulo": "Ave-Maria",
+      "emoji": "🌹",
+      "origem": "oração tradicional (Lc 1,28.42)",
+      "linhas": [
+        "Ave Maria, cheia de graça, o Senhor é convosco,",
+        "bendita sois vós entre as mulheres e bendito é o fruto do vosso ventre, Jesus.",
+        "Santa Maria, Mãe de Deus, rogai por nós pecadores,",
+        "agora e na hora de nossa morte. Amém."
+      ]
+    },
+    {
+      "id": "gloria",
+      "titulo": "Glória ao Pai",
+      "emoji": "✨",
+      "origem": "oração tradicional",
+      "linhas": [
+        "Glória ao Pai, e ao Filho e ao Espírito Santo.",
+        "Como era no princípio, agora e sempre. Amém."
+      ]
+    },
+    {
+      "id": "santo_anjo",
+      "titulo": "Santo Anjo",
+      "emoji": "👼",
+      "origem": "oração tradicional",
+      "linhas": [
+        "Santo Anjo do Senhor, meu zeloso guardador,",
+        "se a ti me confiou a piedade divina,",
+        "sempre me rege, me guarda, me governa e me ilumina. Amém."
+      ]
+    },
+    {
+      "id": "credo",
+      "titulo": "Creio (Símbolo dos Apóstolos)",
+      "emoji": "🛡️",
+      "origem": "oração tradicional",
+      "linhas": [
+        "Creio em Deus Pai todo-poderoso, criador do céu e da terra;",
+        "e em Jesus Cristo, seu único Filho, nosso Senhor;",
+        "que foi concebido pelo poder do Espírito Santo; nasceu da Virgem Maria;",
+        "padeceu sob Pôncio Pilatos, foi crucificado, morto e sepultado;",
+        "desceu à mansão dos mortos; ressuscitou ao terceiro dia;",
+        "subiu aos céus, está sentado à direita de Deus Pai todo-poderoso,",
+        "donde há de vir a julgar os vivos e os mortos.",
+        "Creio no Espírito Santo, na santa Igreja Católica, na comunhão dos santos,",
+        "na remissão dos pecados, na ressurreição da carne, na vida eterna. Amém."
+      ]
+    },
+    {
+      "id": "ato_contricao",
+      "titulo": "Ato de Contrição",
+      "emoji": "💧",
+      "origem": "oração tradicional (versão infantil)",
+      "linhas": [
+        "Meu Deus, eu me arrependo de todo o coração de vos ter ofendido,",
+        "porque sois tão bom e tão amável.",
+        "Prometo, com a vossa graça, esforçar-me para ser bom.",
+        "Meu Jesus, misericórdia!"
+      ]
+    },
+    {
+      "id": "refeicao",
+      "titulo": "Oração antes das Refeições",
+      "emoji": "🍽️",
+      "origem": "oração tradicional",
+      "linhas": [
+        "Abençoai, Senhor, a nós e a estes alimentos que vamos tomar.",
+        "Dai pão a quem tem fome e fome de justiça a quem tem pão.",
+        "Em nome do Pai, e do Filho e do Espírito Santo. Amém."
+      ]
+    },
+    {
+      "id": "estudo",
+      "titulo": "Oração antes de Estudar",
+      "emoji": "📘",
+      "origem": "oração do projeto, inspirada em São Tomás de Aquino",
+      "linhas": [
+        "Espírito Santo, luz da minha mente,",
+        "ajuda-me a prestar atenção, a entender e a lembrar o que eu estudar.",
+        "Dá-me paciência quando for difícil e humildade para pedir ajuda.",
+        "São Tomás de Aquino, padroeiro dos estudantes, rogai por mim. Amém."
+      ]
+    },
+    {
+      "id": "dizimo",
+      "titulo": "Oração da Partilha",
+      "emoji": "🪙",
+      "origem": "oração do projeto",
+      "linhas": [
+        "Senhor, tudo o que eu tenho vem de Ti.",
+        "Obrigado pelos presentes que recebo e pelo fruto do meu trabalho.",
+        "Ensina-me a partilhar com alegria, como o menino dos cinco pães.",
+        "Que a minha pequena oferta ajude a tua Igreja e os mais pobres. Amém."
+      ]
+    }
+  ]
+}
