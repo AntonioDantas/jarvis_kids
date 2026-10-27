@@ -188,7 +188,7 @@ class Interacao:
         ouvinte = threading.Thread(target=escutar, daemon=True, name="maos-livres")
         ouvinte.start()
         try:
-            return ui.entrada(rotulo, tipo, opcoes, escuta="maos_livres")
+            return ui.entrada(rotulo, tipo, opcoes, escuta="maos_livres", ao_responder=parar.set)
         finally:
             parar.set()  # tocou num botão: o microfone para de escutar antes de o Jarvis falar
             ouvinte.join(timeout=3)
@@ -223,6 +223,8 @@ class Interacao:
             if audio is None:
                 continue
             texto = self.transcritor.transcrever(audio)
+            if parar and parar.is_set():
+                return ""  # a criança já respondeu pelo botão enquanto o Whisper trabalhava
             chamado = remover_ativacao(texto, self.palavras_ativacao) if texto else None
             if chamado is None:
                 ui.estado("atento")  # não era com o Jarvis
@@ -270,6 +272,8 @@ class Interacao:
         ui.estado("pensando")
         with ui.carregando("⚡ Decodificando sua voz…"):
             texto = self.transcritor.transcrever(audio)
+        if parar and parar.is_set():
+            return ""
         ui.estado("ocioso")
         if texto:
             ui.crianca_disse(self.nome_crianca, texto)
@@ -296,17 +300,20 @@ class Interacao:
             ui.aviso("Não entendi. Diga o número da opção, ou 0 para voltar.")
         return None
 
-    def confirmar(self, pergunta: str, falar: bool = True) -> bool:
+    def _perguntar(self, pergunta: str, falar: bool) -> None:
+        """Mostra a pergunta sempre; fala só se ``falar`` (perguntas para os pais ficam só na tela)."""
         if falar:
             self.dizer(pergunta)
-        else:
+        elif pergunta:
             ui.fala(pergunta)
+
+    def confirmar(self, pergunta: str, falar: bool = True) -> bool:
+        self._perguntar(pergunta, falar)
         return interpretar_sim(self.ouvir("Sim ou não", tipo="sim_nao"))
 
     def pedir_valor(self, pergunta: str, falar: bool = True, permitir_zero: bool = False) -> int | None:
         """Valor em centavos. None = cancelou. Com ``permitir_zero``, '0' é uma resposta válida."""
-        if falar:
-            self.dizer(pergunta)
+        self._perguntar(pergunta, falar)
         rotulo = "Valor (ex.: 2,50)" + (" — 0 = só pontos, 'voltar' cancela" if permitir_zero else " — 0 cancela")
         for _ in range(3):
             resposta = self.ouvir(rotulo, tipo="valor")
@@ -319,8 +326,7 @@ class Interacao:
         return None
 
     def pedir_numero(self, pergunta: str, falar: bool = True) -> int | None:
-        if falar:
-            self.dizer(pergunta)
+        self._perguntar(pergunta, falar)
         for _ in range(3):
             resposta = self.ouvir("Número", tipo="numero")
             if not resposta or normalizar(resposta) in PALAVRAS_SAIR:
@@ -332,8 +338,7 @@ class Interacao:
         return None
 
     def pedir_texto(self, pergunta: str, falar: bool = True) -> str:
-        if falar:
-            self.dizer(pergunta)
+        self._perguntar(pergunta, falar)
         resposta = self.ouvir("Digite ou fale", tipo="texto")
         return "" if normalizar(resposta) in PALAVRAS_SAIR else resposta
 

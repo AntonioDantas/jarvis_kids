@@ -189,3 +189,27 @@ def test_pergunta_que_nao_veio_da_escuta_nao_e_refeita():
     ponte.responder(pedido["id"], "1234")
     t.join(3)
     assert resultado["pin"] == "1234"
+
+
+def test_botao_tocado_durante_a_transcricao_descarta_a_fala():
+    ponte = Ponte()
+    ui.usar_tela(TelaWeb(ponte))
+    io = criar(["Jarvis, abre o quiz"])
+    io.microfone.atraso = 0.0
+    tocou = threading.Event()
+
+    class TranscritorLento(TranscritorFalso):
+        def transcrever(self, audio):
+            tocou.wait(2)  # a criança toca no botão enquanto o Whisper ainda trabalha
+            return super().transcrever(audio)
+
+    io.transcritor = TranscritorLento()
+    eventos = ponte.conectar()
+    t, resultado = rodar_ouvir(io, tipo="principal")
+    ponte.responder(esperar_pedido(ponte)["id"], "conquistas")
+    tocou.set()
+    t.join(3)
+    time.sleep(0.2)
+    assert resultado["texto"] == "conquistas"
+    falas = [e for e in list(eventos.queue) if e["tipo"] == "crianca"]
+    assert not falas  # a fala atrasada não aparece na tela

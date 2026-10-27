@@ -212,7 +212,8 @@ def menu(titulo: str, opcoes: list[str], cor: str = CORES["jarvis"], pergunta: s
     for i, opcao in enumerate(opcoes, 1):
         tabela.add_row(f"[{i}]", opcao)
     tabela.add_row("[0]", "[grey62]↩ Voltar[/]")
-    console.print(Panel(tabela, title=f"[bold {cor}]{titulo}[/]", border_style=cor, box=ROUNDED, expand=False))
+    conteudo = Group(Text(pergunta + "\n", style="bold"), tabela) if pergunta else tabela
+    console.print(Panel(conteudo, title=f"[bold {cor}]{titulo}[/]", border_style=cor, box=ROUNDED, expand=False))
 
 
 def tabela(titulo: str, colunas: list[str], linhas: list[list], cor: str = CORES["jarvis"]) -> None:
@@ -244,15 +245,17 @@ def info(texto: str) -> None:
     console.print(f"  [grey62]{texto}[/]")
 
 
-def entrada(rotulo: str, tipo: str = "texto", opcoes: list[str] | None = None, escuta: str = "") -> str:
+def entrada(rotulo: str, tipo: str = "texto", opcoes: list[str] | None = None, escuta: str = "",
+            ao_responder=None) -> str:
     """
     Lê uma resposta. ``tipo`` diz à interface gráfica qual controle mostrar:
     principal, texto, escolha, quiz, sim_nao, valor, numero, pin, continuar.
     ``escuta``: "botao" (há botão FALAR) ou "maos_livres" (o microfone já está atento ao "Jarvis").
+    ``ao_responder``: na janela, é chamado no instante em que a resposta chega.
     Resposta vazia = "quero falar" (a interação liga o microfone).
     """
     if _tela:
-        return _tela.entrada(rotulo, tipo, opcoes, escuta)
+        return _tela.entrada(rotulo, tipo, opcoes, escuta, ao_responder)
     if tipo == "pin":
         return console.input(f"[bold #ff87d7]{rotulo}[/] › ", password=True)
     return console.input(f"\n[bold #00d7ff]{rotulo}[/] [grey50]›[/] ")
@@ -338,6 +341,12 @@ def agenda(itens: list, titulo: str = "📅 AGENDA") -> None:
     for item in itens:
         hora = item.hora or "—"
         console.print(f"  [bold #00d7ff]{hora:>5}[/]  {item.emoji} {item.titulo}")
+
+
+def modo_escuta(maos_livres: bool) -> None:
+    """Mostra na janela se o mãos-livres está ligado (no terminal não há botão)."""
+    if _tela:
+        _tela.maos_livres(maos_livres)
 
 
 def responder_por_voz(texto: str) -> bool:

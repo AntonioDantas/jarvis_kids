@@ -66,7 +66,7 @@ def argumentos() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="J.A.R.V.I.S. Kids — assistente de voz local, católico e gamificado")
     p.add_argument("--texto", action="store_true", help="não usa o microfone (só teclado)")
     p.add_argument("--mudo", action="store_true", help="não fala (só texto na tela)")
-    p.add_argument("--maos-livres", action="store_true", help="escuta contínua: não precisa apertar ENTER")
+    p.add_argument("--maos-livres", action="store_true", help="começa no modo mãos-livres: diga \"Jarvis, ...\" e fale")
     p.add_argument("--modelo", help="força um modelo do Ollama (ex.: qwen2.5:7b)")
     p.add_argument("--perfil", help="nome da criança (pula a tela de escolha)")
     p.add_argument("--sem-efeitos", action="store_true", help="desliga os efeitos sonoros")

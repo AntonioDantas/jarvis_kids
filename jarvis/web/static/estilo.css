@@ -328,7 +328,7 @@ body[data-estado="ouvindo"] .nucleo-luz, body.falando .nucleo-luz { animation: n
   transition: all .18s;
 }
 .doca button span { font-size: 18px; }
-.doca button:hover:not(:disabled) { border-color: var(--ciano); box-shadow: 0 0 14px rgba(0, 229, 255, .4); transform: translateY(-2px); }
+.doca button:hover:not(:disabled) { border-color: var(--ciano); box-shadow: 0 0 14px rgba(0, 229, 255, .4); transform: scale(1.04); }
 .doca button:disabled { opacity: .35; cursor: default; filter: grayscale(.7); }
 .botao-desligar { width: 42px; height: 42px; padding: 0; border-radius: 50%; font-size: 18px; border-color: rgba(255, 95, 109, .6); color: var(--vermelho); background: rgba(255, 95, 109, .08); }
 .botao-desligar:hover:not(:disabled) { box-shadow: 0 0 16px rgba(255, 95, 109, .5); background: rgba(255, 95, 109, .18); }
@@ -374,7 +374,8 @@ body.escutando-sempre .microfone { border-color: var(--verde); box-shadow: 0 0 2
   box-shadow: 0 0 16px color-mix(in srgb, var(--letra, var(--ciano)) 45%, transparent); animation: pular .45s cubic-bezier(.2, 1.6, .4, 1) both;
   display: flex; align-items: center; gap: 10px; justify-content: center; transition: transform .12s;
 }
-.resposta:hover { transform: translateY(-3px) scale(1.03); }
+/* Efeitos de "passar o mouse" só aumentam no lugar: subir o botão o tirava de baixo do cursor e ele tremia */
+.resposta:hover { transform: scale(1.03); }
 .resposta.quiz { min-width: 0; flex: 1 1 calc(50% - 10px); max-width: 480px; justify-content: flex-start; text-align: left; font-size: 18px; }
 .resposta.sim { --letra: var(--verde); } .resposta.nao { --letra: var(--vermelho); }
 .resposta.discreta { min-width: 0; font-size: 15px; padding: 8px 16px; border-width: 1px; box-shadow: none; }
@@ -402,7 +403,7 @@ body[data-pedido="quiz"], body[data-pedido="escolha"], body[data-pedido="sim_nao
   display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 10px; text-align: left; font-size: 18px; font-weight: 600;
   background: rgba(0, 229, 255, .06); border: 1px solid rgba(0, 229, 255, .3); color: var(--texto); transition: all .15s;
 }
-.opcao:hover, .opcao:focus-visible { border-color: var(--ciano); box-shadow: 0 0 16px rgba(0, 229, 255, .35); transform: translateY(-2px); }
+.opcao:hover, .opcao:focus-visible { border-color: var(--ciano); box-shadow: 0 0 16px rgba(0, 229, 255, .35); transform: scale(1.02); }
 .opcao .letra { width: 28px; height: 28px; font-size: 13px; }
 .opcao-voltar { margin-top: 14px; }
 .modal-acoes { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
@@ -451,8 +452,14 @@ body[data-pedido="quiz"], body[data-pedido="escolha"], body[data-pedido="sim_nao
 .boot-barra i { display: block; height: 100%; width: 35%; background: var(--ciano); box-shadow: 0 0 12px var(--ciano); animation: carregar 1.4s ease-in-out infinite; }
 @keyframes carregar { from { transform: translateX(-100%); } to { transform: translateX(300%); } }
 .boot-etapas { list-style: none; padding: 0; margin: 0; text-align: left; font-size: 16px; display: flex; flex-direction: column; gap: 4px; min-height: 160px; }
-.boot-etapas li { color: var(--texto-suave); animation: entrar .3s both; }
+.boot-etapas li { color: var(--texto-suave); animation: entrar .3s both; display: flex; flex-wrap: wrap; gap: 0 6px; }
 .boot-etapas li b { color: var(--texto); }
+.boot-etapas .sistema-detalhe::before { content: "· "; }
+.boot-etapas .boot-aviso { display: block; color: var(--ciano); }
+.boot-etapas .boot-aviso.erro { color: var(--vermelho); } .boot-etapas .boot-aviso.aviso { color: var(--ouro); }
+.boot-download { margin: 0 auto 16px; width: 80%; text-align: center; color: var(--ciano); font-weight: 600; }
+.boot-download .progresso-barra { height: 10px; margin: 8px 0 6px; }
+.boot-download small { color: var(--texto-suave); font-weight: 500; }
 .boot-versao { margin-top: 16px; color: var(--texto-apagado); font-size: 13px; letter-spacing: 2px; }
 
 .conexao { position: fixed; inset: 0; z-index: 70; display: grid; place-items: center; text-align: center; background: rgba(0, 4, 10, .86); font-size: 22px; color: var(--ouro); padding: 16px; }

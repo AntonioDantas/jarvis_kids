@@ -230,3 +230,35 @@ def test_ao_esperar_a_crianca_o_nucleo_volta_a_ficar_online():
     estados = [e["nome"] for e in eventos if e["tipo"] == "estado"]
     assert estados[-1] == "ocioso"
     ponte.responder(pedido["id"], "oi")
+
+
+def test_janela_que_cai_no_meio_nao_enche_o_terminal_de_erros(servidor, capsys):
+    import socket
+    import struct
+
+    cliente = socket.create_connection(("127.0.0.1", servidor.porta))
+    cliente.sendall(b"GET /static/app.js HTTP/1.1\r\nHost: 127.0.0.1\r\n")  # pedido pela metade
+    cliente.setsockopt(socket.SOL_SOCKET, socket.SO_LINGER, struct.pack("ii", 1, 0))
+    cliente.close()  # derruba a conexão (RST), como uma janela fechada à força
+    time.sleep(0.3)
+    resposta, _ = pedir(servidor, "GET", "/", token=False)
+    assert resposta.status == 200  # o servidor segue funcionando
+    assert "Traceback" not in capsys.readouterr().err
+
+
+def test_so_a_primeira_resposta_vale_e_avisa_na_hora():
+    ponte = Ponte()
+    avisos = []
+    resultado = {}
+    t = threading.Thread(target=lambda: resultado.update(v=ponte.pedir({"controle": "quiz"}, lambda: avisos.append(1))))
+    t.start()
+    for _ in range(200):
+        if ponte.pedido_atual:
+            break
+        time.sleep(0.01)
+    pid = ponte.pedido_atual["id"]
+    assert ponte.responder(pid, "a")          # o toque
+    assert avisos == [1]                      # o aviso chega antes de qualquer outra coisa
+    assert not ponte.responder(pid, "b")      # a voz logo depois não responde de novo
+    t.join(2)
+    assert resultado["v"] == "a"

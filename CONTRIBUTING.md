@@ -33,7 +33,7 @@ A forma mais valiosa de contribuir é revisar e ampliar os arquivos em [`dados/`
 ```bash
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements-dev.txt
-pytest -q          # 389 testes, rodam sem GPU, microfone, navegador ou Ollama
+pytest -q          # 393 testes, rodam sem GPU, microfone, navegador ou Ollama
 ruff check .       # estilo e erros comuns
 
 # Teste com a IA de verdade (precisa do Ollama ligado): 40 casos de proteção, doutrina e estudos

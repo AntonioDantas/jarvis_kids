@@ -39,6 +39,8 @@ class Ponte:
         self._historico: deque = deque(maxlen=300)
         self._estados: dict[str, dict] = {}
         self._pedido: dict | None = None
+        self._ao_responder: Callable[[], None] | None = None
+        self._respondido = False
         self._respostas: queue.Queue = queue.Queue()
         self._seq = 0
         self._sem_clientes_desde = time.monotonic()
@@ -103,12 +105,17 @@ class Ponte:
                 fila.put(evento)
 
     # ----------------------------------------------------------------- pedidos
-    def pedir(self, pedido: dict) -> str:
-        """Mostra um controle na janela e espera a resposta da criança."""
+    def pedir(self, pedido: dict, ao_responder: Callable[[], None] | None = None) -> str:
+        """
+        Mostra um controle na janela e espera a resposta da criança. ``ao_responder`` é chamado no
+        instante em que a resposta chega (ex.: o microfone do mãos-livres para de escutar na hora do toque).
+        """
         pid = uuid.uuid4().hex[:10]
         evento = {"tipo": "pedido", "id": pid, **pedido}
         with self._trava:
             self._pedido = evento
+            self._ao_responder = ao_responder
+            self._respondido = False
             for fila in self._clientes:
                 fila.put(evento)
         try:
@@ -127,10 +134,15 @@ class Ponte:
             self.emitir("pedido_fim", id=pid)
 
     def responder(self, pid: str, valor: str) -> bool:
+        """Só a primeira resposta vale (toque e voz ao mesmo tempo não respondem duas vezes)."""
         with self._trava:
             atual = self._pedido
-        if not atual or atual["id"] != pid:
-            return False
+            if not atual or atual["id"] != pid or self._respondido:
+                return False
+            self._respondido = True
+            aviso = self._ao_responder
+        if aviso:
+            aviso()
         self._respostas.put({"id": pid, "valor": valor})
         return True
 

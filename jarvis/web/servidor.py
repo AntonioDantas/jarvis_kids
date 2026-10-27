@@ -14,6 +14,7 @@ import json
 import mimetypes
 import queue
 import re
+import sys
 import threading
 from datetime import date, timedelta
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -251,6 +252,12 @@ class ServidorJarvis(ThreadingHTTPServer):
         porta_real = self.server_address[1]
         self.hosts_validos = {f"127.0.0.1:{porta_real}", f"localhost:{porta_real}"}
         self.origens_validas = {f"http://{h}" for h in self.hosts_validos}
+
+    def handle_error(self, request, client_address) -> None:
+        # Janela fechada ou recarregada no meio de um pedido é normal: não enche o terminal de mensagens.
+        if isinstance(sys.exc_info()[1], (ConnectionError, TimeoutError)):
+            return
+        super().handle_error(request, client_address)
 
     @property
     def porta(self) -> int:

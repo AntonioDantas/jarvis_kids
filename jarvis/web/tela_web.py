@@ -205,7 +205,8 @@ class TelaWeb:
         self._emitir("progresso", texto=texto_simples(texto), feito=feito, total=total)
 
     # ---------------------------------------------------------------- entrada
-    def entrada(self, rotulo: str, tipo: str = "texto", opcoes: list[str] | None = None, escuta: str = "") -> str:
+    def entrada(self, rotulo: str, tipo: str = "texto", opcoes: list[str] | None = None, escuta: str = "",
+                ao_responder=None) -> str:
         pedido = {"controle": tipo, "rotulo": texto_simples(rotulo), "microfone": self.microfone, "escuta": escuta,
                   "opcoes": [texto_simples(o) for o in opcoes] if opcoes else []}
         if tipo == "escolha":
@@ -213,7 +214,7 @@ class TelaWeb:
                                             "pergunta": ""}
         if escuta != "maos_livres":
             self.estado("ocioso")  # esperando a criança: o núcleo volta a "ONLINE"
-        return self.ponte.pedir(pedido)
+        return self.ponte.pedir(pedido, ao_responder)
 
     def responder_por_voz(self, texto: str) -> bool:
         return self.ponte.responder_pedido_atual(texto)

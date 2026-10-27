@@ -57,3 +57,13 @@ def test_erro_de_conexao_vira_mensagem_amigavel(cerebro):
     cerebro.cliente = ClienteFalso(erro=ConnectionError("sem servidor"))
     with pytest.raises(ErroCerebro, match="Ollama"):
         list(cerebro.responder("oi", "SISTEMA"))
+
+
+def test_status_do_download_em_portugues():
+    from jarvis.cerebro import status_em_portugues
+
+    assert status_em_portugues("pulling manifest") == "preparando"
+    assert status_em_portugues("pulling dde5aa3fc5ff") == "baixando"
+    assert status_em_portugues("verifying sha256 digest") == "conferindo o arquivo"
+    assert status_em_portugues("writing manifest") == "finalizando"
+    assert status_em_portugues("success") == "pronto!"

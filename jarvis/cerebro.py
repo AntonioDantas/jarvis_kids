@@ -71,6 +71,16 @@ def _campo(objeto, nome: str, padrao=None):
     return getattr(objeto, nome, padrao)
 
 
+def status_em_portugues(status: str) -> str:
+    """'pulling 6a0746a1ec1a' -> 'baixando'; 'verifying sha256 digest' -> 'conferindo o arquivo'..."""
+    s = status.lower()
+    for chave, traducao in (("manifest", "preparando"), ("pulling", "baixando"), ("verifying", "conferindo o arquivo"),
+                            ("writing", "finalizando"), ("success", "pronto!")):
+        if s.startswith(chave) or (chave == "manifest" and chave in s and "pulling" in s):
+            return traducao
+    return status
+
+
 class Cerebro:
     def __init__(self, plano: PlanoIA, host: str = "", turnos_memoria: int = 6):
         import ollama
@@ -104,7 +114,7 @@ class Cerebro:
     def baixar_modelo(self, progresso: Callable[[str, int, int], None]) -> None:
         try:
             for passo in self.cliente.pull(self.modelo, stream=True):
-                progresso(_campo(passo, "status", "") or "", _campo(passo, "completed", 0) or 0,
+                progresso(status_em_portugues(_campo(passo, "status", "") or ""), _campo(passo, "completed", 0) or 0,
                           _campo(passo, "total", 0) or 0)
         except Exception as exc:
             raise ErroCerebro(f"Não consegui baixar o modelo '{self.modelo}': {exc}") from exc

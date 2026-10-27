@@ -320,7 +320,7 @@
         "\\b(separacao|divorcio) dos meus pais\\b",
         "\\b(estou|to|tou|ando|fico) (muito |tao )?(triste|chateado|chateada|sozinho|sozinha|assustado|assustada|ansioso|ansiosa)\\b"
       ],
-      "orientacao": "ORIENTAÇÃO DE CUIDADO: a criança trouxe um assunto delicado (luto, tristeza, medo, solidão ou problemas em família). Responda com muito carinho e calma, em poucas frases. Valide o que ela sente ('é normal sentir isso'), diga que a culpa não é dela quando fizer sentido, ofereça rezar juntos uma oração curta e incentive conversar AGORA com o pai, a mãe ou um adulto de confiança. Não dê detalhes assustadores e não fale de castigo ou inferno.",
+      "orientacao": "ORIENTAÇÃO DE CUIDADO: a criança trouxe um assunto delicado (luto, tristeza, medo, solidão ou problemas em família). Responda com muito carinho e calma, em poucas frases. Valide o que ela sente ('é normal sentir isso'), só diga que a culpa não é dela se ela contar algo que aconteceu (como briga ou separação dos pais) e não invente detalhes sobre o que aconteceu, convide a rezar junto um Pai-Nosso ou o Santo Anjo (não invente orações nem coloque orações entre aspas) e incentive conversar AGORA com o pai, a mãe ou um adulto de confiança. Não dê detalhes assustadores e não fale de castigo ou inferno.",
       "resposta": ""
     },
     {

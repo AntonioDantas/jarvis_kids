@@ -820,9 +820,14 @@ const tratadores = {
   },
   progresso: (ev) => {
     const ativo = ev.total > 0 && ev.feito < ev.total;
+    const largura = `${ev.total ? Math.round((100 * ev.feito) / ev.total) : 0}%`;
     $("progresso").hidden = !ativo;
     $("progresso-texto").textContent = ev.texto;
-    $("progresso-barra").style.width = `${ev.total ? Math.round((100 * ev.feito) / ev.total) : 0}%`;
+    $("progresso-barra").style.width = largura;
+    // Na primeira vez o download acontece durante a abertura: a barra aparece lá também.
+    $("boot-download").hidden = !ativo;
+    $("boot-download-texto").textContent = ev.texto;
+    $("boot-download-barra").style.width = largura;
   },
   estado: (ev) => definirEstado(ev.nome),
   nivel_mic: (ev) => { app.alvoAmp = Math.min(1, ev.valor); },
@@ -831,7 +836,10 @@ const tratadores = {
   lateral: atualizarLateral,
   fala: (ev) => { fecharBoot(); mostrarFala(ev); },
   crianca: mostrarCrianca,
-  aviso: mostrarLinha,
+  aviso: (ev) => {
+    mostrarLinha(ev);
+    if (!app.bootFechado) $("boot-etapas").appendChild(el("li", `boot-aviso ${ev.nivel}`, ev.texto));
+  },
   painel: mostrarPainel,
   tabela: mostrarTabela,
   quiz: mostrarQuiz,

@@ -214,6 +214,10 @@ def configuracoes(ctx: Contexto) -> None:
                 p.voz_kokoro = vozes[j]
         elif i == 3:
             p.modo_escuta = "apertar_enter" if p.modo_escuta == "maos_livres" else "maos_livres"
+            ctx.io.maos_livres = p.modo_escuta == "maos_livres" and ctx.io.escuta_ativa  # vale na hora
+            ui.modo_escuta(ctx.io.maos_livres)
+            if p.modo_escuta == "maos_livres" and not ctx.io.escuta_ativa:
+                ui.aviso("Sem microfone funcionando, o mãos-livres fica guardado para quando houver um.")
         elif i == 4:
             p.aprovacao_dos_pais = not p.aprovacao_dos_pais
         elif i == 5:

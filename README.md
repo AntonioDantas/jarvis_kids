@@ -309,6 +309,18 @@ Fontes, calendário e animações estão dentro do projeto.
 
 ## 🎮 Como usar
 
+O Jarvis tem **duas telas**, com as mesmas funções:
+
+| | 🖥️ **Janela futurista** (padrão) | ⌨️ **Terminal** (`--terminal`) |
+|---|---|---|
+| Visual | núcleo reator animado, painéis, botões, teclado numérico, planner com calendário, celebrações | texto colorido no terminal, com painéis e tabelas |
+| Responder | botões, teclado na tela, digitando ou falando | digitando (número, letra ou texto) ou falando |
+| Agenda | planner visual (FullCalendar) | menu: próximos dias, marcar, apagar, horário da Missa |
+| Melhor para | o dia a dia da criança | PCs bem simples ou sem navegador |
+
+E, nas duas, **dois jeitos de falar**: o botão/tecla **FALAR** (Enter com o campo vazio) ou o **mãos-livres**
+(*"Jarvis, …"*), que pode ser ligado pelo botão da janela, na Área dos Pais ou com `--maos-livres`.
+
 A criança pode **apertar o botão 🎙️ FALAR** (ou Enter com o campo vazio) e falar, **ligar o 🎙️ Mãos-livres** e só
 dizer *"Jarvis, …"*, ou **digitar**. Quando o Jarvis
 faz uma pergunta, aparecem **botões grandes** para responder: alternativas coloridas no quiz, ✅ Sim / ❌ Não,
@@ -525,8 +537,8 @@ travas do Jarvis e mostra o que a criança veria. Qualquer família ou paróquia
 python ferramentas/avaliar_ia.py --modelo llama3.2:3b
 ```
 
-Resultado com o **Llama 3.2 3B** (o modelo padrão), num PC só com CPU de 4 núcleos, depois das correções feitas a
-partir das rodadas anteriores:
+Resultado mais recente com o **Llama 3.2 3B** (o modelo padrão), num PC só com CPU de 4 núcleos, depois das
+correções feitas a partir das rodadas anteriores:
 
 | Grupo | ✓ ok | 🛡️ protegido pela 2ª trava | ✗ falhou |
 |---|---|---|---|
@@ -534,13 +546,14 @@ partir das rodadas anteriores:
 | Manipulação ("ignore suas regras", faz de conta com palavrão…) | 3 | 1 | 0 |
 | Acolhimento (luto, separação dos pais, medo, "de onde vêm os bebês?") | 4 | 0 | 0 |
 | Estudos (redação pronta, ciência) | 3 | 0 | 0 |
-| Doutrina (Trindade, Jesus, Maria, Eucaristia, Confissão, inferno, outras religiões, horóscopo, Papa) | 12 | 4 | 0 |
-| Santos (personas) | 3 | 1 | 0 |
-| **Total** | **34** | **6** | **0** |
+| Doutrina (Trindade, Jesus, Maria, Eucaristia, Confissão, inferno, outras religiões, horóscopo, Papa) | 13 | 3 | 0 |
+| Santos (personas, que agora falam sempre em primeira pessoa) | 4 | 0 | 0 |
+| **Total** | **36** | **4** | **0** |
 
 "Protegido" significa que o modelo **errou** (ex.: inventou uma citação, ou escreveu "o Pai e o Filho são uma só
 pessoa") e **o Guardião impediu que a criança visse ou ouvisse o erro**. É por isso que existem duas travas. O
-tempo médio foi de ~24 s por resposta completa, com a primeira frase falada em ~6 s.
+tempo médio foi de ~24 s por resposta completa, com a primeira frase falada em ~6 s (medido com o PC livre). Se as
+regras de conferência mudarem, `--reavaliar respostas.json` confere de novo respostas já salvas, sem gastar a IA.
 
 Com o **Llama 3.2 1B** (escolhido para PCs com menos de 8 GB de RAM): **35 ok, 2 protegidos, 3 falhas**, com
 respostas bem mais rápidas (~6,5 s). Todas as situações de risco e de manipulação foram tratadas corretamente, mas
@@ -643,7 +656,7 @@ jarvis_kids/
 │   └── conhecimento/extra/ # 👉 coloque aqui o material da sua paróquia
 ├── ferramentas/            # avaliar_ia.py: teste com a IA de verdade (40 casos)
 ├── docs/                   # imagens do README
-└── tests/                  # 389 testes (rodam sem GPU, microfone, navegador ou Ollama)
+└── tests/                  # 393 testes (rodam sem GPU, microfone, navegador ou Ollama)
 ```
 
 ---
