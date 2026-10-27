@@ -22,6 +22,7 @@
 ![Fé](https://img.shields.io/badge/conte%C3%BAdo-cat%C3%B3lico-8A2BE2)
 ![Plataformas](https://img.shields.io/badge/Windows%20%7C%20macOS%20%7C%20Linux-✓-blue)
 
+[Galeria](#-galeria-o-que-o-jarvis-faz) •
 [Instalar](#-passo-a-passo-para-pais-e-filhos) •
 [Perguntas frequentes](#-perguntas-frequentes-dos-pais) •
 [Como usar](#-como-usar) •
@@ -39,6 +40,11 @@
 <div align="center">
 
 ![A janela do J.A.R.V.I.S. Kids: núcleo reator animado, painel do agente, conversa, Hoje na Igreja e agenda](docs/tela-principal.jpg)
+
+<img src="docs/nucleo.gif" width="240" alt="Núcleo reator animado passando pelos estados online, atento, ouvindo, pensando e falando">
+
+*O núcleo reator muda de cor e de ritmo conforme o Jarvis: **online**, **atento** (esperando alguém dizer
+"Jarvis"), **ouvindo**, **pensando** e **falando** (pulsa no ritmo da própria voz).*
 
 </div>
 
@@ -58,6 +64,7 @@ Tudo roda **no seu computador**: nenhuma conversa vai para a internet.
 |---|---|---|
 | 🖥️ | **Janela futurista** | interface no estilo dos "JARVIS" das redes sociais: núcleo reator animado, HUD do agente, conversa em cartões, botões grandes para responder, celebrações de nível e medalha. Abre sozinha como um aplicativo (sem barra de endereço) |
 | 🎙️ | **Conversa por voz instantânea** | Silero VAD percebe quando a criança começa e termina de falar → faster-whisper transcreve → Ollama responde **frase a frase** → Kokoro fala enquanto a IA ainda pensa |
+| 🗣️ | **Só falando, sem tocar em nada** | modo **mãos-livres**: diga *"Jarvis, conta uma história"* e pronto. Liga e desliga com um botão na janela |
 | 🗣️ | **Voz escolhida pela criança** | 6 vozes (Robô Amigo, Mini-Jarvis Explorador, Mini-Jarvis Estrelinha, Capitão…), com tom ajustado para ficar mais amigável |
 | 📅 | **Agenda / planner** | santo do dia (205 datas, com os santos do Brasil), Dia do Senhor com o horário da Missa, dias santos e os compromissos da criança — pelo calendário ou falando: *"marca prova de matemática na sexta às 8h"* |
 | 💰 | **Mesada por mérito** | a criança cadastra as atividades e **escolhe os valores**; os pais aprovam com PIN; o dinheiro se divide sozinho nos cofrinhos |
@@ -69,6 +76,97 @@ Tudo roda **no seu computador**: nenhuma conversa vai para a internet.
 | 🔍 | **Inspectorum** | exame de consciência infantil pelos 10 Mandamentos, focado em virtudes. **As respostas nunca são gravadas** |
 | 🛡️ | **Guardião** | proteção infantil e travas doutrinárias antes e depois da IA, testadas com a IA de verdade (veja [os resultados](#-a-ia-foi-testada-de-verdade)) |
 | ⚡ | **Detecção de hardware** | escolhe sozinho o melhor modelo para GPU NVIDIA, Apple Silicon (M1/M2/M3…) ou só CPU |
+
+---
+
+## 📸 Galeria: o que o Jarvis faz
+
+<div align="center">
+
+![Os cinco estados do núcleo reator: online, atento, ouvindo, pensando e falando](docs/nucleo-estados.jpg)
+
+</div>
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+**🎙️ Mãos-livres: só falando**<br>
+Com o botão *Mãos-livres* ligado, o núcleo fica verde ("ATENTO") e o Jarvis atende quem disser *"Jarvis, …"*.
+Conversas da casa que não chamaram o Jarvis são ignoradas.
+
+![Modo mãos-livres: a criança disse "Jarvis, quanto eu tenho?" e o Jarvis mostrou os cofrinhos](docs/tela-maos-livres.jpg)
+
+</td>
+<td width="50%" valign="top">
+
+**😇 Hologramas dos santos**<br>
+*"Quero falar com o Carlo Acutis"* liga o holograma do santo, com voz própria e respostas baseadas nas fontes
+verificadas da Biblioteca da Fé.
+
+![Conversa com o holograma de São Carlo Acutis, com as fontes usadas](docs/tela-santo.jpg)
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+**📿 Terço guiado**<br>
+Mistérios do dia, meditação para crianças, o fruto do mistério e as contas acendendo uma a uma.
+
+![Terço guiado: primeiro mistério doloroso, Pai-Nosso e as dez contas acesas](docs/tela-terco.jpg)
+
+</td>
+<td width="50%" valign="top">
+
+**🏅 Medalhas e níveis com festa**<br>
+Subiu de nível ou ganhou medalha? Confete na tela e o Jarvis comemora em voz alta.
+
+![Celebração da medalha Investidor Mirim com confetes](docs/tela-celebracao.jpg)
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+**🔍 Inspectorum: exame de consciência**<br>
+Um mandamento por vez, com perguntas para pensar em silêncio e a virtude do dia. Nada é gravado.
+
+![Exame de consciência infantil: 4º mandamento, perguntas e a virtude da obediência](docs/tela-exame.jpg)
+
+</td>
+<td width="50%" valign="top">
+
+**🔢 Teclado grande (ou responda falando)**<br>
+Idade, valores da mesada e simulador de poupança com teclado numérico — e o botão *Responder falando*.
+
+![Teclado numérico do simulador de poupança com R$ 5,00 e o botão Responder falando](docs/tela-teclado.jpg)
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+**✝️ Calendário litúrgico no próprio PC**<br>
+Tempo litúrgico, cor do dia, ano A/B/C, contagem regressiva e as próximas festas — sem internet.
+
+![Calendário da Igreja: Tempo Comum, cor verde, ano A e próximas festas](docs/tela-calendario.jpg)
+
+</td>
+<td width="50%" valign="top">
+
+**📱 Telas menores e ⌨️ modo terminal**<br>
+A janela se ajusta a tablets e telas estreitas. Para PCs bem simples, `--terminal` usa o terminal colorido.
+
+<img src="docs/tela-tablet.jpg" width="38%" alt="Jarvis em tela de tablet, no modo mãos-livres"> <img src="docs/modo-terminal.svg" width="58%" alt="Jarvis no modo terminal">
+
+</td>
+</tr>
+</table>
+
+> As fotos foram tiradas num computador de testes **sem caixa de som e sem microfone** (por isso o painel
+> "Sistemas" mostra a voz em modo mudo e um microfone simulado); a IA das conversas é o Llama 3.2 3B rodando
+> localmente.
 
 ---
 
@@ -160,6 +258,32 @@ modelo, use a **Área dos Pais → Configurações → Modelo de IA**, ou `--mod
 
 </details>
 
+<details open>
+<summary><b>Dá para usar só falando, sem digitar nada?</b></summary>
+
+**Sim, de dois jeitos:**
+
+1. **Botão FALAR** (padrão): a criança toca em 🎙️ **FALAR** (ou aperta Enter) e fala. Nas janelinhas de teclado
+   numérico e de opções também há o botão **"Responder falando"**.
+2. **Mãos-livres** (sem tocar em nada): ligue o botão **🎙️ Mãos-livres** na janela (ou na Área dos Pais, ou com
+   `--maos-livres`). O núcleo fica verde, "ATENTO", e o Jarvis atende quem disser **"Jarvis, …"**:
+   * *"Jarvis, conta uma história"* → atende na hora;
+   * só *"Jarvis!"* → faz um bip e espera o pedido;
+   * logo depois de uma pergunta do Jarvis (quiz, sim/não, cardápios), dá para responder **sem repetir "Jarvis"**
+     por uns 20 segundos ("letra B", "fé e catecismo", "dez", "sim");
+   * *"Jarvis, tchau"* desliga.
+
+No mãos-livres os botões continuam funcionando. O nome precisa vir no começo da frase: *"eu acho o Jarvis legal"*
+não é um chamado. O que é dito na casa sem chamar o Jarvis é **descartado**, sem aparecer na tela e sem ser
+guardado; tudo é processado no próprio computador. Como o Whisper precisa transcrever o que ouve para achar o
+"Jarvis", o mãos-livres usa mais processador: em PCs simples, o botão FALAR é mais leve.
+
+> Testado de ponta a ponta na janela com um **microfone simulado** (o computador de testes não tem áudio): idade
+> respondida falando, "Jarvis, abre o quiz", quiz respondido só com a voz, conversa da casa ignorada, botões
+> funcionando junto e "Jarvis, tchau". Num microfone real, o reconhecimento depende do ambiente e do microfone.
+
+</details>
+
 <details>
 <summary><b>Existe voz de criança?</b></summary>
 
@@ -185,7 +309,8 @@ Fontes, calendário e animações estão dentro do projeto.
 
 ## 🎮 Como usar
 
-A criança pode **apertar o botão 🎙️ FALAR** (ou Enter com o campo vazio) e falar, ou **digitar**. Quando o Jarvis
+A criança pode **apertar o botão 🎙️ FALAR** (ou Enter com o campo vazio) e falar, **ligar o 🎙️ Mãos-livres** e só
+dizer *"Jarvis, …"*, ou **digitar**. Quando o Jarvis
 faz uma pergunta, aparecem **botões grandes** para responder: alternativas coloridas no quiz, ✅ Sim / ❌ Não,
 **teclado numérico** para idade e valores, cardápios de opções. Tudo também funciona falando ("a segunda",
 "letra B", "dois reais e cinquenta"…).
@@ -223,7 +348,7 @@ faz uma pergunta, aparecem **botões grandes** para responder: alternativas colo
 --porta N       porta local da janela (padrão 8765)
 --texto         não usa o microfone (só teclado)
 --mudo          não fala (só texto na tela)
---maos-livres   escuta contínua, sem apertar botão (diga "Jarvis..." quando quiser)
+--maos-livres   começa no modo mãos-livres (diga "Jarvis, ..." quando quiser; também há o botão na janela)
 --perfil NOME   entra direto no perfil de uma criança
 --modelo NOME   força um modelo do Ollama (ex.: qwen2.5:7b)
 --sem-efeitos   desliga os efeitos sonoros
@@ -518,7 +643,7 @@ jarvis_kids/
 │   └── conhecimento/extra/ # 👉 coloque aqui o material da sua paróquia
 ├── ferramentas/            # avaliar_ia.py: teste com a IA de verdade (40 casos)
 ├── docs/                   # imagens do README
-└── tests/                  # 377 testes (rodam sem GPU, microfone, navegador ou Ollama)
+└── tests/                  # 389 testes (rodam sem GPU, microfone, navegador ou Ollama)
 ```
 
 ---

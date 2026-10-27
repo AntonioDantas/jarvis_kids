@@ -9,6 +9,7 @@ inteiro para o Whisper, que devolve o texto.
 from __future__ import annotations
 
 import queue
+import threading
 import time
 from collections import deque
 from collections.abc import Callable
@@ -53,10 +54,12 @@ class Microfone:
         limiar_fim: float = 0.35,
         ao_detectar_fala: Callable[[], None] | None = None,
         ao_nivel: Callable[[float], None] | None = None,
+        cancelar: threading.Event | None = None,
     ) -> np.ndarray | None:
         """
         Espera a criança começar a falar e devolve o áudio (16 kHz, mono) quando ela termina.
-        Retorna None se ninguém falar dentro de ``espera_max_s`` (None = espera para sempre).
+        Retorna None se ninguém falar dentro de ``espera_max_s`` (None = espera para sempre) ou se
+        ``cancelar`` for acionado (ex.: a criança tocou num botão da janela em vez de falar).
         """
         fila: queue.Queue = queue.Queue()
         pre_fala: deque = deque(maxlen=int(300 / MS_POR_QUADRO))  # 300 ms antes da fala
@@ -73,6 +76,8 @@ class Microfone:
         with self._sd.InputStream(samplerate=self.taxa, channels=1, dtype="float32",
                                   blocksize=bloco, callback=callback):
             while True:
+                if cancelar is not None and cancelar.is_set():
+                    return None
                 try:
                     pedaco = fila.get(timeout=0.25)
                 except queue.Empty:

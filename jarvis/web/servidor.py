@@ -24,6 +24,7 @@ from jarvis.web.ponte import Ponte
 
 PASTA_STATIC = Path(__file__).parent / "static"
 PORTA_PADRAO = 8765
+ACOES = ("silenciar", "maos_livres_ligar", "maos_livres_desligar")
 MAX_CORPO = 16_384
 CSP = ("default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; "
        "font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'")
@@ -134,7 +135,7 @@ class Manipulador(BaseHTTPRequestHandler):
             return self._agenda_adicionar(dados)
         if req["caminho"] == "/api/acao":
             acao = str(dados.get("acao", ""))
-            if acao in ("silenciar",) and self.ponte.ao_acao:
+            if acao in ACOES and self.ponte.ao_acao:
                 self.ponte.ao_acao(acao)
             return self._json({"ok": True})
         self._json({"erro": "não encontrado"}, 404)

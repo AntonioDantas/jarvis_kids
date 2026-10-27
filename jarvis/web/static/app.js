@@ -11,7 +11,8 @@ const CORES_LITURGICAS = { verde: "#3ddc84", roxo: "#a46bff", branco: "#f4f7ff",
 const CORES_CATEGORIA = { missa: "#ffd75f", fe: "#d7afff", escola: "#00d7ff", familia: "#ff87d7", esporte: "#5fffaf",
   aniversario: "#ffaf5f", saude: "#ff5f5f", outro: "#87afff" };
 const CORES_LETRAS = ["#00e5ff", "#ffd75f", "#b98cff", "#5fffaf", "#ff87d7", "#ffaf5f"];
-const LEGENDAS = { ocioso: "ONLINE", ouvindo: "OUVINDO", pensando: "PENSANDO", falando: "FALANDO" };
+const LEGENDAS = { ocioso: "ONLINE", atento: "ATENTO", ouvindo: "OUVINDO", pensando: "PENSANDO", falando: "FALANDO" };
+const STATUS = { ...LEGENDAS, atento: "DIGA “JARVIS”" };
 
 const app = {
   pedido: null, config: { microfone: false, categorias: {}, repeticoes: {} },
@@ -275,7 +276,7 @@ function definirEstado(nome) {
 function atualizarLegenda() {
   const nome = app.falando && app.estado === "ocioso" ? "falando" : app.estado;
   $("nucleo-legenda").textContent = LEGENDAS[nome] || "ONLINE";
-  $("status-texto").textContent = LEGENDAS[nome] || "ONLINE";
+  $("status-texto").textContent = STATUS[nome] || "ONLINE";
 }
 function voz(ev) {
   if (ev.fase === "inicio") {
@@ -306,8 +307,8 @@ function animar(agora) {
     } else {
       alvo = 0.35 + 0.3 * Math.abs(Math.sin(agora / 140));
     }
-  } else if (app.estado === "ouvindo") {
-    alvo = app.alvoAmp;
+  } else if (app.estado === "ouvindo" || app.estado === "atento") {
+    alvo = app.estado === "atento" ? app.alvoAmp * 0.5 : app.alvoAmp;
   } else if (app.estado === "pensando") {
     alvo = 0.18 + 0.1 * Math.sin(agora / 120);
   }
@@ -442,9 +443,14 @@ function abrirPedido(p) {
   const principal = p.controle === "principal";
   document.querySelectorAll("#doca button").forEach((b) => { b.disabled = !principal; });
   $("btn-sair").disabled = !principal;
-  campo.placeholder = principal
-    ? (p.microfone ? "Aperte FALAR (ou Enter) e fale, ou digite sua pergunta…" : "Digite sua pergunta para o Jarvis…")
-    : `${p.rotulo}…`;
+  const maosLivres = p.escuta === "maos_livres";
+  document.body.classList.toggle("escutando-sempre", maosLivres);
+  if (principal) {
+    campo.placeholder = maosLivres ? "É só falar: “Jarvis, …” — ou digite aqui"
+      : p.microfone ? "Aperte FALAR (ou Enter) e fale, ou digite sua pergunta…" : "Digite sua pergunta para o Jarvis…";
+  } else {
+    campo.placeholder = maosLivres ? `🎙️ Pode responder falando · ${p.rotulo}…` : `${p.rotulo}…`;
+  }
   switch (p.controle) {
     case "escolha": abrirEscolha(p); break;
     case "quiz":
@@ -495,7 +501,11 @@ function abrirEscolha(p) {
   const voltar = el("button", "botao opcao-voltar", "↩ Voltar");
   voltar.type = "button";
   voltar.addEventListener("click", () => responder("0"));
-  corpo.appendChild(voltar);
+  const acoes = el("div", "modal-acoes");
+  acoes.appendChild(voltar);
+  const falar = botaoFalar(p);
+  if (falar) acoes.appendChild(falar);
+  corpo.appendChild(acoes);
   $("modal").hidden = false;
   setTimeout(() => grade.querySelector("button")?.focus(), 40);
 }
@@ -515,6 +525,14 @@ function escolhaNaTela(menu) {
     respostas.appendChild(b);
   });
   respostas.appendChild(botaoResposta("↩ Voltar", "0", "discreta"));
+}
+function botaoFalar(p) {
+  // Dentro das janelinhas o botão FALAR da barra fica coberto: este faz o mesmo papel.
+  if (!p.microfone || p.escuta === "maos_livres") return null;
+  const b = el("button", "botao botao-falar", "🎙️ Responder falando");
+  b.type = "button";
+  b.addEventListener("click", () => responder(""));
+  return b;
 }
 function abrirTeclado(p) {
   const tipo = p.controle;
@@ -558,8 +576,14 @@ function abrirTeclado(p) {
   voltar.type = "button";
   voltar.addEventListener("click", () => responder(tipo === "pin" ? "" : "voltar"));
   acoes.append(apagar, voltar);
+  const falar = tipo !== "pin" && botaoFalar(p);
+  if (falar) acoes.appendChild(falar);
   corpo.append(visor, teclado, acoes);
-  if (tipo !== "pin") corpo.appendChild(el("p", "teclado-dica", "Você também pode falar ou digitar a resposta na barra de baixo."));
+  if (tipo !== "pin") {
+    corpo.appendChild(el("p", "teclado-dica", p.escuta === "maos_livres"
+      ? "🎙️ Mãos-livres ligado: é só falar a resposta (ex.: “dez”, “dois e cinquenta”)."
+      : "Você também pode responder falando ou digitando."));
+  }
   mostrar();
   $("modal").hidden = false;
   app.tecladoAtual = tecla;
@@ -575,6 +599,16 @@ $("form-texto").addEventListener("submit", (e) => {
   responder(texto);
 });
 $("btn-mic").addEventListener("click", () => { if (app.pedido) responder(""); });
+$("btn-maos-livres").addEventListener("click", () => {
+  const ligar = !app.config.maos_livres;
+  api("api/acao", { method: "POST", body: JSON.stringify({ acao: ligar ? "maos_livres_ligar" : "maos_livres_desligar" }) })
+    .catch(() => {});
+});
+function mostrarMaosLivres(ligado) {
+  const b = $("btn-maos-livres");
+  b.setAttribute("aria-pressed", String(!!ligado));
+  $("maos-livres-estado").textContent = ligado ? "ligado" : "desligado";
+}
 $("btn-sair").addEventListener("click", () => {
   if (app.pedido && app.pedido.controle === "principal") responder("tchau");
 });
@@ -773,6 +807,7 @@ const tratadores = {
     app.config = ev;
     document.body.classList.toggle("sem-microfone", !ev.microfone);
     document.body.classList.toggle("economia", !!ev.economia);
+    mostrarMaosLivres(ev.maos_livres);
   },
   etapa: adicionarSistema,
   carregando: (ev) => {

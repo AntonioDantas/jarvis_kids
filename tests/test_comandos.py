@@ -59,8 +59,10 @@ def test_interpretar_sim(resposta, sim):
 @pytest.mark.parametrize("texto, esperado", [
     ("Jarvis, por que o céu é azul?", "por que o céu é azul?"),
     ("Jarbas qual é a capital do Brasil", "qual é a capital do Brasil"),
-    ("ei Jarvis!", "ei Jarvis!"),  # só chamou: devolve a frase inteira
+    ("ei Jarvis!", ""),  # só chamou: o Jarvis dá o bip e espera o pedido
+    ("Ok, Jarvis. Abre o quiz", "Abre o quiz"),
     ("a gente vai na praia amanhã", None),
+    ("eu acho que o Jarvis é muito legal", None),  # falou DO Jarvis, não COM o Jarvis
 ])
 def test_palavra_de_ativacao(texto, esperado):
     from jarvis.interacao import VARIANTES_ATIVACAO, remover_ativacao

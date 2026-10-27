@@ -134,6 +134,25 @@ class Ponte:
         self._respostas.put({"id": pid, "valor": valor})
         return True
 
+    def responder_pedido_atual(self, valor: str, espera_s: float = 3.0) -> bool:
+        """Responde a pergunta que estiver na tela (usado pela voz no modo mãos-livres)."""
+        limite = time.monotonic() + espera_s
+        while time.monotonic() < limite:
+            atual = self._pedido
+            if atual:
+                return self.responder(atual["id"], valor)
+            time.sleep(0.05)
+        return False
+
+    def refazer_pedido(self) -> bool:
+        """Se a pergunta na tela veio da escuta (ouvir), pede para ela ser feita de novo no modo atual."""
+        atual = self._pedido
+        if atual and atual.get("escuta"):
+            from jarvis.ui import REFAZER
+
+            return self.responder(atual["id"], REFAZER)
+        return False
+
     @property
     def pedido_atual(self) -> dict | None:
         return self._pedido

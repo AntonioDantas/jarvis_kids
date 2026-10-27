@@ -10,6 +10,7 @@ No modo "mãos-livres", o Jarvis já fica escutando sozinho.
 from __future__ import annotations
 
 import re
+import threading
 import time
 from collections.abc import Iterator
 
@@ -150,51 +151,120 @@ class Interacao:
         """
         Lê o que a criança digitou ou falou. Retorna '' se nada foi entendido.
         ``tipo`` e ``opcoes`` dizem à interface gráfica que controle mostrar (botões, teclado numérico...).
+        No modo mãos-livres basta falar ("Jarvis, ..."); na janela, os botões continuam funcionando.
         """
-        if self.maos_livres:
-            return self._escutar_com_ativacao()
-        if rotulo is None:
-            rotulo = "🎤 ENTER para falar, ou digite" if self.escuta_ativa else "⌨️  Digite"
-        try:
-            digitado = ui.entrada(rotulo, tipo, opcoes).strip()
-        except JanelaFechada:
-            raise  # a janela foi fechada: o Jarvis desliga de uma vez
-        except EOFError:
-            return "sair"
-        if digitado or not self.escuta_ativa:
-            return digitado
-        return self._escutar(espera_max_s=8.0)
-
-    def _escutar_com_ativacao(self) -> str:
-        """Mãos-livres: atende quem disser 'Jarvis' (ou continuar logo após uma resposta)."""
         while True:
-            texto = self._escutar(espera_max_s=None)
-            if not texto:
-                continue
-            chamado = remover_ativacao(texto, self.palavras_ativacao)
-            if chamado is not None:
-                return chamado
-            if time.monotonic() - self._ultima_fala <= JANELA_CONVERSA_S:
-                return texto
-            ui.info("(Para me chamar, comece com \"Jarvis\".)")
+            if self.maos_livres and not ui.web_ativa():
+                return self._escutar_com_ativacao()
+            texto_rotulo = rotulo or ("🎤 ENTER para falar, ou digite" if self.escuta_ativa else "⌨️  Digite")
+            try:
+                if self.maos_livres:
+                    digitado = self._entrada_com_escuta(texto_rotulo, tipo, opcoes)
+                else:
+                    digitado = ui.entrada(texto_rotulo, tipo, opcoes, escuta="botao" if self.escuta_ativa else "")
+            except JanelaFechada:
+                raise  # a janela foi fechada: o Jarvis desliga de uma vez
+            except EOFError:
+                return "sair"
+            if digitado == ui.REFAZER:
+                continue  # o modo de escuta mudou enquanto esperava: pergunta de novo, do jeito novo
+            digitado = digitado.strip()
+            if digitado or not self.escuta_ativa or tipo == "continuar":
+                return digitado
+            return self._escutar(espera_max_s=8.0)  # tocou em "FALAR" (ou ENTER vazio)
 
-    def _escutar(self, espera_max_s: float | None) -> str:
-        self.efeitos.tocar("ativar")
-        ui.estado("ouvindo")
+    def _entrada_com_escuta(self, rotulo: str, tipo: str, opcoes: list[str] | None) -> str:
+        """Janela + mãos-livres: o microfone fica atento ao mesmo tempo em que os botões esperam um toque."""
+        parar = threading.Event()
+
+        def escutar() -> None:
+            try:
+                texto = self._escutar_com_ativacao(parar)
+            except Exception:
+                return
+            if texto and not parar.is_set():
+                ui.responder_por_voz(texto)
+
+        ouvinte = threading.Thread(target=escutar, daemon=True, name="maos-livres")
+        ouvinte.start()
         try:
-            with ui.carregando("🎙️  Ouvindo… pode falar!"):
-                audio = self.microfone.gravar_frase(espera_max_s=espera_max_s, silencio_fim_ms=self.silencio_fim_ms,
-                                                    ao_nivel=ui.nivel_microfone)
+            return ui.entrada(rotulo, tipo, opcoes, escuta="maos_livres")
+        finally:
+            parar.set()  # tocou num botão: o microfone para de escutar antes de o Jarvis falar
+            ouvinte.join(timeout=3)
+
+    def _escutar_com_ativacao(self, parar: threading.Event | None = None) -> str:
+        """
+        Mãos-livres: fica atento e atende quem disser "Jarvis" (ou quem responder logo depois de uma pergunta
+        dele). O que for dito na casa sem chamar o Jarvis é descartado: não aparece na tela e não é guardado.
+        """
+        falhas = 0
+        while not (parar and parar.is_set()):
+            restante = JANELA_CONVERSA_S - (time.monotonic() - self._ultima_fala)
+            if restante > 1:  # acabou de perguntar algo: dá para responder sem dizer "Jarvis"
+                texto = self._escutar(espera_max_s=restante, parar=parar, avisar_vazio=False)
+                if texto:
+                    chamado = remover_ativacao(texto, self.palavras_ativacao)
+                    if chamado == "":
+                        continue  # disse só "Jarvis": continua escutando o pedido
+                    return chamado or texto
+                self._ultima_fala = 0.0  # a janela de conversa acabou: volta a esperar o "Jarvis"
+                continue
+            audio, erro = self._gravar(espera_max_s=None, parar=parar, atento=True)
+            if erro:
+                falhas += 1
+                if falhas >= 3:
+                    ui.erro("O microfone parou de responder. Use o botão FALAR ou digite.")
+                    self.maos_livres = False
+                    return ""
+                time.sleep(1)
+                continue
+            falhas = 0
+            if audio is None:
+                continue
+            texto = self.transcritor.transcrever(audio)
+            chamado = remover_ativacao(texto, self.palavras_ativacao) if texto else None
+            if chamado is None:
+                ui.estado("atento")  # não era com o Jarvis
+                continue
+            if chamado:  # "Jarvis, conta uma história!"
+                self.efeitos.tocar("ouvido")
+                ui.crianca_disse(self.nome_crianca, texto)
+                return chamado
+            # Só chamou ("Jarvis!"): bip e escuta o pedido
+            texto = self._escutar(espera_max_s=8.0, parar=parar)
+            if texto and remover_ativacao(texto, self.palavras_ativacao) != "":
+                return remover_ativacao(texto, self.palavras_ativacao) or texto
+        return ""
+
+    def _gravar(self, espera_max_s: float | None, parar: threading.Event | None = None,
+                atento: bool = False) -> tuple[object, bool]:
+        """Grava uma frase. Retorna (áudio ou None, houve_erro). ``atento``: esperando o "Jarvis", sem bip."""
+        ui.estado("atento" if atento else "ouvindo")
+        aviso = "🎙️ Diga “Jarvis” para me chamar…" if atento else "🎙️  Ouvindo… pode falar!"
+        try:
+            with ui.carregando(aviso):
+                audio = self.microfone.gravar_frase(
+                    espera_max_s=espera_max_s, silencio_fim_ms=self.silencio_fim_ms, ao_nivel=ui.nivel_microfone,
+                    ao_detectar_fala=(lambda: ui.estado("ouvindo")) if atento else None, cancelar=parar)
         except KeyboardInterrupt:
             ui.estado("ocioso")
-            return ""
+            return None, False
         except Exception as exc:
             ui.estado("ocioso")
             ui.erro(f"Problema com o microfone: {exc}")
-            return ""
+            return None, True
         if audio is None:
             ui.estado("ocioso")
-            ui.info("Não ouvi nada. Tente de novo, ou digite!")
+        return audio, False
+
+    def _escutar(self, espera_max_s: float | None, parar: threading.Event | None = None,
+                 avisar_vazio: bool = True) -> str:
+        self.efeitos.tocar("ativar")
+        audio, _erro = self._gravar(espera_max_s, parar)
+        if audio is None:
+            if avisar_vazio and not (parar and parar.is_set()):
+                ui.info("Não ouvi nada. Tente de novo, ou digite!")
             return ""
         self.efeitos.tocar("ouvido")
         ui.estado("pensando")
@@ -269,12 +339,15 @@ class Interacao:
 
 
 def remover_ativacao(texto: str, palavras_ativacao: set[str]) -> str | None:
-    """'Jarvis, que horas são?' -> 'que horas são?'. None se ninguém chamou o Jarvis."""
-    for palavra in palavras(texto):
+    """
+    'Jarvis, que horas são?' -> 'que horas são?' · 'Ei, Jarvis!' -> '' (só chamou) · None se ninguém chamou.
+    O nome precisa vir no começo da frase (até a 3ª palavra): "eu acho o Jarvis legal" não é um chamado.
+    """
+    for palavra in palavras(texto)[:3]:
         if palavra in palavras_ativacao:
-            m = re.search(rf"(?i)\b{re.escape(palavra)}\w*\W*", normalizar(texto))
-            resto = texto[m.end():].strip() if m else texto
-            return resto or texto
+            m = re.search(rf"(?i)\b{re.escape(palavra)}\w*[\s,.!?:;…-]*", texto) or \
+                re.search(rf"\b{re.escape(palavra)}\w*[\s,.!?:;…-]*", normalizar(texto))
+            return texto[m.end():].strip() if m else ""
     return None
 
 

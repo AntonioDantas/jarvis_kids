@@ -144,9 +144,20 @@ def conectar_interface(interface: Interface | None, io, prefs, plano) -> None:
 
     # Sem placa de vídeo dedicada, a IA usa a CPU: a janela economiza animações para não roubar desempenho.
     leve = prefs.animacoes == "leves" or (prefs.animacoes == "auto" and plano.nivel.startswith("Econômico"))
-    interface.tela.configurar(io.escuta_ativa, VERSAO, CATEGORIAS, REPETICOES, economia=leve)
+    interface.tela.configurar(io.escuta_ativa, VERSAO, CATEGORIAS, REPETICOES, economia=leve,
+                              maos_livres=io.maos_livres)
     interface.tela.conectar_alto_falante(io.voz.alto_falante)
-    interface.ponte.ao_acao = lambda acao: io.voz.silenciar() if acao == "silenciar" else None
+
+    def acao(nome: str) -> None:
+        if nome == "silenciar":
+            io.voz.silenciar()
+        elif nome in ("maos_livres_ligar", "maos_livres_desligar") and io.escuta_ativa:
+            io.maos_livres = nome == "maos_livres_ligar"  # vale já na pergunta que está na tela
+            prefs.modo_escuta = "maos_livres" if io.maos_livres else "apertar_enter"
+            prefs.salvar()
+            interface.tela.maos_livres(io.maos_livres)
+
+    interface.ponte.ao_acao = acao
 
 
 def ligar_agenda(ctx, interface: Interface | None) -> None:
@@ -555,6 +566,8 @@ def saudacao(ctx) -> None:
     pendentes = len(ctx.mesada.pendentes)
     if pendentes:
         partes.append(f"Você tem {pendentes} atividade{'s' if pendentes > 1 else ''} esperando a aprovação dos pais.")
+    if ctx.io.maos_livres:
+        partes.append("Estou no modo mãos-livres: é só dizer Jarvis e fazer o seu pedido.")
     partes.append("Qual é a missão de hoje?")
     mostrar_painel(ctx)
     ctx.processar_eventos(eventos)

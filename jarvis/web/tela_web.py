@@ -70,6 +70,7 @@ class TelaWeb:
         self.ponte = ponte
         self.microfone = False
         self._menu: dict | None = None
+        self._config: dict = {}
         self._contador = 0
         self._ultimo_nivel = 0.0
 
@@ -78,11 +79,12 @@ class TelaWeb:
 
     # ------------------------------------------------------------ configuração
     def configurar(self, microfone: bool, versao: str, categorias: dict, repeticoes: dict,
-                   economia: bool = False) -> None:
+                   economia: bool = False, maos_livres: bool = False) -> None:
         self.microfone = microfone
-        self._emitir("config", microfone=microfone, versao=versao, economia=economia,
-                     categorias={k: {"emoji": e, "nome": n} for k, (e, n) in categorias.items()},
-                     repeticoes=repeticoes)
+        self._config = {"microfone": microfone, "versao": versao, "economia": economia, "maos_livres": maos_livres,
+                        "categorias": {k: {"emoji": e, "nome": n} for k, (e, n) in categorias.items()},
+                        "repeticoes": repeticoes}
+        self._emitir("config", **self._config)
 
     def conectar_alto_falante(self, alto_falante) -> None:
         alto_falante.observador = self._ao_som
@@ -203,14 +205,24 @@ class TelaWeb:
         self._emitir("progresso", texto=texto_simples(texto), feito=feito, total=total)
 
     # ---------------------------------------------------------------- entrada
-    def entrada(self, rotulo: str, tipo: str = "texto", opcoes: list[str] | None = None) -> str:
-        pedido = {"controle": tipo, "rotulo": texto_simples(rotulo), "microfone": self.microfone,
+    def entrada(self, rotulo: str, tipo: str = "texto", opcoes: list[str] | None = None, escuta: str = "") -> str:
+        pedido = {"controle": tipo, "rotulo": texto_simples(rotulo), "microfone": self.microfone, "escuta": escuta,
                   "opcoes": [texto_simples(o) for o in opcoes] if opcoes else []}
         if tipo == "escolha":
             pedido["menu"] = self._menu or {"titulo": "Escolha", "opcoes": pedido["opcoes"], "cor": "#00d7ff",
                                             "pergunta": ""}
-        self.estado("ocioso")  # esperando a criança: o núcleo volta a "ONLINE"
+        if escuta != "maos_livres":
+            self.estado("ocioso")  # esperando a criança: o núcleo volta a "ONLINE"
         return self.ponte.pedir(pedido)
+
+    def responder_por_voz(self, texto: str) -> bool:
+        return self.ponte.responder_pedido_atual(texto)
+
+    def maos_livres(self, ligado: bool) -> None:
+        """A janela mostra o botão de mãos-livres ligado/desligado (e a pergunta atual é refeita no modo novo)."""
+        self._config["maos_livres"] = ligado
+        self._emitir("config", **self._config)
+        self.ponte.refazer_pedido()
 
 
 # -----------------------------------------------------------------------------

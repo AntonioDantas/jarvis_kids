@@ -51,6 +51,7 @@ body {
 }
 body[data-estado="pensando"] { --cor-nucleo: var(--roxo); }
 body[data-estado="ouvindo"] { --cor-nucleo: var(--ouro); }
+body[data-estado="atento"] { --cor-nucleo: var(--verde); }
 body.falando { --cor-nucleo: #7ff3ff; }
 
 button, input, select { font-family: inherit; font-size: inherit; color: inherit; }
@@ -267,7 +268,7 @@ body[data-estado="ouvindo"] .nucleo-luz, body.falando .nucleo-luz { animation: n
 .tabela-cartao { align-self: stretch; max-width: 100%; white-space: normal; }
 .tabela-cartao table { width: 100%; border-collapse: collapse; font-size: 16px; }
 .tabela-cartao th { text-align: left; font-family: var(--fonte-titulo); font-size: 10px; letter-spacing: 2px; color: var(--cor, var(--ciano)); padding: 4px 8px; border-bottom: 1px solid var(--borda); text-transform: uppercase; }
-.tabela-cartao td { padding: 6px 8px; border-bottom: 1px solid rgba(0, 229, 255, .08); vertical-align: top; }
+.tabela-cartao td { padding: 6px 8px; border-bottom: 1px solid rgba(0, 229, 255, .08); vertical-align: top; white-space: pre-line; }
 .tabela-cartao tr:hover td { background: rgba(0, 229, 255, .04); }
 .tabela-cartao td:first-child { white-space: nowrap; }
 .tabela-cartao .mini-barra { width: 110px; height: 8px; margin-top: 6px; }
@@ -357,7 +358,12 @@ body[data-estado="ouvindo"] .microfone { border-color: var(--ouro); background: 
 body[data-estado="ouvindo"] .microfone::before { animation: onda-mic 1.4s ease-out infinite; }
 body[data-estado="ouvindo"] .microfone::after { animation: onda-mic 1.4s .7s ease-out infinite; }
 @keyframes onda-mic { from { transform: scale(1); opacity: .9; } to { transform: scale(1.9); opacity: 0; } }
-body.sem-microfone .microfone { display: none; }
+body.sem-microfone .microfone, body.sem-microfone .maos-livres { display: none; }
+.maos-livres { display: flex; flex-direction: column; align-items: center; line-height: 1.1; border-radius: 14px; padding: 8px 12px; font-size: 14px; white-space: nowrap; }
+.maos-livres small { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--texto-suave); }
+.maos-livres[aria-pressed="true"] { border-color: var(--verde); color: var(--verde); background: rgba(95, 255, 175, .12); box-shadow: 0 0 16px rgba(95, 255, 175, .45); }
+.maos-livres[aria-pressed="true"] small { color: var(--verde); }
+body.escutando-sempre .microfone { border-color: var(--verde); box-shadow: 0 0 22px rgba(95, 255, 175, .6), inset 0 0 18px rgba(95, 255, 175, .3); }
 
 /* respostas rápidas (quiz, sim/não, continuar) */
 .respostas { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
@@ -399,6 +405,9 @@ body[data-pedido="quiz"], body[data-pedido="escolha"], body[data-pedido="sim_nao
 .opcao:hover, .opcao:focus-visible { border-color: var(--ciano); box-shadow: 0 0 16px rgba(0, 229, 255, .35); transform: translateY(-2px); }
 .opcao .letra { width: 28px; height: 28px; font-size: 13px; }
 .opcao-voltar { margin-top: 14px; }
+.modal-acoes { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.modal-acoes .opcao-voltar, .modal-acoes .botao-falar { margin-top: 14px; }
+.botao-falar { border-color: var(--ouro); color: var(--ouro); background: rgba(255, 215, 95, .1); }
 .teclado-visor {
   font-family: var(--fonte-texto); font-weight: 700; font-size: 40px; text-align: center; padding: 12px; margin-bottom: 14px; border-radius: 10px; letter-spacing: 3px;
   background: rgba(0, 0, 0, .35); border: 1px solid var(--borda); color: var(--verde); min-height: 66px; text-shadow: 0 0 12px rgba(95, 255, 175, .5);

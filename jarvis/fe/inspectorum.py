@@ -43,7 +43,7 @@ def executar(ctx: Contexto) -> None:
                          mostrar=False)
             ui.info("Pense em silêncio. Sua resposta fica só entre você e Deus.")
             if ctx.io.maos_livres:
-                ctx.io.ouvir()  # diga "próximo" para continuar
+                ctx.io.ouvir("Diga “próximo” para continuar", tipo="continuar")
             else:
                 ui.entrada("Aperte ENTER para continuar", tipo="continuar")
     except (KeyboardInterrupt, EOFError):

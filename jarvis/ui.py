@@ -36,6 +36,7 @@ CORES = {"jarvis": "#00d7ff", "crianca": "#ffd75f", "santo": "#ffaf5f", "fe": "#
          "dinheiro": "#87ff87", "alerta": "#ff5f5f", "suave": "grey62"}
 
 _tela = None  # TelaWeb quando a interface gráfica está ligada
+REFAZER = "\x00refazer"  # resposta especial: o modo de escuta mudou, a pergunta deve ser feita de novo
 
 
 def usar_tela(tela) -> None:
@@ -137,7 +138,7 @@ def comandos_rapidos() -> None:
     console.print(Columns([Text.assemble((f"[{chave}]", "bold #00d7ff"), (f" {nome}", "grey85")) for chave, nome in itens],
                           padding=(0, 2)), style="")
     console.print("  [grey50]Também: [bold #00d7ff]agenda[/] 📅 · [bold #00d7ff]mudar a voz[/] 🗣️ · "
-                  "[bold #00d7ff]ajuda[/] ❔  …ou simplesmente converse comigo! Fale (ENTER) ou digite.[/]")
+                  "[bold #00d7ff]ajuda[/] ❔ · ou converse comigo: fale (ENTER) ou digite.[/]")
 
 
 def fala(texto: str, titulo: str = "J.A.R.V.I.S.", cor: str = CORES["jarvis"]) -> None:
@@ -243,14 +244,15 @@ def info(texto: str) -> None:
     console.print(f"  [grey62]{texto}[/]")
 
 
-def entrada(rotulo: str, tipo: str = "texto", opcoes: list[str] | None = None) -> str:
+def entrada(rotulo: str, tipo: str = "texto", opcoes: list[str] | None = None, escuta: str = "") -> str:
     """
     Lê uma resposta. ``tipo`` diz à interface gráfica qual controle mostrar:
     principal, texto, escolha, quiz, sim_nao, valor, numero, pin, continuar.
+    ``escuta``: "botao" (há botão FALAR) ou "maos_livres" (o microfone já está atento ao "Jarvis").
     Resposta vazia = "quero falar" (a interação liga o microfone).
     """
     if _tela:
-        return _tela.entrada(rotulo, tipo, opcoes)
+        return _tela.entrada(rotulo, tipo, opcoes, escuta)
     if tipo == "pin":
         return console.input(f"[bold #ff87d7]{rotulo}[/] › ", password=True)
     return console.input(f"\n[bold #00d7ff]{rotulo}[/] [grey50]›[/] ")
@@ -336,6 +338,11 @@ def agenda(itens: list, titulo: str = "📅 AGENDA") -> None:
     for item in itens:
         hora = item.hora or "—"
         console.print(f"  [bold #00d7ff]{hora:>5}[/]  {item.emoji} {item.titulo}")
+
+
+def responder_por_voz(texto: str) -> bool:
+    """Mãos-livres na janela: o que a criança falou responde a pergunta que está na tela."""
+    return bool(_tela and _tela.responder_por_voz(texto))
 
 
 def lateral(dados: dict) -> None:
